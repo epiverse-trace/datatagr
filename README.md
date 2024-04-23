@@ -24,6 +24,10 @@ these principles for epidemiological data. The original proposal for
 this package can be found on [the Discussion
 board](https://github.com/orgs/epiverse-trace/discussions/221).
 
+> \![INFO\] For our project management and roadmap, please [see the
+> relevant GitHub
+> Project](https://github.com/orgs/epiverse-trace/projects/41).
+
 ## Installation
 
 You can install the development version of datatagr from

@@ -5,7 +5,7 @@
 <!-- `packagename` is extracted from the DESCRIPTION file -->
 <!-- `gh_repo` is extracted via a special environment variable in GitHub Actions -->
 
-# packagetemplate <img src="man/figures/logo.svg" align="right" width="120" alt="" />
+# *datatagr*: Generic Data Tagging and Validating <img src="man/figures/logo.svg" align="right" width="120" alt="Logo for datatagr" />
 
 <!-- badges: start -->
 
@@ -15,19 +15,18 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![Codecov test
 coverage](https://codecov.io/gh/epiverse-trace/datatagr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/epiverse-trace/datatagr?branch=main)
 [![lifecycle-concept](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-concept.svg)](https://www.reconverse.org/lifecycle.html#concept)
+
 <!-- badges: end -->
 
-packagetemplate provides functions to ….
-
-<!-- This sentence is optional and can be removed -->
-
-packagetemplate is developed at the [CENTER\|similar](url) at the
-[UNIVERSITY\|similar](url) as part of the [Epiverse-TRACE
-program](https://data.org/initiatives/epiverse/).
+**datatagr** provides functions to tag, validate, and safeguard data of
+any kind. datatagr is an abstraction from **linelist**, which applies
+these principles for epidemiological data. The original proposal for
+this package can be found on [the Discussion
+board](https://github.com/orgs/epiverse-trace/discussions/221).
 
 ## Installation
 
-You can install the development version of packagetemplate from
+You can install the development version of datatagr from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -60,7 +59,7 @@ languages, but also differs from them in the following aspects:
 
 ### Code of Conduct
 
-Please note that the packagetemplate project is released with a
-[Contributor Code of
+Please note that the datatagr project is released with a [Contributor
+Code of
 Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.

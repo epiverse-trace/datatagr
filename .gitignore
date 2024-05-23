@@ -55,3 +55,6 @@ rsconnect/
 # macOS hidden files
 .DS_Store
 inst/doc
+
+# Random files to ignore
+tests/testthat/Rplots.pdf

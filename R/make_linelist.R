@@ -78,7 +78,6 @@
 #' @examples
 #'
 #' if (require(outbreaks)) {
-#'
 #'   ## dataset we will convert to linelist
 #'   head(measles_hagelloch_1861)
 #'

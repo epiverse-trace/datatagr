@@ -1,5 +1,4 @@
 test_that("tests for make_linelist", {
-
   # test errors
   msg <- "Must be of type 'data.frame', not 'NULL'."
   expect_error(make_linelist(NULL), msg)
@@ -11,7 +10,7 @@ test_that("tests for make_linelist", {
   expect_error(make_linelist(cars, outcome = "bar"), msg)
 
   expect_error(
-    make_linelist(cars, outcome = "bar", age = "bla"), 
+    make_linelist(cars, outcome = "bar", age = "bla"),
     "2 assertions failed"
   )
 
@@ -36,20 +35,16 @@ test_that("tests for make_linelist", {
     tags(x, TRUE),
     c(tags_defaults(), foo = "speed", bar = "dist")
   )
-
 })
 
 test_that("make_linelist() works with dynamic dots", {
-
   expect_identical(
     make_linelist(cars, date_onset = "dist", date_outcome = "speed"),
     make_linelist(cars, !!!list(date_onset = "dist", date_outcome = "speed"))
   )
-
 })
 
 test_that("make_linelist() errors on data.table input", {
-
   dt_cars <- structure(
     cars,
     class = c("data.table", "data.frame")
@@ -59,5 +54,4 @@ test_that("make_linelist() errors on data.table input", {
     make_linelist(dt_cars),
     "NOT be a data.table"
   )
-
 })

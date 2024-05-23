@@ -19,7 +19,6 @@
 #' @importFrom utils modifyList
 
 tag_variables <- function(x, tags) {
-
   tag_errors <- checkmate::makeAssertCollection()
 
   by_position <- vapply(tags, is.numeric, logical(1))

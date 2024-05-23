@@ -19,7 +19,6 @@
 #'
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
-#'
 #'   ## create an invalid linelist - gender is a numeric
 #'   x <- measles_hagelloch_1861 %>%
 #'     tibble() %>%

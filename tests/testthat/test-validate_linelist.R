@@ -1,5 +1,4 @@
 test_that("tests for validate_linelist", {
-
   # errors
   msg <- "Must inherit from class 'linelist', but has class 'NULL'."
   expect_error(validate_linelist(NULL), msg)
@@ -14,7 +13,7 @@ test_that("tests for validate_linelist", {
 
   x <- make_linelist(cars, gender = "speed")
   expect_error(
-    validate_linelist(x), 
+    validate_linelist(x),
     "- gender: Must inherit from class 'character'/'factor'"
   )
 

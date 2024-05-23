@@ -10,7 +10,6 @@
 #'
 #' @examples
 #' if (require(outbreaks) && require(dplyr)) {
-#'
 #'   ## dataset we'll create a linelist from
 #'   measles_hagelloch_1861
 #'
@@ -27,16 +26,12 @@
 #'     select(has_tag(c("id", "age"))) %>%
 #'     head()
 #' }
-
 has_tag <- function(
-    tags
-) {
-
+    tags) {
   dat <- tidyselect::peek_data(fn = "has_tag")
   dat_tags <- tags(dat)
 
   cols_to_extract <- dat_tags[names(dat_tags) %in% tags]
 
   which(colnames(dat) %in% cols_to_extract)
-
 }

@@ -42,7 +42,6 @@
 #' }
 #'
 set_tags <- function(x, ..., allow_extra = FALSE) {
-
   # assert inputs
   checkmate::assertClass(x, "linelist")
   checkmate::assertLogical(allow_extra)
@@ -65,5 +64,4 @@ set_tags <- function(x, ..., allow_extra = FALSE) {
   final_tags <- modify_defaults(old_tags, new_tags, strict = !allow_extra)
 
   tag_variables(x, final_tags)
-
 }

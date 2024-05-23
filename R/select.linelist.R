@@ -26,7 +26,6 @@
 #' * [tags_df()] to return a `data.frame` of all tagged variables
 #'
 select.linelist <- function(.data, ..., tags) {
-
   if (lifecycle::is_present(tags)) {
     lifecycle::deprecate_warn(
       "1.0.0",

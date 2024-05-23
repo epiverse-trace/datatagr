@@ -13,7 +13,6 @@
 #'
 #' @examples
 #' if (require(outbreaks)) {
-#'
 #'   ## dataset to create a linelist from
 #'   measles_hagelloch_1861
 #'
@@ -33,14 +32,14 @@
 #'   head(x)
 #'   tags(x)
 #'
-#'  # This also works with using `dplyr::rename()` because it uses names<-()
-#'  # under hood
-#'  if (require(dplyr)) {
-#'    x <- x %>%
-#'      rename(case_id= case_label)
-#'    head(x)
-#'    tags(x)
-#'  }
+#'   # This also works with using `dplyr::rename()` because it uses names<-()
+#'   # under hood
+#'   if (require(dplyr)) {
+#'     x <- x %>%
+#'       rename(case_id = case_label)
+#'     head(x)
+#'     tags(x)
+#'   }
 #' }
 `names<-.linelist` <- function(x, value) {
   # Strategy for renaming

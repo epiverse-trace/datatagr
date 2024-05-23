@@ -1,5 +1,4 @@
 test_that("tests for tags", {
-
   # Check error messages
   x <- make_linelist(cars, age = "speed")
 

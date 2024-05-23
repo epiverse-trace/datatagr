@@ -9,7 +9,6 @@ test_that("tests for zzz", {
     }
   )
   expect_identical(res, "warning")
-
 })
 
 test_that("Environment variable is used for initial `lost_tags_action`", {
@@ -22,5 +21,4 @@ test_that("Environment variable is used for initial `lost_tags_action`", {
     env = c(LINELIST_LOST_ACTION = "error")
   )
   expect_identical(res, "error")
-
 })

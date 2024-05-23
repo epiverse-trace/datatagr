@@ -13,7 +13,6 @@
 #' @examples
 #'
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
-#'
 #'   ## create a tibble linelist
 #'   x <- measles_hagelloch_1861 %>%
 #'     tibble() %>%

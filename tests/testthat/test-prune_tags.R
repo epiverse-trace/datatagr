@@ -28,5 +28,4 @@ test_that("prune_tags() doesn't error on a linelist with extra tags", {
 
   expect_no_condition(ll["a"])
   expect_identical(ll, ll["a"])
-
 })

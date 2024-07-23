@@ -53,11 +53,11 @@ lost_tags_action <- function(action = c("warning", "error", "none"),
     )
   }
 
-  linelist_options <- options("linelist")$linelist
+  linelist_options <- options("linelist")$linelist # nolint
 
   action <- match.arg(action)
   linelist_options$lost_tags_action <- action
-  options(linelist = linelist_options)
+  options(linelist = linelist_options) # nolint
   if (!quiet) {
     if (action == "warning") msg <- "Lost tags will now issue a warning."
     if (action == "error") msg <- "Lost tags will now issue an error."
@@ -74,5 +74,5 @@ lost_tags_action <- function(action = c("warning", "error", "none"),
 #' @rdname lost_tags_action
 
 get_lost_tags_action <- function() {
-  options("linelist")$linelist$lost_tags_action
+  options("linelist")$linelist$lost_tags_action # nolint
 }

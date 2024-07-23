@@ -1,23 +1,20 @@
-#' Base Tools for Storing and Handling Case Line Lists
+#' Base Tools for Tagging and Validating Data
 #'
-#' The *linelist* package provides tools to help storing and handling case line
-#' list data. The `linelist` class adds a tagging system to classical
-#' `data.frame` or `tibble` objects which permits to identify key
-#' epidemiological data such as dates of symptom onset, epi case definition,
-#' age, gender or disease outcome. Once tagged, these variables can be
-#' seamlessly used in downstream analyses, making data pipelines more robust and
-#' reliable.
+#' The *datatagr* package provides tools to help tag and validate data. The 
+#' 'datatagr' class adds a custom tagging system to classical 'data.frame' 
+#' objects to identify key data. Once tagged, these variables can be seamlessly 
+#' used in downstream analyses, making data pipelines more robust and reliable.
 #'
-#' @aliases linelist
+#' @aliases datatagr
 #'
 #' @section Main functions:
 #'
-#'   * [make_linelist()]: to create `linelist` objects from a `data.frame` or a
-#'   `tibble`, with the possibility to tag key epi variables
+#'   * [make_linelist()]: to create `datatagr` objects from a `data.frame` or a 
+#'   `tibble`
 #'
-#'   * [set_tags()]: to change or add tagged variables in a `linelist`
+#'   * [set_tags()]: to change or add tagged variables in a `datatagr`
 #'
-#'   * [tags()]: to get the list of tags of a `linelist`
+#'   * [tags()]: to get the list of tags of a `datatagr`
 #'
 #'   * [tags_df()]: to get a `data.frame` of all tagged variables
 #'
@@ -31,7 +28,7 @@
 #' @section Dedicated methods:
 #'
 #'   Specific methods commonly used to handle `data.frame` are provided for
-#'   `linelist` objects, typically to help flag or prevent actions which could
+#'   `datatagr` objects, typically to help flag or prevent actions which could
 #'   alter or lose tagged variables (and may thus break downstream data
 #'   pipelines).
 #'
@@ -41,7 +38,7 @@
 #'   * `x[...] <-` and `x[[...]] <-` (see [sub_linelist]): will adopt the
 #'    desired behaviour when tagged variables are lost
 #'
-#'   * `print()`: prints info about the `linelist` in addition to the
+#'   * `print()`: prints info about the `datatagr` in addition to the
 #'   `data.frame` or `tibble`
 #'
 #' @examples

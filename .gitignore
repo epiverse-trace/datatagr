@@ -55,3 +55,6 @@ rsconnect/
 # macOS hidden files
 .DS_Store
 inst/doc
+
+# Temp files
+tests/testthat/Rplots.pdf

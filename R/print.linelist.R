@@ -12,7 +12,6 @@
 #'
 #' @examples
 #' if (require(outbreaks)) {
-#'
 #'   ## dataset we'll create a linelist from
 #'   measles_hagelloch_1861
 #'

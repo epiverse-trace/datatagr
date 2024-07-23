@@ -46,10 +46,10 @@
 lost_tags_action <- function(action = c("warning", "error", "none"),
                              quiet = FALSE,
                              x) {
-
   if (!missing(x) || inherits(action, "linelist")) {
     stop(
-      "Using `lost_tags_action()` in a pipeline is deprecated", call. = FALSE
+      "Using `lost_tags_action()` in a pipeline is deprecated",
+      call. = FALSE
     )
   }
 
@@ -65,7 +65,6 @@ lost_tags_action <- function(action = c("warning", "error", "none"),
     message(msg)
   }
   return(invisible(NULL))
-
 }
 
 

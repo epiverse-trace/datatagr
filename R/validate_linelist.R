@@ -32,7 +32,6 @@
 #' @examples
 #'
 #' if (require(outbreaks) && require(magrittr)) {
-#'
 #'   ## create a valid linelist
 #'   x <- measles_hagelloch_1861 %>%
 #'     make_linelist(

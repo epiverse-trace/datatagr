@@ -1,15 +1,15 @@
 #' Base Tools for Tagging and Validating Data
 #'
-#' The *datatagr* package provides tools to help tag and validate data. The 
-#' 'datatagr' class adds a custom tagging system to classical 'data.frame' 
-#' objects to identify key data. Once tagged, these variables can be seamlessly 
+#' The *datatagr* package provides tools to help tag and validate data. The
+#' 'datatagr' class adds a custom tagging system to classical 'data.frame'
+#' objects to identify key data. Once tagged, these variables can be seamlessly
 #' used in downstream analyses, making data pipelines more robust and reliable.
 #'
 #' @aliases datatagr
 #'
 #' @section Main functions:
 #'
-#'   * [make_linelist()]: to create `datatagr` objects from a `data.frame` or a 
+#'   * [make_linelist()]: to create `datatagr` objects from a `data.frame` or a
 #'   `tibble`
 #'
 #'   * [set_tags()]: to change or add tagged variables in a `datatagr`

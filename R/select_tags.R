@@ -25,7 +25,6 @@
 #'
 #' @examples
 #' if (require(outbreaks)) {
-#'
 #'   ## dataset we'll create a linelist from
 #'   measles_hagelloch_1861
 #'
@@ -52,7 +51,6 @@
 #' }
 #'
 select_tags <- function(x, ...) {
-
   lifecycle::deprecate_warn(
     "1.0.0",
     "select_tags()",
@@ -65,5 +63,4 @@ select_tags <- function(x, ...) {
 
   df <- tags_df(x)
   dplyr::select(df, ...)
-
 }

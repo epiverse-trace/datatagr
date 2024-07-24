@@ -1,13 +1,13 @@
-#' Checks the content of a linelist object
+#' Checks the content of a datatagr object
 #'
-#' This function evaluates the validity of a `linelist` object by checking the
+#' This function evaluates the validity of a `datatagr` object by checking the
 #' object class, its tags, and the types of the tagged variables. It combines
 #' validations checks made by [validate_types()] and [validate_tags()]. See
 #' 'Details' section for more information on the checks performed.
 #'
 #' @details The following checks are performed:
 #'
-#' * `x` is a `linelist` object
+#' * `x` is a `datatagr` object
 #' * `x` has a well-formed `tags` attribute
 #' * all default tags are present (even if `NULL`)
 #' * all tagged variables correspond to existing columns
@@ -16,13 +16,13 @@
 #'
 #' @export
 #'
-#' @param x a `linelist` object
+#' @param x a `datatagr` object
 #'
 #' @inheritParams validate_types
 #'
 #' @inheritParams set_tags
 #'
-#' @return If checks pass, a `linelist` object; otherwise issues an error.
+#' @return If checks pass, a `datatagr` object; otherwise issues an error.
 #'
 #' @seealso
 #' * [tags_types()] to change allowed types
@@ -32,9 +32,9 @@
 #' @examples
 #'
 #' if (require(outbreaks) && require(magrittr)) {
-#'   ## create a valid linelist
+#'   ## create a valid datatagr
 #'   x <- measles_hagelloch_1861 %>%
-#'     make_linelist(
+#'     make_datatagr(
 #'       id = "case_ID",
 #'       date_onset = "date_of_prodrome",
 #'       age = "age",
@@ -43,11 +43,11 @@
 #'   x
 #'
 #'   ## validation
-#'   validate_linelist(x)
+#'   validate_datatagr(x)
 #'
-#'   ## create an invalid linelist - onset date is a factor
+#'   ## create an invalid datatagr - onset date is a factor
 #'   x <- measles_hagelloch_1861 %>%
-#'     make_linelist(
+#'     make_datatagr(
 #'       id = "case_ID",
 #'       date_onset = "gender",
 #'       age = "age"
@@ -56,12 +56,12 @@
 #'
 #'   ## the below issues an error
 #'   ## note: tryCatch is only used to avoid a genuine error in the example
-#'   tryCatch(validate_linelist(x), error = paste)
+#'   tryCatch(validate_datatagr(x), error = paste)
 #' }
-validate_linelist <- function(x,
+validate_datatagr <- function(x,
                               allow_extra = FALSE,
                               ref_types = tags_types()) {
-  checkmate::assert_class(x, "linelist")
+  checkmate::assert_class(x, "datatagr")
   validate_tags(x, allow_extra)
   validate_types(x, ref_types)
 

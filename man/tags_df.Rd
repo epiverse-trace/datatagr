@@ -7,22 +7,22 @@
 tags_df(x)
 }
 \arguments{
-\item{x}{a \code{linelist} object}
+\item{x}{a \code{datatagr} object}
 }
 \value{
 A \code{data.frame} of tagged variables.
 }
 \description{
 This function returns a \code{data.frame} of all the tagged variables stored in a
-\code{linelist}. Note that the output is no longer a \code{linelist}, but a regular
+\code{datatagr}. Note that the output is no longer a \code{datatagr}, but a regular
 \code{data.frame}.
 }
 \examples{
 
 if (require(outbreaks) && require(magrittr)) {
-  ## create a tibble linelist
+  ## create a tibble datatagr
   x <- measles_hagelloch_1861 \%>\%
-    make_linelist(
+    make_datatagr(
       id = "case_ID",
       date_onset = "date_of_prodrome",
       age = "age",

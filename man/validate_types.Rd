@@ -7,7 +7,7 @@
 validate_types(x, ref_types = tags_types())
 }
 \arguments{
-\item{x}{a \code{linelist} object}
+\item{x}{a \code{datatagr} object}
 
 \item{ref_types}{a \code{list} providing allowed types for all tags, as returned
 by \code{\link[=tags_types]{tags_types()}}}
@@ -16,14 +16,14 @@ by \code{\link[=tags_types]{tags_types()}}}
 A named \code{list}.
 }
 \description{
-This function checks the class of each tagged variable in a \code{linelist}
+This function checks the class of each tagged variable in a \code{datatagr}
 against pre-defined accepted classes in \code{\link[=tags_types]{tags_types()}}.
 }
 \examples{
 if (require(outbreaks) && require(magrittr)) {
-  ## create an invalid linelist - gender is a numeric
+  ## create an invalid datatagr - gender is a numeric
   x <- measles_hagelloch_1861 \%>\%
-    make_linelist(
+    make_datatagr(
       id = "case_ID",
       gender = "infector"
     )
@@ -41,6 +41,6 @@ if (require(outbreaks) && require(magrittr)) {
 \itemize{
 \item \code{\link[=tags_types]{tags_types()}} to change allowed types
 \item \code{\link[=validate_tags]{validate_tags()}} to perform a series of checks on the tags
-\item \code{\link[=validate_linelist]{validate_linelist()}} to combine \code{validate_tags} and \code{validate_types}
+\item \code{\link[=validate_datatagr]{validate_datatagr()}} to combine \code{validate_tags} and \code{validate_types}
 }
 }

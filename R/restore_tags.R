@@ -1,6 +1,6 @@
-#' Restore tags of a linelist
+#' Restore tags of a datatagr
 #'
-#' Internal. This function is used to restore tags of a `linelist` object which
+#' Internal. This function is used to restore tags of a `datatagr` object which
 #' may have lost its tags after handling e.g. through `dplyr` verbs. Specific
 #' actions can be triggered when some of the tagged variables have disappeared
 #' from the object.
@@ -18,7 +18,7 @@
 #'
 #' @seealso [prune_tags()] for removing tags which have lost their variables
 #'
-#' @return The function returns a `linelist` object with updated tags.
+#' @return The function returns a `datatagr` object with updated tags.
 #'
 
 restore_tags <- function(x, tags,
@@ -30,8 +30,8 @@ restore_tags <- function(x, tags,
 
   # actual work
   out <- x
-  if (!inherits(out, "linelist")) {
-    class(out) <- c("linelist", class(out))
+  if (!inherits(out, "datatagr")) {
+    class(out) <- c("datatagr", class(out))
   }
   attr(out, "tags") <- tags
   out <- prune_tags(out, lost_action)

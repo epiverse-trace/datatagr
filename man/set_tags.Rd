@@ -2,7 +2,7 @@
 % Please edit documentation in R/set_tags.R
 \name{set_tags}
 \alias{set_tags}
-\title{Changes tags of a linelist object}
+\title{Changes tags of a datatagr object}
 \usage{
 set_tags(x, ..., allow_extra = FALSE)
 }
@@ -16,22 +16,22 @@ variables listed in 'Details' and values indicate their name in \code{x}; see
 details for a list of known variable types and their expected content}
 
 \item{allow_extra}{a \code{logical} indicating if additional data tags not
-currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
+currently recognized by \code{datatagr} should be allowed; if \code{FALSE}, unknown
 tags will trigger an error}
 }
 \value{
-The function returns a \code{linelist} object.
+The function returns a \code{datatagr} object.
 }
 \description{
-This function changes the \code{tags} of a \code{linelist} object, using the same
-syntax as the constructor \code{\link[=make_linelist]{make_linelist()}}. If some of the default tags are
+This function changes the \code{tags} of a \code{datatagr} object, using the same
+syntax as the constructor \code{\link[=make_datatagr]{make_datatagr()}}. If some of the default tags are
 missing, they will be added to the final object.
 }
 \examples{
 
 if (require(outbreaks)) {
-  ## create a linelist
-  x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_rash")
+  ## create a datatagr
+  x <- make_datatagr(measles_hagelloch_1861, date_onset = "date_of_rash")
   tags(x)
 
   ## add new tags and fix an existing one
@@ -58,5 +58,5 @@ if (require(outbreaks)) {
 
 }
 \seealso{
-\code{\link[=make_linelist]{make_linelist()}} to create a \code{linelist} object
+\code{\link[=make_datatagr]{make_datatagr()}} to create a \code{datatagr} object
 }

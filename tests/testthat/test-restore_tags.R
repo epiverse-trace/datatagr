@@ -1,6 +1,6 @@
 test_that("tests for restore_tags", {
-  x <- make_linelist(cars, age = "speed", date_onset = "dist")
-  y <- drop_linelist(x)
+  x <- make_datatagr(cars, age = "speed", date_onset = "dist")
+  y <- drop_datatagr(x)
   z <- y
   names(z) <- c("titi", "toto")
 

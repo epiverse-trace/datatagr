@@ -2,12 +2,12 @@
 % Please edit documentation in R/select_tags.R
 \name{select_tags}
 \alias{select_tags}
-\title{Extract tagged variables of a linelist object}
+\title{Extract tagged variables of a datatagr object}
 \usage{
 select_tags(x, ...)
 }
 \arguments{
-\item{x}{a \code{linelist} object}
+\item{x}{a \code{datatagr} object}
 
 \item{...}{the tagged variables to select, using \code{\link[dplyr:select]{dplyr::select()}} compatible
 terminology; see \code{\link[=tags_names]{tags_names()}} for default values}
@@ -18,18 +18,18 @@ A \code{data.frame} of tagged variables.
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 This function was  equivalent to running successively \code{\link[=tags_df]{tags_df()}} and
-\code{\link[dplyr:select]{dplyr::select()}} on a \code{linelist} object.
+\code{\link[dplyr:select]{dplyr::select()}} on a \code{datatagr} object.
 To encourage users to understand what is going on and in order to follow the
 software engineering good practice of providing just one way to do a given
 task, this function is now deprecated.
 }
 \examples{
 if (require(outbreaks)) {
-  ## dataset we'll create a linelist from
+  ## dataset we'll create a datatagr from
   measles_hagelloch_1861
 
-  ## create linelist
-  x <- make_linelist(measles_hagelloch_1861,
+  ## create datatagr
+  x <- make_datatagr(measles_hagelloch_1861,
     id = "case_ID",
     date_onset = "date_of_prodrome",
     age = "age",
@@ -53,7 +53,7 @@ if (require(outbreaks)) {
 }
 \seealso{
 \itemize{
-\item \code{\link[=tags]{tags()}} for existing tags in a \code{linelist}
+\item \code{\link[=tags]{tags()}} for existing tags in a \code{datatagr}
 \item \code{\link[=tags_df]{tags_df()}} to get a \code{data.frame} of all tags
 }
 }

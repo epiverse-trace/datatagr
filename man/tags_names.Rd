@@ -2,7 +2,7 @@
 % Please edit documentation in R/tags_names.R
 \name{tags_names}
 \alias{tags_names}
-\title{Get the list of tag names used in linelist}
+\title{Get the list of tag names used in datatagr}
 \usage{
 tags_names()
 }
@@ -11,7 +11,7 @@ The function returns a \code{character} vector.
 }
 \description{
 This function returns the a \code{character} of all tag names used to designate
-specific variable types in a \code{linelist}.
+specific variable types in a \code{datatagr}.
 }
 \examples{
 tags_names()

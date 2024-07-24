@@ -1,10 +1,10 @@
-#' Prune tags after changing columns of a linelist
+#' Prune tags after changing columns of a datatagr
 #'
 #' Internal. This function is used to remove tags whose variable has been
-#' removed after subsetting the columns of a `linelist` object. By default, a
+#' removed after subsetting the columns of a `datatagr` object. By default, a
 #' warning will be issued if some tagged variables have been removed.
 #'
-#' @param x `linelist` object
+#' @param x `datatagr` object
 #'
 #' @param lost_action a `character` indicating the behaviour to adopt when
 #'   tagged variables have been lost: "error" (default) will issue an error;
@@ -12,12 +12,12 @@
 #'
 #' @noRd
 #'
-#' @return The function returns a `linelist` object.
+#' @return The function returns a `datatagr` object.
 #'
 
 prune_tags <- function(x, lost_action = c("error", "warning", "none")) {
   # assertions
-  checkmate::assertClass(x, "linelist")
+  checkmate::assertClass(x, "datatagr")
   lost_action <- match.arg(lost_action)
 
   # do stuff
@@ -51,11 +51,11 @@ prune_tags <- function(x, lost_action = c("error", "warning", "none")) {
     )
     if (lost_action == "warning") {
       # nolint next: condition_call_linter.
-      warning(warningCondition(msg, class = "linelist_warning"))
+      warning(warningCondition(msg, class = "datatagr_warning"))
     }
     if (lost_action == "error") {
       # nolint next: condition_call_linter.
-      stop(errorCondition(msg, class = "linelist_error"))
+      stop(errorCondition(msg, class = "datatagr_error"))
     }
   }
 

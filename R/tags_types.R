@@ -6,14 +6,14 @@
 #'
 #' @export
 #'
-#' @inheritParams make_linelist
+#' @inheritParams make_datatagr
 #'
 #' @return A named `list`.
 #'
 #' @seealso
 #' * [tags_defaults()] for the default tags
 #' * [validate_types()] uses [tags_types()] for validating tags
-#' * [validate_linelist()] uses [tags_types()] for validating tags
+#' * [validate_datatagr()] uses [tags_types()] for validating tags
 #'
 #' @examples
 #' # list default values

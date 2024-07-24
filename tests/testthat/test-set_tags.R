@@ -1,8 +1,8 @@
 test_that("tests for set_tags()", {
-  x <- make_linelist(cars, date_onset = "dist")
+  x <- make_datatagr(cars, date_onset = "dist")
 
   # Check error messages
-  msg <- "Must inherit from class 'linelist', but has class 'data.frame'."
+  msg <- "Must inherit from class 'datatagr', but has class 'data.frame'."
   expect_error(set_tags(cars), msg)
 
   msg <- "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"

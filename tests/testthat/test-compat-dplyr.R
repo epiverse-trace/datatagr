@@ -1,6 +1,6 @@
 skip_if_not_installed("dplyr")
 
-x <- make_linelist(cars, date_onset = "dist", date_outcome = "speed")
+x <- make_datatagr(cars, date_onset = "dist", date_outcome = "speed")
 
 # Rows ----
 
@@ -8,9 +8,9 @@ test_that("Compatibility with dplyr::arrange()", {
 
   ordered_x <- expect_no_warning(dplyr::arrange(x, dist))
 
-  expect_s3_class(ordered_x, "linelist")
+  expect_s3_class(ordered_x, "datatagr")
   expect_identical(
-    drop_linelist(ordered_x),
+    drop_datatagr(ordered_x),
     dplyr::arrange(cars, dist)
   )
 
@@ -45,7 +45,7 @@ test_that("Compatibility with dplyr::slice()", {
 
   x %>%
     dplyr::slice(5:10) %>%
-    expect_s3_class("linelist") %>%
+    expect_s3_class("datatagr") %>%
     dim() %>%
     expect_identical(c(6L, ncol(x)))
 
@@ -57,7 +57,7 @@ test_that("Compatibility with dplyr::transmute()", {
 
   x %>%
     dplyr::transmute(vitesse = speed) %>%
-    expect_s3_class("linelist") %>%
+    expect_s3_class("datatagr") %>%
     expect_snapshot_warning()
 
 })
@@ -69,12 +69,12 @@ test_that("Compatibility with dplyr::mutate(.keep)", {
   # tags as it does in the rename() case.
   x %>%
     dplyr::mutate(vitesse = speed, .keep = "unused") %>%
-    expect_s3_class("linelist") %>%
+    expect_s3_class("datatagr") %>%
     expect_snapshot_warning()
 
   x %>%
     dplyr::mutate(speed = as.integer(speed)) %>%
-    expect_s3_class("linelist") %>%
+    expect_s3_class("datatagr") %>%
     tags() %>%
     expect_identical(tags(x))
 
@@ -144,7 +144,7 @@ test_that("Compatibility with dplyr::select()", {
 
   x %>%
     dplyr::select("dist") %>%
-    expect_s3_class("linelist") %>%
+    expect_s3_class("datatagr") %>%
     tags() %>%
     expect_identical(list(date_onset = "dist")) %>%
     expect_snapshot_warning()
@@ -152,7 +152,7 @@ test_that("Compatibility with dplyr::select()", {
   # Even when renames happen
   x %>%
     dplyr::select(dist, vitesse = speed) %>%
-    expect_s3_class("linelist") %>%
+    expect_s3_class("datatagr") %>%
     tags() %>%
     expect_identical(list(date_onset = "dist", date_outcome = "vitesse"))
 
@@ -171,7 +171,7 @@ test_that("Compatibility with dplyr::bind_rows()", {
 
   expect_s3_class(
     x,
-    "linelist"
+    "datatagr"
   )
 
 })

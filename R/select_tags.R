@@ -1,16 +1,16 @@
-#' Extract tagged variables of a linelist object
+#' Extract tagged variables of a datatagr object
 #'
 #' @keywords deprecated
 #' @description
 #' `r lifecycle::badge("deprecated")`
 
 #' This function was  equivalent to running successively [tags_df()] and
-#' [dplyr::select()] on a `linelist` object.
+#' [dplyr::select()] on a `datatagr` object.
 #' To encourage users to understand what is going on and in order to follow the
 #' software engineering good practice of providing just one way to do a given
 #' task, this function is now deprecated.
 #'
-#' @param x a `linelist` object
+#' @param x a `datatagr` object
 #'
 #' @param ... the tagged variables to select, using [dplyr::select()] compatible
 #'   terminology; see [tags_names()] for default values
@@ -20,16 +20,16 @@
 #' @export
 #'
 #' @seealso
-#' * [tags()] for existing tags in a `linelist`
+#' * [tags()] for existing tags in a `datatagr`
 #' * [tags_df()] to get a `data.frame` of all tags
 #'
 #' @examples
 #' if (require(outbreaks)) {
-#'   ## dataset we'll create a linelist from
+#'   ## dataset we'll create a datatagr from
 #'   measles_hagelloch_1861
 #'
-#'   ## create linelist
-#'   x <- make_linelist(measles_hagelloch_1861,
+#'   ## create datatagr
+#'   x <- make_datatagr(measles_hagelloch_1861,
 #'     id = "case_ID",
 #'     date_onset = "date_of_prodrome",
 #'     age = "age",

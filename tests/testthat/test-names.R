@@ -1,5 +1,5 @@
 test_that("tests for the names<- operator", {
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   old_x <- x
   old_class <- class(x)
   old_names <- names(x)

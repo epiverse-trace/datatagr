@@ -1,10 +1,10 @@
 test_that("tests for tags_df", {
-  x <- make_linelist(cars, age = "speed", date_reporting = "dist")
+  x <- make_datatagr(cars, age = "speed", date_reporting = "dist")
   y <- cars[c("dist", "speed")]
   names(y) <- c("date_reporting", "age")
 
   # errors
-  msg <- "Must inherit from class 'linelist', but has class 'data.frame'."
+  msg <- "Must inherit from class 'datatagr', but has class 'data.frame'."
   expect_error(tags_df(cars), msg)
 
   # functionality

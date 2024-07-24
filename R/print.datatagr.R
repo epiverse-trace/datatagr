@@ -1,8 +1,8 @@
-#' Printing method for linelist objects
+#' Printing method for datatagr objects
 #'
-#' This function prints linelist objects.
+#' This function prints datatagr objects.
 #'
-#' @param x a `linelist` object
+#' @param x a `datatagr` object
 #'
 #' @param ... further arguments to be passed to 'print'
 #'
@@ -12,11 +12,11 @@
 #'
 #' @examples
 #' if (require(outbreaks)) {
-#'   ## dataset we'll create a linelist from
+#'   ## dataset we'll create a datatagr from
 #'   measles_hagelloch_1861
 #'
-#'   ## create linelist
-#'   x <- make_linelist(measles_hagelloch_1861,
+#'   ## create datatagr
+#'   x <- make_datatagr(measles_hagelloch_1861,
 #'     id = "case_ID",
 #'     date_onset = "date_of_prodrome",
 #'     age = "age",
@@ -30,7 +30,7 @@
 #'   if (require(tibble) && require(magrittr)) {
 #'     measles_hagelloch_1861 %>%
 #'       tibble() %>%
-#'       make_linelist(
+#'       make_datatagr(
 #'         id = "case_ID",
 #'         date_onset = "date_of_prodrome",
 #'         age = "age",
@@ -38,9 +38,9 @@
 #'       )
 #'   }
 #' }
-print.linelist <- function(x, ...) {
-  cat("\n// linelist object\n")
-  print(drop_linelist(x, remove_tags = TRUE))
+print.datatagr <- function(x, ...) {
+  cat("\n// datatagr object\n")
+  print(drop_datatagr(x, remove_tags = TRUE))
   tags_txt <- paste(names(tags(x)), unlist(tags(x)), sep = ":", collapse = ", ")
   if (tags_txt == "") {
     tags_txt <- "[no tagged variable]"

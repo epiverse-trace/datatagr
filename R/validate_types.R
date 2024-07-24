@@ -1,11 +1,11 @@
 #' Check tagged variables are the right class
 #'
-#' This function checks the class of each tagged variable in a `linelist`
+#' This function checks the class of each tagged variable in a `datatagr`
 #' against pre-defined accepted classes in [tags_types()].
 #'
 #' @export
 #'
-#' @param x a `linelist` object
+#' @param x a `datatagr` object
 #'
 #' @param ref_types a `list` providing allowed types for all tags, as returned
 #'   by [tags_types()]
@@ -15,13 +15,13 @@
 #' @seealso
 #' * [tags_types()] to change allowed types
 #' * [validate_tags()] to perform a series of checks on the tags
-#' * [validate_linelist()] to combine `validate_tags` and `validate_types`
+#' * [validate_datatagr()] to combine `validate_tags` and `validate_types`
 #'
 #' @examples
 #' if (require(outbreaks) && require(magrittr)) {
-#'   ## create an invalid linelist - gender is a numeric
+#'   ## create an invalid datatagr - gender is a numeric
 #'   x <- measles_hagelloch_1861 %>%
-#'     make_linelist(
+#'     make_datatagr(
 #'       id = "case_ID",
 #'       gender = "infector"
 #'     )
@@ -35,7 +35,7 @@
 #'   validate_types(x, tags_types(gender = c("integer", "character", "factor")))
 #' }
 validate_types <- function(x, ref_types = tags_types()) {
-  checkmate::assert_class(x, "linelist")
+  checkmate::assert_class(x, "datatagr")
 
   df_to_check <- tags_df(x)
 

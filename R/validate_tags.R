@@ -1,26 +1,26 @@
-#' Checks the tags of a linelist object
+#' Checks the tags of a datatagr object
 #'
-#' This function evaluates the validity of the tags of a `linelist` object by
+#' This function evaluates the validity of the tags of a `datatagr` object by
 #' checking that: i) tags are present ii) tags is a `list` of `character` iii)
 #' that all default tags are present iv) tagged variables exist v) that no extra
 #' tag exists (if `allow_extra` is `FALSE`).
 #'
 #' @export
 #'
-#' @param x a `linelist` object
+#' @param x a `datatagr` object
 #'
 #' @inheritParams set_tags
 #'
-#' @return If checks pass, a `linelist` object; otherwise issues an error.
+#' @return If checks pass, a `datatagr` object; otherwise issues an error.
 #'
 #' @seealso [validate_types()] to check if tagged variables have
 #'   the right classes
 #'
 #' @examples
 #' if (require(outbreaks) && require(magrittr)) {
-#'   ## create a valid linelist
+#'   ## create a valid datatagr
 #'   x <- measles_hagelloch_1861 %>%
-#'     make_linelist(
+#'     make_datatagr(
 #'       id = "case_ID",
 #'       date_onset = "date_of_prodrome",
 #'       age = "age",
@@ -39,7 +39,7 @@
 #'   tryCatch(validate_tags(x), error = paste)
 #' }
 validate_tags <- function(x, allow_extra = FALSE) {
-  checkmate::assert_class(x, "linelist")
+  checkmate::assert_class(x, "datatagr")
   x_tags <- tags(x, show_null = TRUE)
 
   stopifnot(

@@ -10,11 +10,11 @@
 #'
 #' @examples
 #' if (require(outbreaks) && require(dplyr)) {
-#'   ## dataset we'll create a linelist from
+#'   ## dataset we'll create a datatagr from
 #'   measles_hagelloch_1861
 #'
-#'   ## create linelist
-#'   x <- make_linelist(measles_hagelloch_1861,
+#'   ## create datatagr
+#'   x <- make_datatagr(measles_hagelloch_1861,
 #'     id = "case_ID",
 #'     date_onset = "date_of_prodrome",
 #'     age = "age",

@@ -2,7 +2,7 @@
 % Please edit documentation in R/tags_defaults.R
 \name{tags_defaults}
 \alias{tags_defaults}
-\title{Generate default tags for a linelist}
+\title{Generate default tags for a datatagr}
 \usage{
 tags_defaults()
 }
@@ -11,7 +11,7 @@ A named \code{list}.
 }
 \description{
 This function returns a named list providing the default tags for a
-\code{linelist} object (all default to NULL).
+\code{datatagr} object (all default to NULL).
 }
 \examples{
 tags_defaults()

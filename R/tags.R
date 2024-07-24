@@ -1,9 +1,9 @@
-#' Get the list of tags in a linelist
+#' Get the list of tags in a datatagr
 #'
 #' This function returns the list of tags identifying specific variable types in
-#' a `linelist`.
+#' a `datatagr`.
 #'
-#' @param x a `linelist` object
+#' @param x a `datatagr` object
 #'
 #' @param show_null a `logical` indicating if the complete list of tags,
 #'   including `NULL` ones, should be returned; if `FALSE`, only tags with a
@@ -19,8 +19,8 @@
 #' @examples
 #'
 #' if (require(outbreaks)) {
-#'   ## make a linelist
-#'   x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
+#'   ## make a datatagr
+#'   x <- make_datatagr(measles_hagelloch_1861, date_onset = "date_of_prodrome")
 #'
 #'   ## check non-null tags
 #'   tags(x)
@@ -30,7 +30,7 @@
 #' }
 #'
 tags <- function(x, show_null = FALSE) {
-  checkmate::assertClass(x, "linelist")
+  checkmate::assertClass(x, "datatagr")
   out <- attr(x, "tags")
   if (!show_null) {
     to_remove <- vapply(out, is.null, logical(1))

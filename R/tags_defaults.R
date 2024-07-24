@@ -1,7 +1,7 @@
-#' Generate default tags for a linelist
+#' Generate default tags for a datatagr
 #'
 #' This function returns a named list providing the default tags for a
-#' `linelist` object (all default to NULL).
+#' `datatagr` object (all default to NULL).
 #'
 #' @export
 #'

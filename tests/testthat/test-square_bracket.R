@@ -1,5 +1,5 @@
 test_that("tests for [ operator", {
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   on.exit(lost_tags_action())
   
   # errors
@@ -22,7 +22,7 @@ test_that("tests for [ operator", {
   expect_identical(x[, 1, drop = TRUE], cars[, 1])
 
   lost_tags_action("none", quiet = TRUE)
-  expect_identical(x[, 1], make_linelist(cars[, 1, drop = FALSE], id = "speed"))
+  expect_identical(x[, 1], make_datatagr(cars[, 1, drop = FALSE], id = "speed"))
 
   # [ behaves exactly as in the simple data.frame case, including when subset
   # only cols. https://github.com/epiverse-trace/linelist/issues/51
@@ -57,12 +57,12 @@ test_that("tests for [<- operator", {
 
   # errors
   lost_tags_action("warning", quiet = TRUE)
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   msg <- "The following tags have lost their variable:\n id:speed"
   expect_warning(x[, 1] <- NULL, msg)
 
   lost_tags_action("error", quiet = TRUE)
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   msg <- "The following tags have lost their variable:\n id:speed"
   expect_error(x[, 1] <- NULL, msg)
 
@@ -71,7 +71,7 @@ test_that("tests for [<- operator", {
   expect_identical(x$speed[1:3], rep(1, 3))
 
   lost_tags_action("none", quiet = TRUE)
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   x[, 1:2] <- NULL
   expect_identical(ncol(x), 0L)
 })
@@ -81,12 +81,12 @@ test_that("tests for [[<- operator", {
 
   # errors
   lost_tags_action("warning", quiet = TRUE)
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   msg <- "The following tags have lost their variable:\n id:speed"
   expect_warning(x[[1]] <- NULL, msg)
 
   lost_tags_action("error", quiet = TRUE)
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   msg <- "The following tags have lost their variable:\n id:speed"
   expect_error(x[[1]] <- NULL, msg)
 
@@ -95,7 +95,7 @@ test_that("tests for [[<- operator", {
   expect_identical(x$speed, rep(1L, nrow(x)))
 
   lost_tags_action("none", quiet = TRUE)
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   x[[2]] <- NULL
   x[[1]] <- NULL
   expect_identical(ncol(x), 0L)
@@ -106,17 +106,17 @@ test_that("$<- operator detects tag loss", {
 
   # errors
   lost_tags_action("warning", quiet = TRUE)
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   msg <- "The following tags have lost their variable:\n id:speed"
   expect_warning(x$speed <- NULL, msg)
   
   lost_tags_action("error", quiet = TRUE)
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   msg <- "The following tags have lost their variable:\n id:speed"
   expect_error(x$speed <- NULL, msg)
 
   lost_tags_action("none", quiet = TRUE)
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   x$speed <- NULL
   x$dist <- NULL
   expect_identical(ncol(x), 0L)
@@ -124,7 +124,7 @@ test_that("$<- operator detects tag loss", {
 
 test_that("$<- allows innocuous tag modification", {
 
-  x <- make_linelist(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, id = "speed", age = "dist")
   expect_no_condition(x$speed <- 1L)
   expect_identical(x$speed, rep(1L, nrow(x)))
 

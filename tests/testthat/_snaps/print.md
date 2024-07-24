@@ -1,7 +1,7 @@
-# tests for print.linelist
+# tests for print.datatagr
 
     
-    // linelist object
+    // datatagr object
        speed dist
     1      4    2
     2      4   10
@@ -59,7 +59,7 @@
 ---
 
     
-    // linelist object
+    // datatagr object
        speed dist
     1      4    2
     2      4   10

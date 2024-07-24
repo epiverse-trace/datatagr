@@ -1,22 +1,22 @@
-#' Changes tags of a linelist object
+#' Changes tags of a datatagr object
 #'
-#' This function changes the `tags` of a `linelist` object, using the same
-#' syntax as the constructor [make_linelist()]. If some of the default tags are
+#' This function changes the `tags` of a `datatagr` object, using the same
+#' syntax as the constructor [make_datatagr()]. If some of the default tags are
 #' missing, they will be added to the final object.
 #'
-#' @inheritParams make_linelist
+#' @inheritParams make_datatagr
 #'
-#' @seealso [make_linelist()] to create a `linelist` object
+#' @seealso [make_datatagr()] to create a `datatagr` object
 #'
 #' @export
 #'
-#' @return The function returns a `linelist` object.
+#' @return The function returns a `datatagr` object.
 #'
 #' @examples
 #'
 #' if (require(outbreaks)) {
-#'   ## create a linelist
-#'   x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_rash")
+#'   ## create a datatagr
+#'   x <- make_datatagr(measles_hagelloch_1861, date_onset = "date_of_rash")
 #'   tags(x)
 #'
 #'   ## add new tags and fix an existing one
@@ -43,7 +43,7 @@
 #'
 set_tags <- function(x, ..., allow_extra = FALSE) {
   # assert inputs
-  checkmate::assertClass(x, "linelist")
+  checkmate::assertClass(x, "datatagr")
   checkmate::assertLogical(allow_extra)
 
   old_tags <- attr(x, "tags")

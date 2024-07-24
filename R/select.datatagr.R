@@ -1,4 +1,4 @@
-#' Subset columns of a linelist object
+#' Subset columns of a datatagr object
 #'
 #' @keywords deprecated
 #' @description
@@ -8,7 +8,7 @@
 #' [dplyr::select()] methods. The tag selection feature is now possible via the
 #' [has_tag()] selection helper.
 #'
-#' @param .data a `linelist` object
+#' @param .data a `datatagr` object
 #'
 #' @param ... the variables to select, using `dplyr` compatible syntax
 #'
@@ -20,12 +20,12 @@
 #'
 #' @export
 #'
-#' @return The function returns a `linelist` with selected columns.
+#' @return The function returns a `datatagr` with selected columns.
 #'
 #' @seealso
 #' * [tags_df()] to return a `data.frame` of all tagged variables
 #'
-select.linelist <- function(.data, ..., tags) {
+select.datatagr <- function(.data, ..., tags) {
   if (lifecycle::is_present(tags)) {
     lifecycle::deprecate_warn(
       "1.0.0",

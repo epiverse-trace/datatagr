@@ -2,12 +2,12 @@
 % Please edit documentation in R/tags.R
 \name{tags}
 \alias{tags}
-\title{Get the list of tags in a linelist}
+\title{Get the list of tags in a datatagr}
 \usage{
 tags(x, show_null = FALSE)
 }
 \arguments{
-\item{x}{a \code{linelist} object}
+\item{x}{a \code{datatagr} object}
 
 \item{show_null}{a \code{logical} indicating if the complete list of tags,
 including \code{NULL} ones, should be returned; if \code{FALSE}, only tags with a
@@ -19,7 +19,7 @@ types of data, and values indicate which column they correspond to.
 }
 \description{
 This function returns the list of tags identifying specific variable types in
-a \code{linelist}.
+a \code{datatagr}.
 }
 \details{
 Tags are stored as the \code{tags} attribute of the object.
@@ -27,8 +27,8 @@ Tags are stored as the \code{tags} attribute of the object.
 \examples{
 
 if (require(outbreaks)) {
-  ## make a linelist
-  x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
+  ## make a datatagr
+  x <- make_datatagr(measles_hagelloch_1861, date_onset = "date_of_prodrome")
 
   ## check non-null tags
   tags(x)

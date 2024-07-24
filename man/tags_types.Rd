@@ -13,7 +13,7 @@ variables listed in 'Details' and values indicate their name in \code{x}; see
 details for a list of known variable types and their expected content}
 
 \item{allow_extra}{a \code{logical} indicating if additional data tags not
-currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
+currently recognized by \code{datatagr} should be allowed; if \code{FALSE}, unknown
 tags will trigger an error}
 }
 \value{
@@ -39,6 +39,6 @@ tags_types(sequence = "DNAbin", allow_extra = TRUE)
 \itemize{
 \item \code{\link[=tags_defaults]{tags_defaults()}} for the default tags
 \item \code{\link[=validate_types]{validate_types()}} uses \code{\link[=tags_types]{tags_types()}} for validating tags
-\item \code{\link[=validate_linelist]{validate_linelist()}} uses \code{\link[=tags_types]{tags_types()}} for validating tags
+\item \code{\link[=validate_datatagr]{validate_datatagr()}} uses \code{\link[=tags_types]{tags_types()}} for validating tags
 }
 }

@@ -9,7 +9,7 @@
 #'
 #' @section Main functions:
 #'
-#'   * [make_linelist()]: to create `datatagr` objects from a `data.frame` or a
+#'   * [make_datatagr()]: to create `datatagr` objects from a `data.frame` or a
 #'   `tibble`
 #'
 #'   * [set_tags()]: to change or add tagged variables in a `datatagr`
@@ -35,7 +35,7 @@
 #'   * `names() <-` (and related functions, such as [dplyr::rename()]) will
 #'   rename tags as needed
 #'
-#'   * `x[...] <-` and `x[[...]] <-` (see [sub_linelist]): will adopt the
+#'   * `x[...] <-` and `x[[...]] <-` (see [sub_datatagr]): will adopt the
 #'    desired behaviour when tagged variables are lost
 #'
 #'   * `print()`: prints info about the `datatagr` in addition to the
@@ -46,11 +46,11 @@
 #' if (require(outbreaks)) {
 #'   # using base R style
 #'
-#'   ## dataset we'll create a linelist from, only using the first 50 entries
+#'   ## dataset we'll create a datatagr from, only using the first 50 entries
 #'   measles_hagelloch_1861[1:50, ]
 #'
-#'   ## create linelist
-#'   x <- make_linelist(measles_hagelloch_1861[1:50, ],
+#'   ## create datatagr
+#'   x <- make_datatagr(measles_hagelloch_1861[1:50, ],
 #'     id = "case_ID",
 #'     date_onset = "date_of_prodrome",
 #'     age = "age",
@@ -82,13 +82,13 @@
 #'
 #'   # using tidyverse style
 #'
-#'   ## example of creating a linelist, adding a new variable, and adding a tag
+#'   ## example of creating a datatagr, adding a new variable, and adding a tag
 #'   ## for it
 #'
 #'   if (require(dplyr) && require(magrittr)) {
 #'     x <- measles_hagelloch_1861 %>%
 #'       tibble() %>%
-#'       make_linelist(
+#'       make_datatagr(
 #'         id = "case_ID",
 #'         date_onset = "date_of_prodrome",
 #'         age = "age",

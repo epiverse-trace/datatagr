@@ -1,23 +1,23 @@
-#' Rename columns of a linelist
+#' Rename columns of a datatagr
 #'
-#' This function can be used to rename the columns a `linelist`, adjusting tags
+#' This function can be used to rename the columns a `datatagr`, adjusting tags
 #' as needed.
 #'
-#' @param x a `linelist` object
+#' @param x a `datatagr` object
 #'
 #' @param value a `character` vector to set the new names of the columns of `x`
 #'
-#' @return a `linelist` with new column names
+#' @return a `datatagr` with new column names
 #'
 #' @export
 #'
 #' @examples
 #' if (require(outbreaks)) {
-#'   ## dataset to create a linelist from
+#'   ## dataset to create a datatagr from
 #'   measles_hagelloch_1861
 #'
-#'   ## create linelist
-#'   x <- make_linelist(measles_hagelloch_1861,
+#'   ## create datatagr
+#'   x <- make_datatagr(measles_hagelloch_1861,
 #'     id = "case_ID",
 #'     date_onset = "date_of_prodrome",
 #'     age = "age",
@@ -41,7 +41,7 @@
 #'     tags(x)
 #'   }
 #' }
-`names<-.linelist` <- function(x, value) {
+`names<-.datatagr` <- function(x, value) {
   # Strategy for renaming
 
   # Since renaming cannot drop columns, we can update tags to match new variable
@@ -50,7 +50,7 @@
   # 1. Storing old names and new names to have define replacement rules
   # 2. Replace all tagged variables using the replacement rules
 
-  out <- drop_linelist(x, remove_tags = TRUE)
+  out <- drop_datatagr(x, remove_tags = TRUE)
   names(out) <- value
 
   # Step 1

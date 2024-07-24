@@ -2,31 +2,31 @@
 % Please edit documentation in R/validate_tags.R
 \name{validate_tags}
 \alias{validate_tags}
-\title{Checks the tags of a linelist object}
+\title{Checks the tags of a datatagr object}
 \usage{
 validate_tags(x, allow_extra = FALSE)
 }
 \arguments{
-\item{x}{a \code{linelist} object}
+\item{x}{a \code{datatagr} object}
 
 \item{allow_extra}{a \code{logical} indicating if additional data tags not
-currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
+currently recognized by \code{datatagr} should be allowed; if \code{FALSE}, unknown
 tags will trigger an error}
 }
 \value{
-If checks pass, a \code{linelist} object; otherwise issues an error.
+If checks pass, a \code{datatagr} object; otherwise issues an error.
 }
 \description{
-This function evaluates the validity of the tags of a \code{linelist} object by
+This function evaluates the validity of the tags of a \code{datatagr} object by
 checking that: i) tags are present ii) tags is a \code{list} of \code{character} iii)
 that all default tags are present iv) tagged variables exist v) that no extra
 tag exists (if \code{allow_extra} is \code{FALSE}).
 }
 \examples{
 if (require(outbreaks) && require(magrittr)) {
-  ## create a valid linelist
+  ## create a valid datatagr
   x <- measles_hagelloch_1861 \%>\%
-    make_linelist(
+    make_datatagr(
       id = "case_ID",
       date_onset = "date_of_prodrome",
       age = "age",

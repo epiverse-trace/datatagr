@@ -1,12 +1,12 @@
-#' Create a linelist from a data.frame
+#' Create a datatagr from a data.frame
 #'
-#' This function converts a `data.frame` or a `tibble` into a `linelist` object,
+#' This function converts a `data.frame` or a `tibble` into a `datatagr` object,
 #' where different types of epidemiologically relevant data are tagged. This
 #' includes dates of different events (e.g. onset of symptoms, case reporting),
 #' information on the patient (e.g. age, gender, location) as well as other
 #' information such as the type of case (e.g. confirmed, probable) or the
 #' outcome of the disease. The output will seem to be the same `data.frame`, but
-#' `linelist`-aware packages will then be able to automatically use tagged
+#' `datatagr`-aware packages will then be able to automatically use tagged
 #' fields for further data cleaning and analysis.
 #'
 #' @param x a `data.frame` or a `tibble` containing case line list data, with
@@ -18,7 +18,7 @@
 #'   details for a list of known variable types and their expected content
 #'
 #' @param allow_extra a `logical` indicating if additional data tags not
-#'   currently recognized by `linelist` should be allowed; if `FALSE`, unknown
+#'   currently recognized by `datatagr` should be allowed; if `FALSE`, unknown
 #'   tags will trigger an error
 #'
 #' @seealso
@@ -26,7 +26,7 @@
 #' * An overview of the [datatagr] package
 #' * [tags_names()]: for a list of known tag names
 #' * [tags_types()]: for the associated accepted types/classes
-#' * [tags()]: for a list of tagged variables in a `linelist`
+#' * [tags()]: for a list of tagged variables in a `datatagr`
 #' * [set_tags()]: for modifying tags
 #' * [tags_df()]: for selecting variables by tags
 #'
@@ -73,16 +73,16 @@
 #'
 #' @export
 #'
-#' @return The function returns a `linelist` object.
+#' @return The function returns a `datatagr` object.
 #'
 #' @examples
 #'
 #' if (require(outbreaks)) {
-#'   ## dataset we will convert to linelist
+#'   ## dataset we will convert to datatagr
 #'   head(measles_hagelloch_1861)
 #'
-#'   ## create linelist
-#'   x <- make_linelist(measles_hagelloch_1861,
+#'   ## create datatagr
+#'   x <- make_datatagr(measles_hagelloch_1861,
 #'     id = "case_ID",
 #'     date_onset = "date_of_prodrome",
 #'     age = "age",
@@ -102,13 +102,13 @@
 #'     age = "age",
 #'     gender = "gender"
 #'   )
-#'   new_x <- make_linelist(measles_hagelloch_1861, !!!my_tags)
+#'   new_x <- make_datatagr(measles_hagelloch_1861, !!!my_tags)
 #'
 #'   ## The output is strictly equivalent to the previous one
 #'   identical(x, new_x)
 #' }
 #'
-make_linelist <- function(x,
+make_datatagr <- function(x,
                           ...,
                           allow_extra = FALSE) {
   # assert inputs
@@ -139,6 +139,6 @@ make_linelist <- function(x,
   x <- tag_variables(x, tags)
 
   # shape output and return object
-  class(x) <- c("linelist", class(x))
+  class(x) <- c("datatagr", class(x))
   x
 }

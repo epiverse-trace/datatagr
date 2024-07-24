@@ -1,10 +1,10 @@
 #' Extract a data.frame of all tagged variables
 #'
 #' This function returns a `data.frame` of all the tagged variables stored in a
-#' `linelist`. Note that the output is no longer a `linelist`, but a regular
+#' `datatagr`. Note that the output is no longer a `datatagr`, but a regular
 #' `data.frame`.
 #'
-#' @param x a `linelist` object
+#' @param x a `datatagr` object
 #'
 #' @export
 #'
@@ -13,9 +13,9 @@
 #' @examples
 #'
 #' if (require(outbreaks) && require(magrittr)) {
-#'   ## create a tibble linelist
+#'   ## create a tibble datatagr
 #'   x <- measles_hagelloch_1861 %>%
-#'     make_linelist(
+#'     make_datatagr(
 #'       id = "case_ID",
 #'       date_onset = "date_of_prodrome",
 #'       age = "age",
@@ -27,9 +27,9 @@
 #'   tags_df(x)
 #' }
 tags_df <- function(x) {
-  checkmate::assertClass(x, "linelist")
+  checkmate::assertClass(x, "datatagr")
   tags <- unlist(tags(x))
-  out <- drop_linelist(x, remove_tags = TRUE)[tags]
+  out <- drop_datatagr(x, remove_tags = TRUE)[tags]
   names(out) <- names(tags)
   out
 }

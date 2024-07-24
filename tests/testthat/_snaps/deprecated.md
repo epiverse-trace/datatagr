@@ -59,7 +59,7 @@
       49        120  24
       50         85  25
 
-# deprecating warning for select.linelist()
+# deprecating warning for select.datatagr()
 
     Code
       select(x, tags = c("date_onset", "age"))
@@ -69,7 +69,7 @@
       i It is now recommended to leverage the `has_tag()` selection helper rather than this argument.
     Output
       
-      // linelist object
+      // datatagr object
          speed dist
       1      4    2
       2      4   10
@@ -124,16 +124,16 @@
       
       // tags: date_onset:dist, age:speed 
 
-# deprecating warning for make_linelist(x, list())
+# deprecating warning for make_datatagr(x, list())
 
     Code
-      make_linelist(cars, list(date_onset = "dist", age = "speed"))
+      make_datatagr(cars, list(date_onset = "dist", age = "speed"))
     Condition
       Warning:
       The use of a list of tags is deprecated. Please use the splice operator (!!!) instead. More information is available in the examples and in the ?rlang::`dyn-dots` documentation.
     Output
       
-      // linelist object
+      // datatagr object
          speed dist
       1      4    2
       2      4   10
@@ -197,7 +197,7 @@
       The use of a list of tags is deprecated. Please use the splice operator (!!!) instead. More information is available in the examples and in the ?rlang::`dyn-dots` documentation.
     Output
       
-      // linelist object
+      // datatagr object
          speed dist
       1      4    2
       2      4   10

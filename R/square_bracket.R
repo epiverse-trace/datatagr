@@ -1,22 +1,22 @@
-#' Subsetting of linelist objects
+#' Subsetting of datatagr objects
 #'
-#' The `[]` and `[[]]` operators for `linelist` objects behaves like for regular
+#' The `[]` and `[[]]` operators for `datatagr` objects behaves like for regular
 #' `data.frame` or `tibble`, but check that tagged variables are not lost, and
 #' takes the appropriate action if this is the case (warning, error, or ignore,
 #' depending on the general option set via [lost_tags_action()]) .
 #'
 #' @inheritParams base::Extract
-#' @param x a `linelist` object
+#' @param x a `datatagr` object
 #' @param i a vector of `integer` or `logical` to subset the rows of the
-#'   `linelist`
+#'   `datatagr`
 #' @param j a vector of `character`, `integer`, or `logical` to subset the
-#'   columns of the `linelist`
+#'   columns of the `datatagr`
 #' @param drop a `logical` indicating if, when a single column is selected, the
 #'   `data.frame` class should be dropped to return a simple vector, in which
-#'   case the `linelist` class is lost as well; defaults to `FALSE`
+#'   case the `datatagr` class is lost as well; defaults to `FALSE`
 #' @param value the replacement to be used for the entries identified in `x`
 #'
-#' @return If no drop is happening, a `linelist`. Otherwise an atomic vector.
+#' @return If no drop is happening, a `datatagr`. Otherwise an atomic vector.
 #'
 #' @seealso
 #' * [lost_tags_action()] to set the behaviour to adopt when tags are
@@ -25,15 +25,15 @@
 #'
 #' @export
 #'
-#' @rdname sub_linelist
+#' @rdname sub_datatagr
 #'
-#' @aliases sub_linelist
+#' @aliases sub_datatagr
 #'
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
-#'   ## create a linelist
+#'   ## create a datatagr
 #'   x <- measles_hagelloch_1861 %>%
-#'     make_linelist(
+#'     make_datatagr(
 #'       id = "case_ID",
 #'       date_onset = "date_of_prodrome",
 #'       age = "age",
@@ -54,21 +54,21 @@
 #'   x$age <- NULL
 #'   x
 #' }
-`[.linelist` <- function(x, i, j, drop = FALSE) {
+`[.datatagr` <- function(x, i, j, drop = FALSE) {
   # Strategy for subsetting
   #
   # Subsetting is done using the next method in line, and making post-hoc checks
   # on two things:
   #
   # 1. that the subsetted object is still a `data.frame` or a `tibble`; if not,
-  # we automatically drop the `linelist` class and tags
-  # 2. if the output is going to be a `linelist` we need to restore previous
+  # we automatically drop the `datatagr` class and tags
+  # 2. if the output is going to be a `datatagr` we need to restore previous
   # tags with the appropriate behaviour in case of missing tagged variables
   #
   # Note that the [ operator's implementation is messy and does not seem to pass
   # the drop argument well when using NextMethod(); also it does not allow extra
   # args, in case we wanted to use them; so declassing the object instead using
-  # the drop_linelist() function
+  # the drop_datatagr() function
 
   lost_action <- get_lost_tags_action()
 
@@ -80,12 +80,12 @@
     # default value. When we subset this way, drop is always considered to be
     # TRUE. We let warnings from user-specified drop values surface.
     if (missing(drop)) {
-      out <- drop_linelist(x)[i]
+      out <- drop_datatagr(x)[i]
     } else {
-      out <- drop_linelist(x)[i, drop = drop]
+      out <- drop_datatagr(x)[i, drop = drop]
     }
   } else {
-    out <- drop_linelist(x)[i, j, drop = drop]
+    out <- drop_datatagr(x)[i, j, drop = drop]
   }
 
   # Case 1
@@ -102,9 +102,9 @@
 
 #' @export
 #'
-#' @rdname sub_linelist
+#' @rdname sub_datatagr
 
-`[<-.linelist` <- function(x, i, j, value) {
+`[<-.datatagr` <- function(x, i, j, value) {
   lost_action <- get_lost_tags_action()
   out <- NextMethod()
   old_tags <- tags(x, show_null = TRUE)
@@ -114,9 +114,9 @@
 
 #' @export
 #'
-#' @rdname sub_linelist
+#' @rdname sub_datatagr
 
-`[[<-.linelist` <- function(x, i, j, value) {
+`[[<-.datatagr` <- function(x, i, j, value) {
   lost_action <- get_lost_tags_action()
   out <- NextMethod()
   old_tags <- tags(x, show_null = TRUE)
@@ -126,8 +126,8 @@
 
 #' @export
 #'
-#' @rdname sub_linelist
-`$<-.linelist` <- function(x, name, value) {
+#' @rdname sub_datatagr
+`$<-.datatagr` <- function(x, name, value) {
   lost_action <- get_lost_tags_action()
   out <- NextMethod()
   old_tags <- tags(x, show_null = TRUE)

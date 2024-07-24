@@ -14,7 +14,7 @@ used in downstream analyses, making data pipelines more robust and reliable.
 \section{Main functions}{
 
 \itemize{
-\item \code{\link[=make_linelist]{make_linelist()}}: to create \code{datatagr} objects from a \code{data.frame} or a
+\item \code{\link[=make_datatagr]{make_datatagr()}}: to create \code{datatagr} objects from a \code{data.frame} or a
 \code{tibble}
 \item \code{\link[=set_tags]{set_tags()}}: to change or add tagged variables in a \code{datatagr}
 \item \code{\link[=tags]{tags()}}: to get the list of tags of a \code{datatagr}
@@ -37,7 +37,7 @@ pipelines).
 \itemize{
 \item \verb{names() <-} (and related functions, such as \code{\link[dplyr:rename]{dplyr::rename()}}) will
 rename tags as needed
-\item \verb{x[...] <-} and \verb{x[[...]] <-} (see \link{sub_linelist}): will adopt the
+\item \verb{x[...] <-} and \verb{x[[...]] <-} (see \link{sub_datatagr}): will adopt the
 desired behaviour when tagged variables are lost
 \item \code{print()}: prints info about the \code{datatagr} in addition to the
 \code{data.frame} or \code{tibble}
@@ -49,11 +49,11 @@ desired behaviour when tagged variables are lost
 if (require(outbreaks)) {
   # using base R style
 
-  ## dataset we'll create a linelist from, only using the first 50 entries
+  ## dataset we'll create a datatagr from, only using the first 50 entries
   measles_hagelloch_1861[1:50, ]
 
-  ## create linelist
-  x <- make_linelist(measles_hagelloch_1861[1:50, ],
+  ## create datatagr
+  x <- make_datatagr(measles_hagelloch_1861[1:50, ],
     id = "case_ID",
     date_onset = "date_of_prodrome",
     age = "age",
@@ -85,13 +85,13 @@ if (require(outbreaks)) {
 
   # using tidyverse style
 
-  ## example of creating a linelist, adding a new variable, and adding a tag
+  ## example of creating a datatagr, adding a new variable, and adding a tag
   ## for it
 
   if (require(dplyr) && require(magrittr)) {
     x <- measles_hagelloch_1861 \%>\%
       tibble() \%>\%
-      make_linelist(
+      make_datatagr(
         id = "case_ID",
         date_onset = "date_of_prodrome",
         age = "age",

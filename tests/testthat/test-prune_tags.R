@@ -1,8 +1,8 @@
 test_that("tests for prune_tags", {
-  x <- make_linelist(cars, age = "speed", date_onset = "dist")
+  x <- make_datatagr(cars, age = "speed", date_onset = "dist")
 
   # Check error messages
-  msg <- "Must inherit from class 'linelist', but has class 'data.frame'."
+  msg <- "Must inherit from class 'datatagr', but has class 'data.frame'."
   expect_error(prune_tags(cars), msg)
 
   attr(x, "names") <- c("new1", "new2") # hack needed as names<- is now safe
@@ -11,20 +11,20 @@ test_that("tests for prune_tags", {
     " date_onset:dist, age:speed",
     sep = "\n"
   )
-  expect_error(prune_tags(x), msg, class = "linelist_error")
-  expect_warning(prune_tags(x, "warning"), msg, class = "linelist_warning")
+  expect_error(prune_tags(x), msg, class = "datatagr_error")
+  expect_warning(prune_tags(x, "warning"), msg, class = "datatagr_warning")
 
   # Check functionality
   y <- prune_tags(x, "none")
   expect_identical(tags_defaults(), tags(y, TRUE))
-  expect_s3_class(y, "linelist")
+  expect_s3_class(y, "datatagr")
 })
 
-test_that("prune_tags() doesn't error on a linelist with extra tags", {
+test_that("prune_tags() doesn't error on a datatagr with extra tags", {
   # https://github.com/epiverse-trace/linelist/issues/63
 
   dat <- data.frame(a = 1)
-  ll <- make_linelist(dat, a = "a", allow_extra = TRUE)
+  ll <- make_datatagr(dat, a = "a", allow_extra = TRUE)
 
   expect_no_condition(ll["a"])
   expect_identical(ll, ll["a"])

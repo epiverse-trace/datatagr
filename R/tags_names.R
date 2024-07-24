@@ -1,7 +1,7 @@
-#' Get the list of tag names used in linelist
+#' Get the list of tag names used in datatagr
 #'
 #' This function returns the a `character` of all tag names used to designate
-#' specific variable types in a `linelist`.
+#' specific variable types in a `datatagr`.
 #'
 #' @export
 #'

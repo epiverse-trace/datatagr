@@ -50,16 +50,6 @@ set_tags <- function(x, ..., allow_extra = FALSE) {
   defaults <- tags_defaults()
   new_tags <- rlang::list2(...)
 
-  if (length(new_tags) && is.list(new_tags[[1]])) {
-    stop(
-      "The use of a list of tags is not supported. ",
-      "Please use the splice operator (!!!) instead. ",
-      "More information is available in the examples and in the ",
-      "?rlang::`dyn-dots` documentation.",
-      call. = FALSE
-    )
-  }
-
   final_tags <- modify_defaults(defaults, old_tags, strict = FALSE)
   final_tags <- modify_defaults(old_tags, new_tags, strict = !allow_extra)
 

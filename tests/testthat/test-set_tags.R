@@ -22,3 +22,9 @@ test_that("tests for set_tags()", {
   y <- set_tags(x, !!!list(id = "speed", date_outcome = "dist"))
   expect_identical(x, y)
 })
+
+test_that("error for list in set_tags()", {
+  x <- make_datatagr(cars, date_onset = "dist", age = "speed")
+  
+  expect_error(set_tags(x, list(date_onset = "dist", age = "speed")))
+})

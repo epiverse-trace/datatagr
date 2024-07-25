@@ -61,3 +61,7 @@ test_that("make_datatagr() errors on data.table input", {
   )
 
 })
+
+test_that("error for make_datatagr(x, list())", {
+  expect_error(make_datatagr(cars, list(date_onset = "dist", age = "speed")))
+})

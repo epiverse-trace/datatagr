@@ -119,14 +119,13 @@ make_datatagr <- function(x,
   args <- rlang::list2(...)
 
   if (length(args) && is.list(args[[1]])) {
-    warning(
-      "The use of a list of tags is deprecated. ",
+    stop(
+      "The use of a list of tags is not supported. ",
       "Please use the splice operator (!!!) instead. ",
       "More information is available in the examples and in the ",
       "?rlang::`dyn-dots` documentation.",
       call. = FALSE
     )
-    args <- args[[1]]
   }
 
   # The approach is to replace default values with user-provided ones, and then

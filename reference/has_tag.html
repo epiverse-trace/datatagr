@@ -74,11 +74,11 @@ requested tags</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="co">## dataset we'll create a linelist from</span></span></span>
+<span class="r-in"><span>  <span class="co">## dataset we'll create a datatagr from</span></span></span>
 <span class="r-in"><span>  <span class="va">measles_hagelloch_1861</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## create linelist</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span>,</span></span>
+<span class="r-in"><span>  <span class="co">## create datatagr</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_datatagr.html">make_datatagr</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span>,</span></span>
 <span class="r-in"><span>    id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
 <span class="r-in"><span>    date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span></span>
 <span class="r-in"><span>    age <span class="op">=</span> <span class="st">"age"</span>,</span></span>
@@ -93,7 +93,7 @@ requested tags</p>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>  date_onset:date_of_prodrome, gender:gender</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> // linelist object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // datatagr object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   case_ID age</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       1   7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       2   6</span>

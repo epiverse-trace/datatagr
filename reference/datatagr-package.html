@@ -65,7 +65,7 @@ used in downstream analyses, making data pipelines more robust and reliable.</p>
     <h2 id="main-functions">Main functions<a class="anchor" aria-label="anchor" href="#main-functions"></a></h2>
 
 
-<ul><li><p><code><a href="make_linelist.html">make_linelist()</a></code>: to create <code>datatagr</code> objects from a <code>data.frame</code> or a
+<ul><li><p><code><a href="make_datatagr.html">make_datatagr()</a></code>: to create <code>datatagr</code> objects from a <code>data.frame</code> or a
 <code>tibble</code></p></li>
 <li><p><code><a href="set_tags.html">set_tags()</a></code>: to change or add tagged variables in a <code>datatagr</code></p></li>
 <li><p><code><a href="tags.html">tags()</a></code>: to get the list of tags of a <code>datatagr</code></p></li>
@@ -86,7 +86,7 @@ tagged variables are lost</p></li>
 alter or lose tagged variables (and may thus break downstream data
 pipelines).</p><ul><li><p><code>names() &lt;-</code> (and related functions, such as <code><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">dplyr::rename()</a></code>) will
 rename tags as needed</p></li>
-<li><p><code>x[...] &lt;-</code> and <code>x[[...]] &lt;-</code> (see <a href="sub_linelist.html">sub_linelist</a>): will adopt the
+<li><p><code>x[...] &lt;-</code> and <code>x[[...]] &lt;-</code> (see <a href="sub_datatagr.html">sub_datatagr</a>): will adopt the
 desired behaviour when tagged variables are lost</p></li>
 <li><p><code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>: prints info about the <code>datatagr</code> in addition to the
 <code>data.frame</code> or <code>tibble</code></p></li>
@@ -102,11 +102,11 @@ desired behaviour when tagged variables are lost</p></li>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="co"># using base R style</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## dataset we'll create a linelist from, only using the first 50 entries</span></span></span>
+<span class="r-in"><span>  <span class="co">## dataset we'll create a datatagr from, only using the first 50 entries</span></span></span>
 <span class="r-in"><span>  <span class="va">measles_hagelloch_1861</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## create linelist</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span>,</span></span>
+<span class="r-in"><span>  <span class="co">## create datatagr</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_datatagr.html">make_datatagr</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span>,</span></span>
 <span class="r-in"><span>    id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
 <span class="r-in"><span>    date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span></span>
 <span class="r-in"><span>    age <span class="op">=</span> <span class="st">"age"</span>,</span></span>
@@ -138,13 +138,13 @@ desired behaviour when tagged variables are lost</p></li>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># using tidyverse style</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## example of creating a linelist, adding a new variable, and adding a tag</span></span></span>
+<span class="r-in"><span>  <span class="co">## example of creating a datatagr, adding a new variable, and adding a tag</span></span></span>
 <span class="r-in"><span>  <span class="co">## for it</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="make_datatagr.html">make_datatagr</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
 <span class="r-in"><span>        date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span></span>
 <span class="r-in"><span>        age <span class="op">=</span> <span class="st">"age"</span>,</span></span>
@@ -187,7 +187,7 @@ desired behaviour when tagged variables are lost</p></li>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>  id:identifier, gender:gender, age:age, outcome:result</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> // linelist object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // datatagr object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 188 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    date_of_prodrome date_of_rash date_of_death</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       </span>

@@ -12,12 +12,15 @@
 #'   variables listed in 'Details' and values indicate their name in `x`; see
 #'   details for a list of known variable types and their expected content
 #'
+#' @param tag_defaults a list of default values for the provided tags. Defaults
+#'   to `list()`
+#'
 #' @param allow_extra a `logical` indicating if additional data tags not
 #'   currently recognized by `datatagr` should be allowed; if `FALSE`, unknown
 #'   tags will trigger an error
 #'
 #' @seealso
-#' 
+#'
 #' * An overview of the [datatagr] package
 #' * [tags_names()]: for a list of known tag names
 #' * [tags_types()]: for the associated accepted types/classes
@@ -46,25 +49,25 @@
 #' * `age`: a `numeric` indicating the age of the patient, in years
 #'
 #' * `location`: a `factor` or `character` indicating the location of the
-#' patient
+#'   patient
 #'
 #' * `occupation`: a `factor` or `character` indicating the professional
-#' activity of the patient
+#'   activity of the patient
 #'
 #' * `hcw`: a `logical` indicating if the patient is a health care worker
 #'
 #' * `outcome`: a `factor` or `character` indicating the outcome of the disease
-#' (death or survival)
+#'   (death or survival)
 #'
-#' Dates can be provided in the following formats/types:
+#'   Dates can be provided in the following formats/types:
 #'
 #' * `Date` objects (e.g. using `as.Date` on a `character` with a correct date
-#' format); this is the recommended format
+#'   format); this is the recommended format
 #'
 #' * `POSIXct/POSIXlt` objects (when a finer scale than days is needed)
 #'
 #' * `numeric` values, typically indicating the number of days since the first
-#' case
+#'   case
 #'
 #' @export
 #'
@@ -72,40 +75,31 @@
 #'
 #' @examples
 #'
-#' if (require(outbreaks)) {
-#'   ## dataset we will convert to datatagr
-#'   head(measles_hagelloch_1861)
+#' x <- make_datatagr(cars,
+#'                    age = 'speed',
+#'                    distance = 'dist'
+#' )
 #'
-#'   ## create datatagr
-#'   x <- make_datatagr(measles_hagelloch_1861,
-#'     id = "case_ID",
-#'     date_onset = "date_of_prodrome",
-#'     age = "age",
-#'     gender = "gender"
-#'   )
+#' ## print result - just first few entries
+#' head(x)
 #'
-#'   ## print result - just first few entries
-#'   head(x)
+#' ## check tags
+#' tags(x)
 #'
-#'   ## check tags
-#'   tags(x)
+#' ## Tags can also be passed as a list with the splice operator (!!!)
+#' my_tags <- list(
+#'   age = "speed",
+#'   distance = "dist"
+#' )
+#' new_x <- make_datatagr(cars, !!!my_tags)
 #'
-#'   ## Tags can also be passed as a list with the splice operator (!!!)
-#'   my_tags <- list(
-#'     id = "case_ID",
-#'     date_onset = "date_of_prodrome",
-#'     age = "age",
-#'     gender = "gender"
-#'   )
-#'   new_x <- make_datatagr(measles_hagelloch_1861, !!!my_tags)
-#'
-#'   ## The output is strictly equivalent to the previous one
-#'   identical(x, new_x)
-#' }
-#'
+#' ## The output is strictly equivalent to the previous one
+#' identical(x, new_x)
+#' 
 make_datatagr <- function(x,
                           ...,
-                          allow_extra = FALSE) {
+                          tag_defaults = list(),
+                          allow_extra = TRUE) {
   # assert inputs
   checkmate::assert_data_frame(x, min.cols = 1)
   assert_not_data_table(x)
@@ -113,12 +107,7 @@ make_datatagr <- function(x,
 
   args <- rlang::list2(...)
 
-  # The approach is to replace default values with user-provided ones, and then
-  # tag each variable in turn. Validation the tagged variables is done
-  # elsewhere.
-  tags <- tags_defaults()
-
-  tags <- modify_defaults(tags, args, strict = !allow_extra)
+  tags <- modify_defaults(tag_defaults, args, strict = !allow_extra)
 
   x <- tag_variables(x, tags)
 

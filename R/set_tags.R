@@ -41,7 +41,7 @@
 #'   tags(x)
 #' }
 #'
-set_tags <- function(x, ..., allow_extra = FALSE) {
+set_tags <- function(x, ..., allow_extra = TRUE) {
   # assert inputs
   checkmate::assertClass(x, "datatagr")
   checkmate::assertLogical(allow_extra)

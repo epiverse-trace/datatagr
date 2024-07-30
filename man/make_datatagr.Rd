@@ -85,7 +85,6 @@ identical(x, new_x)
 \seealso{
 \itemize{
 \item An overview of the \link{datatagr} package
-\item \code{\link[=tags_names]{tags_names()}}: for a list of known tag names
 \item \code{\link[=tags_types]{tags_types()}}: for the associated accepted types/classes
 \item \code{\link[=tags]{tags()}}: for a list of tagged variables in a \code{datatagr}
 \item \code{\link[=set_tags]{set_tags()}}: for modifying tags

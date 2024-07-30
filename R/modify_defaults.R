@@ -24,7 +24,7 @@ modify_defaults <- function(defaults, x, strict = TRUE) {
       "Unknown variable types: ",
       toString(extra),
       "\n  ",
-      "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`",
+      "Use only known tags or set `allow_extra = TRUE`",
       call. = FALSE
     )
   }

@@ -4,14 +4,10 @@
 \alias{validate_datatagr}
 \title{Checks the content of a datatagr object}
 \usage{
-validate_datatagr(x, allow_extra = FALSE, ref_types = tags_types())
+validate_datatagr(x, ref_types = tags_types())
 }
 \arguments{
 \item{x}{a \code{datatagr} object}
-
-\item{allow_extra}{a \code{logical} indicating if additional data tags not
-currently recognized by \code{datatagr} should be allowed; if \code{FALSE}, unknown
-tags will trigger an error}
 
 \item{ref_types}{a \code{list} providing allowed types for all tags, as returned
 by \code{\link[=tags_types]{tags_types()}}}

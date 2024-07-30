@@ -59,10 +59,9 @@
 #'   tryCatch(validate_datatagr(x), error = paste)
 #' }
 validate_datatagr <- function(x,
-                              allow_extra = FALSE,
                               ref_types = tags_types()) {
   checkmate::assert_class(x, "datatagr")
-  validate_tags(x, allow_extra)
+  validate_tags(x)
   validate_types(x, ref_types)
 
   x

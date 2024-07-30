@@ -14,7 +14,7 @@ test_that("tests for make_datatagr", {
     "2 assertions failed"
   )
 
-  msg <- "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
+  msg <- "Use only known tags or set `allow_extra = TRUE`"
   expect_error(
     make_datatagr(cars, foo = "speed", allow_extra = FALSE),
     msg,

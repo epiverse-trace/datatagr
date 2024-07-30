@@ -4,7 +4,7 @@
 \alias{set_tags}
 \title{Changes tags of a datatagr object}
 \usage{
-set_tags(x, ..., allow_extra = FALSE)
+set_tags(x, ..., allow_extra = TRUE)
 }
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble}}

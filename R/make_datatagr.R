@@ -1,16 +1,11 @@
 #' Create a datatagr from a data.frame
 #'
 #' This function converts a `data.frame` or a `tibble` into a `datatagr` object,
-#' where different types of epidemiologically relevant data are tagged. This
-#' includes dates of different events (e.g. onset of symptoms, case reporting),
-#' information on the patient (e.g. age, gender, location) as well as other
-#' information such as the type of case (e.g. confirmed, probable) or the
-#' outcome of the disease. The output will seem to be the same `data.frame`, but
+#' where data are tagged. The output will seem to be the same `data.frame`, but
 #' `datatagr`-aware packages will then be able to automatically use tagged
 #' fields for further data cleaning and analysis.
 #'
-#' @param x a `data.frame` or a `tibble` containing case line list data, with
-#'   cases in rows and variables in columns
+#' @param x a `data.frame` or a `tibble`
 #'
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A series of tags provided as
 #'   `tag_name = "column_name"`, where `tag_name` indicates any of the known
@@ -22,7 +17,7 @@
 #'   tags will trigger an error
 #'
 #' @seealso
-#'
+#' 
 #' * An overview of the [datatagr] package
 #' * [tags_names()]: for a list of known tag names
 #' * [tags_types()]: for the associated accepted types/classes

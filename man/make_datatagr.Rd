@@ -7,8 +7,7 @@
 make_datatagr(x, ..., allow_extra = FALSE)
 }
 \arguments{
-\item{x}{a \code{data.frame} or a \code{tibble} containing case line list data, with
-cases in rows and variables in columns}
+\item{x}{a \code{data.frame} or a \code{tibble}}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A series of tags provided as
 \code{tag_name = "column_name"}, where \code{tag_name} indicates any of the known
@@ -24,11 +23,7 @@ The function returns a \code{datatagr} object.
 }
 \description{
 This function converts a \code{data.frame} or a \code{tibble} into a \code{datatagr} object,
-where different types of epidemiologically relevant data are tagged. This
-includes dates of different events (e.g. onset of symptoms, case reporting),
-information on the patient (e.g. age, gender, location) as well as other
-information such as the type of case (e.g. confirmed, probable) or the
-outcome of the disease. The output will seem to be the same \code{data.frame}, but
+where data are tagged. The output will seem to be the same \code{data.frame}, but
 \code{datatagr}-aware packages will then be able to automatically use tagged
 fields for further data cleaning and analysis.
 }

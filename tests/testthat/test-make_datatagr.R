@@ -1,5 +1,4 @@
 test_that("tests for make_datatagr", {
-
   # test errors
   msg <- "Must be of type 'data.frame', not 'NULL'."
   expect_error(make_datatagr(NULL), msg)
@@ -11,7 +10,7 @@ test_that("tests for make_datatagr", {
   expect_error(make_datatagr(cars, outcome = "bar"), msg, fixed = TRUE)
 
   expect_error(
-    make_datatagr(cars, outcome = "bar", age = "bla"), 
+    make_datatagr(cars, outcome = "bar", age = "bla"),
     "2 assertions failed"
   )
 
@@ -23,7 +22,7 @@ test_that("tests for make_datatagr", {
   )
 
   # test functionalities
-  expect_identical(tags_defaults(), tags(make_datatagr(cars), TRUE))
+  expect_identical(tags_defaults(), tags(make_datatagr(cars, tag_defaults = tags_defaults()), TRUE))
 
   x <- make_datatagr(cars, date_onset = "dist", date_outcome = "speed")
   expect_identical(tags(x)$date_onset, "dist")
@@ -31,25 +30,21 @@ test_that("tests for make_datatagr", {
   expect_null(tags(x)$outcome)
   expect_null(tags(x)$date_reporting)
 
-  x <- make_datatagr(cars, foo = "speed", bar = "dist", allow_extra = TRUE)
+  x <- make_datatagr(cars, tag_defaults = tags_defaults(), foo = "speed", bar = "dist", allow_extra = TRUE)
   expect_identical(
     tags(x, TRUE),
     c(tags_defaults(), foo = "speed", bar = "dist")
   )
-
 })
 
 test_that("make_datatagr() works with dynamic dots", {
-
   expect_identical(
     make_datatagr(cars, date_onset = "dist", date_outcome = "speed"),
     make_datatagr(cars, !!!list(date_onset = "dist", date_outcome = "speed"))
   )
-
 })
 
 test_that("make_datatagr() errors on data.table input", {
-
   dt_cars <- structure(
     cars,
     class = c("data.table", "data.frame")
@@ -59,5 +54,4 @@ test_that("make_datatagr() errors on data.table input", {
     make_datatagr(dt_cars),
     "NOT be a data.table"
   )
-
 })

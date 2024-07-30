@@ -4,7 +4,7 @@
 \alias{make_datatagr}
 \title{Create a datatagr from a data.frame}
 \usage{
-make_datatagr(x, ..., allow_extra = FALSE)
+make_datatagr(x, ..., tag_defaults = list(), allow_extra = TRUE)
 }
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble}}
@@ -13,6 +13,9 @@ make_datatagr(x, ..., allow_extra = FALSE)
 \code{tag_name = "column_name"}, where \code{tag_name} indicates any of the known
 variables listed in 'Details' and values indicate their name in \code{x}; see
 details for a list of known variable types and their expected content}
+
+\item{tag_defaults}{a list of default values for the provided tags. Defaults
+to \code{list()}}
 
 \item{allow_extra}{a \code{logical} indicating if additional data tags not
 currently recognized by \code{datatagr} should be allowed; if \code{FALSE}, unknown
@@ -46,10 +49,8 @@ activity of the patient
 \item \code{hcw}: a \code{logical} indicating if the patient is a health care worker
 \item \code{outcome}: a \code{factor} or \code{character} indicating the outcome of the disease
 (death or survival)
-}
 
 Dates can be provided in the following formats/types:
-\itemize{
 \item \code{Date} objects (e.g. using \code{as.Date} on a \code{character} with a correct date
 format); this is the recommended format
 \item \code{POSIXct/POSIXlt} objects (when a finer scale than days is needed)
@@ -59,36 +60,26 @@ case
 }
 \examples{
 
-if (require(outbreaks)) {
-  ## dataset we will convert to datatagr
-  head(measles_hagelloch_1861)
+x <- make_datatagr(cars,
+                   age = 'speed',
+                   distance = 'dist'
+)
 
-  ## create datatagr
-  x <- make_datatagr(measles_hagelloch_1861,
-    id = "case_ID",
-    date_onset = "date_of_prodrome",
-    age = "age",
-    gender = "gender"
-  )
+## print result - just first few entries
+head(x)
 
-  ## print result - just first few entries
-  head(x)
+## check tags
+tags(x)
 
-  ## check tags
-  tags(x)
+## Tags can also be passed as a list with the splice operator (!!!)
+my_tags <- list(
+  age = "speed",
+  distance = "dist"
+)
+new_x <- make_datatagr(cars, !!!my_tags)
 
-  ## Tags can also be passed as a list with the splice operator (!!!)
-  my_tags <- list(
-    id = "case_ID",
-    date_onset = "date_of_prodrome",
-    age = "age",
-    gender = "gender"
-  )
-  new_x <- make_datatagr(measles_hagelloch_1861, !!!my_tags)
-
-  ## The output is strictly equivalent to the previous one
-  identical(x, new_x)
-}
+## The output is strictly equivalent to the previous one
+identical(x, new_x)
 
 }
 \seealso{

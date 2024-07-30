@@ -27,7 +27,7 @@ test_that("tests for validate_tags", {
 
   attr(x, "tags") <- c(tags_defaults(), toto = "ilestbo")
   msg <- "The following tagged variables are missing:\ntoto:ilestbo"
-  expect_error(validate_tags(x, TRUE), msg)
+  expect_error(validate_tags(x), msg)
 
   tags <- tags_defaults()
   tags[[2]] <- 1L
@@ -46,5 +46,5 @@ test_that("tests for validate_tags", {
   expect_identical(x, validate_tags(x))
 
   x <- set_tags(x, date_onset = "dist", toto = "speed", allow_extra = TRUE)
-  expect_identical(x, validate_tags(x, allow_extra = TRUE))
+  expect_identical(x, validate_tags(x))
 })

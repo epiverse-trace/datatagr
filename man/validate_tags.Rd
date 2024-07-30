@@ -4,14 +4,10 @@
 \alias{validate_tags}
 \title{Checks the tags of a datatagr object}
 \usage{
-validate_tags(x, allow_extra = FALSE)
+validate_tags(x)
 }
 \arguments{
 \item{x}{a \code{datatagr} object}
-
-\item{allow_extra}{a \code{logical} indicating if additional data tags not
-currently recognized by \code{datatagr} should be allowed; if \code{FALSE}, unknown
-tags will trigger an error}
 }
 \value{
 If checks pass, a \code{datatagr} object; otherwise issues an error.

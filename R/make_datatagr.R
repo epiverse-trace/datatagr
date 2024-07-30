@@ -22,7 +22,6 @@
 #' @seealso
 #'
 #' * An overview of the [datatagr] package
-#' * [tags_names()]: for a list of known tag names
 #' * [tags_types()]: for the associated accepted types/classes
 #' * [tags()]: for a list of tagged variables in a `datatagr`
 #' * [set_tags()]: for modifying tags

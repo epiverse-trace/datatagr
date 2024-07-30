@@ -9,8 +9,6 @@
 #'
 #' @param x a `datatagr` object
 #'
-#' @inheritParams set_tags
-#'
 #' @return If checks pass, a `datatagr` object; otherwise issues an error.
 #'
 #' @seealso [validate_types()] to check if tagged variables have
@@ -38,7 +36,7 @@
 #'   ## note: tryCatch is only used to avoid a genuine error in the example
 #'   tryCatch(validate_tags(x), error = paste)
 #' }
-validate_tags <- function(x, allow_extra = FALSE) {
+validate_tags <- function(x) {
   checkmate::assert_class(x, "datatagr")
   x_tags <- tags(x, show_null = TRUE)
 
@@ -48,31 +46,6 @@ validate_tags <- function(x, allow_extra = FALSE) {
 
   # check that x is a list, and each tag is a `character`
   checkmate::assert_list(x_tags, types = c("character", "null"))
-
-  # check that defaults are present
-  default_present <- tags_names() %in% names(x_tags)
-  if (!all(default_present)) {
-    missing_tags <- tags_names()[!default_present]
-    stop(
-      "The following default tags are missing:\n",
-      toString(missing_tags),
-      call. = FALSE
-    )
-  }
-
-  # check there is no extra value
-  if (!allow_extra) {
-    is_extra <- !names(x_tags) %in% tags_names()
-    if (any(is_extra)) {
-      extra_tags <- names(x_tags)[is_extra]
-      stop(
-        "The following tags are not part of the defaults:\n",
-        toString(extra_tags),
-        "\nConsider using `allow_extra = TRUE` to allow additional tags.",
-        call. = FALSE
-      )
-    }
-  }
 
   # check that tagged variables exist
   x_tags_vec <- unlist(tags(x))

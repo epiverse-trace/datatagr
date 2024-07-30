@@ -7,8 +7,7 @@
 set_tags(x, ..., allow_extra = FALSE)
 }
 \arguments{
-\item{x}{a \code{data.frame} or a \code{tibble} containing case line list data, with
-cases in rows and variables in columns}
+\item{x}{a \code{data.frame} or a \code{tibble}}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A series of tags provided as
 \code{tag_name = "column_name"}, where \code{tag_name} indicates any of the known

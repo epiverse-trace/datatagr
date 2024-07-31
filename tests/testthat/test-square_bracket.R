@@ -1,7 +1,7 @@
 test_that("tests for [ operator", {
   x <- make_datatagr(cars, id = "speed", age = "dist")
   on.exit(lost_tags_action())
-  
+
   # errors
   lost_tags_action("warning", quiet = TRUE)
   msg <- "The following tags have lost their variable:\n age:dist"
@@ -109,7 +109,7 @@ test_that("$<- operator detects tag loss", {
   x <- make_datatagr(cars, id = "speed", age = "dist")
   msg <- "The following tags have lost their variable:\n id:speed"
   expect_warning(x$speed <- NULL, msg)
-  
+
   lost_tags_action("error", quiet = TRUE)
   x <- make_datatagr(cars, id = "speed", age = "dist")
   msg <- "The following tags have lost their variable:\n id:speed"
@@ -123,9 +123,7 @@ test_that("$<- operator detects tag loss", {
 })
 
 test_that("$<- allows innocuous tag modification", {
-
   x <- make_datatagr(cars, id = "speed", age = "dist")
   expect_no_condition(x$speed <- 1L)
   expect_identical(x$speed, rep(1L, nrow(x)))
-
 })

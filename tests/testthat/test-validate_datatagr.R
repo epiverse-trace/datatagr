@@ -1,20 +1,16 @@
 test_that("tests for validate_datatagr", {
-
   # errors
   msg <- "Must inherit from class 'datatagr', but has class 'NULL'."
   expect_error(validate_datatagr(NULL), msg)
 
   x <- make_datatagr(cars, id = "speed", toto = "dist", allow_extra = TRUE)
-  msg <- paste(
-    "The following tags are not part of the defaults:\ntoto",
-    "Consider using `allow_extra = TRUE` to allow additional tags.",
-    sep = "\n"
-  )
+  msg <- "Allowed types for tag `toto` are not documented in `ref_types`."
   expect_error(validate_datatagr(x), msg)
+  expect_identical(x, validate_datatagr(x, ref_types = list(id = "numeric", toto = "numeric")))
 
   x <- make_datatagr(cars, gender = "speed")
   expect_error(
-    validate_datatagr(x), 
+    validate_datatagr(x),
     "- gender: Must inherit from class 'character'/'factor'"
   )
 

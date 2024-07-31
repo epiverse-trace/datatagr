@@ -22,7 +22,7 @@ test_that("tests for make_datatagr", {
   )
 
   # test functionalities
-  expect_identical(tags_defaults(), tags(make_datatagr(cars, tag_defaults = tags_defaults()), TRUE))
+  expect_identical(list(), tags(make_datatagr(cars), TRUE))
 
   x <- make_datatagr(cars, date_onset = "dist", date_outcome = "speed")
   expect_identical(tags(x)$date_onset, "dist")
@@ -30,10 +30,10 @@ test_that("tests for make_datatagr", {
   expect_null(tags(x)$outcome)
   expect_null(tags(x)$date_reporting)
 
-  x <- make_datatagr(cars, tag_defaults = tags_defaults(), foo = "speed", bar = "dist", allow_extra = TRUE)
+  x <- make_datatagr(cars, foo = "speed", bar = "dist", allow_extra = TRUE)
   expect_identical(
     tags(x, TRUE),
-    c(tags_defaults(), foo = "speed", bar = "dist")
+    c(list(), foo = "speed", bar = "dist")
   )
 })
 

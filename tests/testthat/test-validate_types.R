@@ -1,6 +1,6 @@
 test_that("tests for validate_types() basic input checking", {
   expect_error(
-    validate_types(cars), 
+    validate_types(cars),
     "Must inherit from class 'datatagr', but has class 'data.frame'."
   )
 })
@@ -18,7 +18,7 @@ test_that("validate_types() validates types", {
   # Failed validations
   x <- make_datatagr(cars, age = "speed")
   expect_error(
-    validate_types(x, ref_types = tags_types(age = "factor")), 
+    validate_types(x, ref_types = tags_types(age = "factor")),
     "age: Must inherit from class 'factor', but has class 'numeric'"
   )
 

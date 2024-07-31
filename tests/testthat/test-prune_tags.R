@@ -8,7 +8,7 @@ test_that("tests for prune_tags", {
   attr(x, "names") <- c("new1", "new2") # hack needed as names<- is now safe
   msg <- paste(
     "The following tags have lost their variable:",
-    " date_onset:dist, age:speed",
+    " age:speed, date_onset:dist",
     sep = "\n"
   )
   expect_error(prune_tags(x), msg, class = "datatagr_error")
@@ -16,7 +16,7 @@ test_that("tests for prune_tags", {
 
   # Check functionality
   y <- prune_tags(x, "none")
-  expect_identical(tags_defaults(), tags(y, TRUE))
+  expect_identical(list(), tags(y, TRUE))
   expect_s3_class(y, "datatagr")
 })
 
@@ -28,5 +28,4 @@ test_that("prune_tags() doesn't error on a datatagr with extra tags", {
 
   expect_no_condition(ll["a"])
   expect_identical(ll, ll["a"])
-
 })

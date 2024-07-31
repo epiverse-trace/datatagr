@@ -5,7 +5,7 @@ test_that("tag_variables() works with specification by position", {
   )
 
   expect_error(
-    tag_variables(cars, list(distance = NA)), 
+    tag_variables(cars, list(distance = NA)),
     "Must be element of set \\{'speed','dist'\\}, but is."
   )
 

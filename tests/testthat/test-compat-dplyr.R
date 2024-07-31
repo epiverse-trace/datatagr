@@ -5,7 +5,6 @@ x <- make_datatagr(cars, date_onset = "dist", date_outcome = "speed")
 # Rows ----
 
 test_that("Compatibility with dplyr::arrange()", {
-
   ordered_x <- expect_no_warning(dplyr::arrange(x, dist))
 
   expect_s3_class(ordered_x, "datatagr")
@@ -13,20 +12,16 @@ test_that("Compatibility with dplyr::arrange()", {
     drop_datatagr(ordered_x),
     dplyr::arrange(cars, dist)
   )
-
 })
 
 test_that("Compatibility with dplyr::distinct()", {
-
   expect_identical(
     x[1:10, ],
     dplyr::distinct(x[1:10, ])
   )
-
 })
 
 test_that("Compatibility with dplyr::filter()", {
-
   # nolint start: expect_named_linter
   expect_identical(
     names(dplyr::filter(x, dist > mean(dist))),
@@ -38,32 +33,26 @@ test_that("Compatibility with dplyr::filter()", {
     tags(dplyr::filter(x, dist > mean(dist))),
     tags(x)
   )
-
 })
 
 test_that("Compatibility with dplyr::slice()", {
-
   x %>%
     dplyr::slice(5:10) %>%
     expect_s3_class("datatagr") %>%
     dim() %>%
     expect_identical(c(6L, ncol(x)))
-
 })
 
 # Columns ----
 
 test_that("Compatibility with dplyr::transmute()", {
-
   x %>%
     dplyr::transmute(vitesse = speed) %>%
     expect_s3_class("datatagr") %>%
     expect_snapshot_warning()
-
 })
 
 test_that("Compatibility with dplyr::mutate(.keep)", {
-
   # This is not ideal because this simple mutate() is actually equivalent to a
   # rename() and it would be great if dplyr could pick this up and modify the
   # tags as it does in the rename() case.
@@ -77,11 +66,9 @@ test_that("Compatibility with dplyr::mutate(.keep)", {
     expect_s3_class("datatagr") %>%
     tags() %>%
     expect_identical(tags(x))
-
 })
 
 test_that("Compatibility with dplyr::relocate()", {
-
   expect_mapequal(
     x,
     dplyr::relocate(x, 2)
@@ -99,11 +86,9 @@ test_that("Compatibility with dplyr::relocate()", {
     x,
     new_x
   )
-
 })
 
 test_that("Compatibility with dplyr::rename()", {
-
   expect_identical(
     tags(dplyr::rename(x, toto = dist)),
     list(date_onset = "toto", date_outcome = "speed")
@@ -118,11 +103,9 @@ test_that("Compatibility with dplyr::rename()", {
     dplyr::rename(dist = toto, speed = titi)
 
   expect_identical(x, new_x)
-
 })
 
 test_that("Compatibility with dplyr::rename_with()", {
-
   expect_identical(
     tags(dplyr::rename_with(x, toupper)),
     lapply(tags(x), toupper)
@@ -137,11 +120,9 @@ test_that("Compatibility with dplyr::rename_with()", {
     dplyr::rename_with(tolower)
 
   expect_identical(x, new_x)
-
 })
 
 test_that("Compatibility with dplyr::select()", {
-
   x %>%
     dplyr::select("dist") %>%
     expect_s3_class("datatagr") %>%
@@ -155,13 +136,11 @@ test_that("Compatibility with dplyr::select()", {
     expect_s3_class("datatagr") %>%
     tags() %>%
     expect_identical(list(date_onset = "dist", date_outcome = "vitesse"))
-
 })
 
 # Data.frames ----
 
 test_that("Compatibility with dplyr::bind_rows()", {
-
   rbound_x <- dplyr::bind_rows(x, x)
 
   expect_identical(
@@ -173,5 +152,4 @@ test_that("Compatibility with dplyr::bind_rows()", {
     x,
     "datatagr"
   )
-
 })

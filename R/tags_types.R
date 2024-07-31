@@ -11,7 +11,6 @@
 #' @return A named `list`.
 #'
 #' @seealso
-#' * [tags_defaults()] for the default tags
 #' * [validate_types()] uses [tags_types()] for validating tags
 #' * [validate_datatagr()] uses [tags_types()] for validating tags
 #'

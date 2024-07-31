@@ -15,7 +15,7 @@
 #' @return The function returns a `datatagr` object.
 #'
 
-prune_tags <- function(x, lost_action = c("error", "warning", "none")) {
+prune_tags <- function(x, lost_action = c("error", "warning", "none"), tag_defaults = list()) {
   # assertions
   checkmate::assertClass(x, "datatagr")
   lost_action <- match.arg(lost_action)
@@ -34,7 +34,7 @@ prune_tags <- function(x, lost_action = c("error", "warning", "none")) {
   # tags, and not add new ones.
   # This is easier than tracking if x was created with strict TRUE or FALSE.
   # Discussed in https://github.com/epiverse-trace/linelist/issues/63
-  new_tags <- modify_defaults(tags_defaults(), new_tags, strict = FALSE)
+  new_tags <- modify_defaults(tag_defaults, new_tags, strict = FALSE)
   out <- x
   attr(out, "tags") <- new_tags
 

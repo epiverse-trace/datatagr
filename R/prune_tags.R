@@ -15,7 +15,10 @@
 #' @return The function returns a `datatagr` object.
 #'
 
-prune_tags <- function(x, lost_action = c("error", "warning", "none"), tag_defaults = list()) {
+prune_tags <- function(
+    x,
+    lost_action = c("error", "warning", "none"),
+    tag_defaults = list()) {
   # assertions
   checkmate::assertClass(x, "datatagr")
   lost_action <- match.arg(lost_action)

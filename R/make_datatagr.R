@@ -75,8 +75,8 @@
 #' @examples
 #'
 #' x <- make_datatagr(cars,
-#'                    age = 'speed',
-#'                    distance = 'dist'
+#'   age = "speed",
+#'   distance = "dist"
 #' )
 #'
 #' ## print result - just first few entries
@@ -94,7 +94,7 @@
 #'
 #' ## The output is strictly equivalent to the previous one
 #' identical(x, new_x)
-#' 
+#'
 make_datatagr <- function(x,
                           ...,
                           tag_defaults = list(),

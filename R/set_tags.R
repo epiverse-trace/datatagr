@@ -41,13 +41,13 @@
 #'   tags(x)
 #' }
 #'
-set_tags <- function(x, ..., allow_extra = TRUE) {
+set_tags <- function(x, ..., tag_defaults = list(), allow_extra = TRUE) {
   # assert inputs
   checkmate::assertClass(x, "datatagr")
   checkmate::assertLogical(allow_extra)
 
   old_tags <- attr(x, "tags")
-  defaults <- tags_defaults()
+  defaults <- tag_defaults
   new_tags <- rlang::list2(...)
 
   final_tags <- modify_defaults(defaults, old_tags, strict = FALSE)

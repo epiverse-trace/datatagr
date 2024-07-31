@@ -61,8 +61,8 @@ case
 \examples{
 
 x <- make_datatagr(cars,
-                   age = 'speed',
-                   distance = 'dist'
+  age = "speed",
+  distance = "dist"
 )
 
 ## print result - just first few entries

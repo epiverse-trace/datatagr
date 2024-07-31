@@ -4,7 +4,7 @@
 \alias{set_tags}
 \title{Changes tags of a datatagr object}
 \usage{
-set_tags(x, ..., allow_extra = TRUE)
+set_tags(x, ..., tag_defaults = list(), allow_extra = TRUE)
 }
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble}}
@@ -13,6 +13,9 @@ set_tags(x, ..., allow_extra = TRUE)
 \code{tag_name = "column_name"}, where \code{tag_name} indicates any of the known
 variables listed in 'Details' and values indicate their name in \code{x}; see
 details for a list of known variable types and their expected content}
+
+\item{tag_defaults}{a list of default values for the provided tags. Defaults
+to \code{list()}}
 
 \item{allow_extra}{a \code{logical} indicating if additional data tags not
 currently recognized by \code{datatagr} should be allowed; if \code{FALSE}, unknown

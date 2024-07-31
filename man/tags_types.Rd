@@ -37,7 +37,6 @@ tags_types(sequence = "DNAbin", allow_extra = TRUE)
 }
 \seealso{
 \itemize{
-\item \code{\link[=tags_defaults]{tags_defaults()}} for the default tags
 \item \code{\link[=validate_types]{validate_types()}} uses \code{\link[=tags_types]{tags_types()}} for validating tags
 \item \code{\link[=validate_datatagr]{validate_datatagr()}} uses \code{\link[=tags_types]{tags_types()}} for validating tags
 }

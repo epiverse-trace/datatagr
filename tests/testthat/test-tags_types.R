@@ -1,5 +1,4 @@
 test_that("tests for tags_types", {
-
   # Check errors
   msg <- "Use only known tags or set `allow_extra = TRUE`"
   expect_error(tags_types(toto = "ilestbo"), msg, fixed = TRUE)

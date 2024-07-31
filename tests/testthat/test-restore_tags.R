@@ -1,5 +1,6 @@
 test_that("tests for restore_tags", {
-  x <- make_datatagr(cars, age = "speed", date_onset = "dist")
+  # These are now order dependent for the tests
+  x <- make_datatagr(cars, date_onset = "dist", age = "speed")
   y <- drop_datatagr(x)
   z <- y
   names(z) <- c("titi", "toto")

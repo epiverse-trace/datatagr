@@ -5,12 +5,8 @@ test_that("tests for set_tags()", {
   msg <- "Must inherit from class 'datatagr', but has class 'data.frame'."
   expect_error(set_tags(cars), msg)
 
-  msg <- "Use only known tags or set `allow_extra = TRUE`"
-  expect_error(set_tags(x, toto = 1), msg, fixed = TRUE)
-
   msg <- "Must be element of set {'speed','dist'}, but is"
   expect_error(set_tags(x, outcome = "toto"), msg, fixed = TRUE)
-
 
   # Check functionality
   expect_identical(x, set_tags(x))

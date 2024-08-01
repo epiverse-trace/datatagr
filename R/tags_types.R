@@ -24,38 +24,11 @@
 #' # add new types e.g. to allow genetic sequences using ape's format
 #' tags_types(sequence = "DNAbin", allow_extra = TRUE)
 #'
-tags_types <- function(..., allow_extra = FALSE) {
-  defaults <- list(
-    id = c("numeric", "integer", "character"),
-    date_onset = date_types,
-    date_reporting = date_types,
-    date_admission = date_types,
-    date_discharge = date_types,
-    date_outcome = date_types,
-    date_death = date_types,
-    gender = category_types,
-    age = numeric_types,
-    location = category_types,
-    occupation = category_types,
-    hcw = binary_types,
-    outcome = category_types
-  )
+tags_types <- function(..., allow_extra = TRUE) {
+  defaults <- list()
 
   new_values <- rlang::list2(...)
   checkmate::assert_list(new_values, types = "character")
 
   modify_defaults(defaults = defaults, x = new_values, strict = !allow_extra)
 }
-
-
-#' @noRd
-date_types <- c("integer", "numeric", "Date", "POSIXct", "POSIXlt")
-
-#' @noRd
-category_types <- c("character", "factor")
-
-#' @noRd
-numeric_types <- c("numeric", "integer")
-
-#' @noRd
-binary_types <- c("logical", "integer", "character", "factor")

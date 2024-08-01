@@ -11,7 +11,7 @@ test_that("validate_types() validates types", {
   expect_silent(
     expect_identical(
       x,
-      validate_types(x, ref_types = tags_types(age = 'numeric'))
+      validate_types(x, ref_types = tags_types(age = "numeric"))
     )
   )
 

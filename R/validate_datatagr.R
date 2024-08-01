@@ -43,7 +43,12 @@
 #'   x
 #'
 #'   ## validation
-#'   validate_datatagr(x)
+#'   validate_datatagr(x, ref_types = tags_types(
+#'     id = c("integer", "factor"),
+#'     date_onset = "Date",
+#'     age = "numeric",
+#'     gender = c("factor", "character")
+#'   ))
 #'
 #'   ## create an invalid datatagr - onset date is a factor
 #'   x <- measles_hagelloch_1861 %>%

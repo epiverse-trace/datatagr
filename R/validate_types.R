@@ -32,7 +32,10 @@
 #'   tryCatch(validate_types(x), error = paste)
 #'
 #'   ## to allow other types, e.g. gender to be integer, character or factor
-#'   validate_types(x, tags_types(gender = c("integer", "character", "factor")))
+#'   validate_types(x, tags_types(id = "integer", gender = c(
+#'     "integer",
+#'     "character", "factor"
+#'   )))
 #' }
 validate_types <- function(x, ref_types = tags_types()) {
   checkmate::assert_class(x, "datatagr")

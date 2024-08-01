@@ -4,13 +4,12 @@
 \alias{tags_types}
 \title{List acceptable variable types for tags}
 \usage{
-tags_types(..., allow_extra = FALSE)
+tags_types(..., allow_extra = TRUE)
 }
 \arguments{
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A series of tags provided as
-\code{tag_name = "column_name"}, where \code{tag_name} indicates any of the known
-variables listed in 'Details' and values indicate their name in \code{x}; see
-details for a list of known variable types and their expected content}
+\code{tag_name = "column_name"}. When specifying tags, please also see
+\code{tag_defaults} to specify default values.}
 
 \item{allow_extra}{a \code{logical} indicating if additional data tags not
 currently recognized by \code{datatagr} should be allowed; if \code{FALSE}, unknown

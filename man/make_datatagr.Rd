@@ -10,12 +10,11 @@ make_datatagr(x, ..., tag_defaults = list(), allow_extra = TRUE)
 \item{x}{a \code{data.frame} or a \code{tibble}}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A series of tags provided as
-\code{tag_name = "column_name"}, where \code{tag_name} indicates any of the known
-variables listed in 'Details' and values indicate their name in \code{x}; see
-details for a list of known variable types and their expected content}
+\code{tag_name = "column_name"}. When specifying tags, please also see
+\code{tag_defaults} to specify default values.}
 
 \item{tag_defaults}{a list of default values for the provided tags. Defaults
-to \code{list()}}
+to \code{list()}, effectively defaulting to NULL values.}
 
 \item{allow_extra}{a \code{logical} indicating if additional data tags not
 currently recognized by \code{datatagr} should be allowed; if \code{FALSE}, unknown
@@ -29,34 +28,6 @@ This function converts a \code{data.frame} or a \code{tibble} into a \code{datat
 where data are tagged. The output will seem to be the same \code{data.frame}, but
 \code{datatagr}-aware packages will then be able to automatically use tagged
 fields for further data cleaning and analysis.
-}
-\details{
-Known variable types include:
-\itemize{
-\item \code{id}: a unique case identifier as \code{numeric} or \code{character}
-\item \code{date_onset}: date of symptom onset (see below for date formats)
-\item \code{date_reporting}: date of case notification (see below for date formats)
-\item \code{date_admission}: date of hospital admission (see below for date formats)
-\item \code{date_discharge}: date of hospital discharge (see below for date formats)
-\item \code{date_outcome}: date of disease outcome (see below for date formats)
-\item \code{date_death}: date of death (see below for date formats)
-\item \code{gender}: a \code{factor} or \code{character} indicating the gender of the patient
-\item \code{age}: a \code{numeric} indicating the age of the patient, in years
-\item \code{location}: a \code{factor} or \code{character} indicating the location of the
-patient
-\item \code{occupation}: a \code{factor} or \code{character} indicating the professional
-activity of the patient
-\item \code{hcw}: a \code{logical} indicating if the patient is a health care worker
-\item \code{outcome}: a \code{factor} or \code{character} indicating the outcome of the disease
-(death or survival)
-
-Dates can be provided in the following formats/types:
-\item \code{Date} objects (e.g. using \code{as.Date} on a \code{character} with a correct date
-format); this is the recommended format
-\item \code{POSIXct/POSIXlt} objects (when a finer scale than days is needed)
-\item \code{numeric} values, typically indicating the number of days since the first
-case
-}
 }
 \examples{
 

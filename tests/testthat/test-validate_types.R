@@ -11,7 +11,7 @@ test_that("validate_types() validates types", {
   expect_silent(
     expect_identical(
       x,
-      validate_types(x)
+      validate_types(x, ref_types = tags_types(age = 'numeric'))
     )
   )
 
@@ -24,7 +24,7 @@ test_that("validate_types() validates types", {
 
   x <- make_datatagr(cars, age = "speed", gender = "dist")
   expect_snapshot_error(
-    validate_types(x, ref_types = tags_types(age = "factor"))
+    validate_types(x, ref_types = tags_types(age = "factor", gender = "character"))
   )
 })
 
@@ -33,7 +33,7 @@ test_that("missing ref_type in validate_types()", {
   x <- make_datatagr(cars, age = "speed", d = "dist", allow_extra = TRUE)
   expect_error(
     validate_types(x),
-    "Allowed types for tag `d` are not documented in `ref_types`."
+    "Allowed types for tag `age`, `d` are not documented in `ref_types`."
   )
 
   # Two missing

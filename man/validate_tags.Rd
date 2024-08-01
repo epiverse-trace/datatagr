@@ -31,7 +31,12 @@ if (require(outbreaks) && require(magrittr)) {
   x
 
   ## validation
-  validate_tags(x)
+  validate_datatagr(x, ref_types = tags_types(
+    id = c("integer", "factor"),
+    date_onset = "Date",
+    age = "numeric",
+    gender = c("factor", "character")
+  ))
 
   ## hack to create an invalid tags (missing defaults)
   attr(x, "tags") <- list(id = "case_ID")

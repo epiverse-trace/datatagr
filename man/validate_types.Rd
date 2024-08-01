@@ -34,7 +34,10 @@ if (require(outbreaks) && require(magrittr)) {
   tryCatch(validate_types(x), error = paste)
 
   ## to allow other types, e.g. gender to be integer, character or factor
-  validate_types(x, tags_types(gender = c("integer", "character", "factor")))
+  validate_types(x, tags_types(id = "integer", gender = c(
+    "integer",
+    "character", "factor"
+  )))
 }
 }
 \seealso{

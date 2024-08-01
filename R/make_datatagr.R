@@ -8,7 +8,7 @@
 #' @param x a `data.frame` or a `tibble`
 #'
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A series of tags provided as
-#'   `tag_name = "column_name"`. When specifying tags, please also see 
+#'   `tag_name = "column_name"`. When specifying tags, please also see
 #'   `tag_defaults` to specify default values.
 #'
 #' @param tag_defaults a list of default values for the provided tags. Defaults

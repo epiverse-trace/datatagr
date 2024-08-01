@@ -10,8 +10,10 @@ test_that("tests for validate_datatagr", {
 
   x <- make_datatagr(cars, gender = "speed")
   expect_error(
-    validate_datatagr(x, ref_types = tags_types(gender = c('character', 
-                                                           'factor'))),
+    validate_datatagr(x, ref_types = tags_types(gender = c(
+      "character",
+      "factor"
+    ))),
     "- gender: Must inherit from class 'character'/'factor'"
   )
 

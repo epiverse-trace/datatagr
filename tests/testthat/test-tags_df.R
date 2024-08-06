@@ -1,8 +1,8 @@
 test_that("tests for tags_df", {
   # These are now order dependent for the tests
-  x <- make_datatagr(cars, date_reporting = "dist", age = "speed")
+  x <- make_datatagr(cars, distance = "dist", mph = "speed")
   y <- cars[c("dist", "speed")]
-  names(y) <- c("date_reporting", "age")
+  names(y) <- c("distance", "mph")
 
   # errors
   msg <- "Must inherit from class 'datatagr', but has class 'data.frame'."

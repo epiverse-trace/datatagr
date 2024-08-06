@@ -9,21 +9,16 @@
 #' @export
 #'
 #' @examples
-#' if (require(outbreaks) && require(dplyr)) {
-#'   ## dataset we'll create a datatagr from
-#'   measles_hagelloch_1861
+#' ## create datatagr
+#' x <- make_datatagr(cars,
+#'   mph = "speed",
+#'   distance = "dist"
+#' )
+#' head(x)
 #'
-#'   ## create datatagr
-#'   x <- make_datatagr(measles_hagelloch_1861,
-#'     id = "case_ID",
-#'     date_onset = "date_of_prodrome",
-#'     age = "age",
-#'     gender = "gender"
-#'   )
-#'   head(x)
-#'
+#' if (require(dplyr) && require(magrittr)) {
 #'   x %>%
-#'     select(has_tag(c("id", "age"))) %>%
+#'     select(has_tag(c("mph", "distance"))) %>%
 #'     head()
 #' }
 has_tag <- function(

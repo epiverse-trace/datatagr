@@ -32,7 +32,7 @@ fields for further data cleaning and analysis.
 \examples{
 
 x <- make_datatagr(cars,
-  age = "speed",
+  mph = "speed",
   distance = "dist"
 )
 
@@ -44,7 +44,7 @@ tags(x)
 
 ## Tags can also be passed as a list with the splice operator (!!!)
 my_tags <- list(
-  age = "speed",
+  mph = "speed",
   distance = "dist"
 )
 new_x <- make_datatagr(cars, !!!my_tags)

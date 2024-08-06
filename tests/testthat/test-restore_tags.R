@@ -1,6 +1,6 @@
 test_that("tests for restore_tags", {
   # These are now order dependent for the tests
-  x <- make_datatagr(cars, date_onset = "dist", age = "speed")
+  x <- make_datatagr(cars, distance = "dist", mph = "speed")
   y <- drop_datatagr(x)
   z <- y
   names(z) <- c("titi", "toto")
@@ -8,7 +8,7 @@ test_that("tests for restore_tags", {
   # Check error messages
   msg <- paste(
     "The following tags have lost their variable:",
-    " date_onset:dist, age:speed",
+    " distance:dist, mph:speed",
     sep = "\n"
   )
   expect_error(restore_tags(z, tags(x), "error"), msg)

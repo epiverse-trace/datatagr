@@ -7,33 +7,33 @@ test_that("tests for validate_types() basic input checking", {
 
 test_that("validate_types() validates types", {
   # Successful validations
-  x <- make_datatagr(cars, age = "speed")
+  x <- make_datatagr(cars, mph = "speed")
   expect_silent(
     expect_identical(
       x,
-      validate_types(x, ref_types = tags_types(age = "numeric"))
+      validate_types(x, ref_types = tags_types(mph = "numeric"))
     )
   )
 
   # Failed validations
-  x <- make_datatagr(cars, age = "speed")
+  x <- make_datatagr(cars, mph = "speed")
   expect_error(
-    validate_types(x, ref_types = tags_types(age = "factor")),
-    "age: Must inherit from class 'factor', but has class 'numeric'"
+    validate_types(x, ref_types = tags_types(mph = "factor")),
+    "mph: Must inherit from class 'factor', but has class 'numeric'"
   )
 
-  x <- make_datatagr(cars, age = "speed", gender = "dist")
+  x <- make_datatagr(cars, mph = "speed", distance = "dist")
   expect_snapshot_error(
-    validate_types(x, ref_types = tags_types(age = "factor", gender = "character"))
+    validate_types(x, ref_types = tags_types(mph = "factor", distance = "character"))
   )
 })
 
 test_that("missing ref_type in validate_types()", {
   # Single missing
-  x <- make_datatagr(cars, age = "speed", d = "dist", allow_extra = TRUE)
+  x <- make_datatagr(cars, mph = "speed", d = "dist", allow_extra = TRUE)
   expect_error(
     validate_types(x),
-    "Allowed types for tag `age`, `d` are not documented in `ref_types`."
+    "Allowed types for tag `mph`, `d` are not documented in `ref_types`."
   )
 
   # Two missing

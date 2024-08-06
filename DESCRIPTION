@@ -19,7 +19,6 @@ Suggests:
     dplyr,
     knitr,
     magrittr,
-    outbreaks,
     rmarkdown,
     spelling,
     testthat,

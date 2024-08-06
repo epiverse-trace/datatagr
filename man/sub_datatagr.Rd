@@ -48,18 +48,15 @@ takes the appropriate action if this is the case (warning, error, or ignore,
 depending on the general option set via \code{\link[=lost_tags_action]{lost_tags_action()}}) .
 }
 \examples{
-if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+if (require(dplyr) && require(magrittr)) {
   ## create a datatagr
-  x <- measles_hagelloch_1861 \%>\%
+  x <- cars \%>\%
     make_datatagr(
-      id = "case_ID",
-      date_onset = "date_of_prodrome",
-      age = "age",
-      gender = "gender"
+      mph = "speed",
+      distance = "dist"
     ) \%>\%
-    mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
-    set_tags(outcome = "result") \%>\%
-    rename(identifier = case_ID)
+    mutate(result = if_else(speed > 50, "fast", "slow")) \%>\%
+    set_tags(ticket = "result")
   x
 
   ## dangerous removal of a tagged column setting it to NULL issues a warning

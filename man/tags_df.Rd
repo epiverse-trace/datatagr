@@ -19,18 +19,11 @@ This function returns a \code{data.frame} of all the tagged variables stored in 
 }
 \examples{
 
-if (require(outbreaks) && require(magrittr)) {
-  ## create a tibble datatagr
-  x <- measles_hagelloch_1861 \%>\%
-    make_datatagr(
-      id = "case_ID",
-      date_onset = "date_of_prodrome",
-      age = "age",
-      gender = "gender"
-    )
-  x
+x <- make_datatagr(cars,
+  mph = "speed",
+  distance = "dist"
+)
 
-  ## get a data.frame of all tagged variables
-  tags_df(x)
-}
+## get a data.frame of all tagged variables
+tags_df(x)
 }

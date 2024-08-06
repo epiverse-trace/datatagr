@@ -20,25 +20,22 @@ This function checks the class of each tagged variable in a \code{datatagr}
 against pre-defined accepted classes in \code{\link[=tags_types]{tags_types()}}.
 }
 \examples{
-if (require(outbreaks) && require(magrittr)) {
-  ## create an invalid datatagr - gender is a numeric
-  x <- measles_hagelloch_1861 \%>\%
-    make_datatagr(
-      id = "case_ID",
-      gender = "infector"
-    )
-  x
+x <- make_datatagr(cars,
+  mph = "speed",
+  distance = "dist"
+)
+x
 
-  ## the below would issue an error
-  ## note: tryCatch is only used to avoid a genuine error in the example
-  tryCatch(validate_types(x), error = paste)
+## the below would issue an error
+## note: tryCatch is only used to avoid a genuine error in the example
+tryCatch(validate_types(x), error = paste)
 
-  ## to allow other types, e.g. gender to be integer, character or factor
-  validate_types(x, tags_types(id = "integer", gender = c(
-    "integer",
-    "character", "factor"
-  )))
-}
+## to allow other types, e.g. gender to be integer, character or factor
+validate_types(x, tags_types(mph = "numeric", distance = c(
+  "integer",
+  "character", "numeric"
+)))
+
 }
 \seealso{
 \itemize{

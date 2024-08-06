@@ -18,17 +18,14 @@
 #'
 #' @examples
 #'
-#' if (require(outbreaks)) {
-#'   ## make a datatagr
-#'   x <- make_datatagr(measles_hagelloch_1861, date_onset = "date_of_prodrome")
+#' ## make a datatagr
+#' x <- make_datatagr(cars, mph = "speed")
 #'
-#'   ## check non-null tags
-#'   tags(x)
+#' ## check non-null tags
+#' tags(x)
 #'
-#'   ## get a list of all tags, including NULL ones
-#'   tags(x, TRUE)
-#' }
-#'
+#' ## get a list of all tags, including NULL ones
+#' tags(x, TRUE)
 tags <- function(x, show_null = FALSE) {
   checkmate::assertClass(x, "datatagr")
   out <- attr(x, "tags")

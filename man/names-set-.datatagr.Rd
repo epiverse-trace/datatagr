@@ -19,33 +19,26 @@ This function can be used to rename the columns a \code{datatagr}, adjusting tag
 as needed.
 }
 \examples{
-if (require(outbreaks)) {
-  ## dataset to create a datatagr from
-  measles_hagelloch_1861
+## create datatagr
+x <- make_datatagr(cars,
+  mph = "speed",
+  distance = "dist"
+)
+head(x)
 
-  ## create datatagr
-  x <- make_datatagr(measles_hagelloch_1861,
-    id = "case_ID",
-    date_onset = "date_of_prodrome",
-    age = "age",
-    gender = "gender"
-  )
-  head(x)
+## change names
+names(x)[1] <- "speed in miles"
 
-  ## change names
-  names(x)[1] <- "case_label"
+## see results: tags have been updated
+head(x)
+tags(x)
 
-  ## see results: tags have been updated
+# This also works with using `dplyr::rename()` because it uses names<-()
+# under the hood
+if (require(dplyr) && require(magrittr)) {
+  x <- x \%>\%
+    rename(speed = "speed in miles")
   head(x)
   tags(x)
-
-  # This also works with using `dplyr::rename()` because it uses names<-()
-  # under hood
-  if (require(dplyr)) {
-    x <- x \%>\%
-      rename(case_id = case_label)
-    head(x)
-    tags(x)
-  }
 }
 }

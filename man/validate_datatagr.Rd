@@ -34,37 +34,27 @@ The following checks are performed:
 }
 \examples{
 
-if (require(outbreaks) && require(magrittr)) {
+if (require(magrittr)) {
   ## create a valid datatagr
-  x <- measles_hagelloch_1861 \%>\%
+  x <- cars \%>\%
     make_datatagr(
-      id = "case_ID",
-      date_onset = "date_of_prodrome",
-      age = "age",
-      gender = "gender"
+      mph = "speed",
+      distance = "dist"
     )
   x
 
   ## validation
   validate_datatagr(x, ref_types = tags_types(
-    id = c("integer", "factor"),
-    date_onset = "Date",
-    age = "numeric",
-    gender = c("factor", "character")
+    mph = c("numeric", "factor"),
+    distance = "numeric"
   ))
-
-  ## create an invalid datatagr - onset date is a factor
-  x <- measles_hagelloch_1861 \%>\%
-    make_datatagr(
-      id = "case_ID",
-      date_onset = "gender",
-      age = "age"
-    )
-  x
 
   ## the below issues an error
   ## note: tryCatch is only used to avoid a genuine error in the example
-  tryCatch(validate_datatagr(x), error = paste)
+  tryCatch(validate_datatagr(x, ref_types = tags_types(
+    mph = c("numeric", "factor"),
+    distance = "factor"
+  )), error = paste)
 }
 }
 \seealso{

@@ -11,32 +11,23 @@
 #' @export
 #'
 #' @examples
-#' if (require(outbreaks)) {
-#'   ## dataset we'll create a datatagr from
-#'   measles_hagelloch_1861
+#' ## create datatagr
+#' x <- make_datatagr(cars,
+#'   mph = "speed",
+#'   distance = "dist"
+#' )
 #'
-#'   ## create datatagr
-#'   x <- make_datatagr(measles_hagelloch_1861,
-#'     id = "case_ID",
-#'     date_onset = "date_of_prodrome",
-#'     age = "age",
-#'     gender = "gender"
-#'   )
+#' ## print object - using only the first few entries
+#' head(x)
 #'
-#'   ## print object - using only the first few entries
-#'   head(x)
-#'
-#'   # version with a tibble
-#'   if (require(tibble) && require(magrittr)) {
-#'     measles_hagelloch_1861 %>%
-#'       tibble() %>%
-#'       make_datatagr(
-#'         id = "case_ID",
-#'         date_onset = "date_of_prodrome",
-#'         age = "age",
-#'         gender = "gender"
-#'       )
-#'   }
+#' # version with a tibble
+#' if (require(tibble) && require(magrittr)) {
+#'   cars %>%
+#'     tibble() %>%
+#'     make_datatagr(
+#'       mph = "speed",
+#'       distance = "dist"
+#'     )
 #' }
 print.datatagr <- function(x, ...) {
   cat("\n// datatagr object\n")

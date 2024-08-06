@@ -15,31 +15,24 @@
 #'   the right classes
 #'
 #' @examples
-#' if (require(outbreaks) && require(magrittr)) {
+#' if (require(dplyr) && require(magrittr)) {
 #'   ## create a valid datatagr
-#'   x <- measles_hagelloch_1861 %>%
+#'   x <- cars %>%
 #'     make_datatagr(
-#'       id = "case_ID",
-#'       date_onset = "date_of_prodrome",
-#'       age = "age",
-#'       gender = "gender"
+#'       mph = "speed",
+#'       distance = "dist"
 #'     )
 #'   x
 #'
-#'   ## validation
-#'   validate_datatagr(x, ref_types = tags_types(
-#'     id = c("integer", "factor"),
-#'     date_onset = "Date",
-#'     age = "numeric",
-#'     gender = c("factor", "character")
-#'   ))
-#'
-#'   ## hack to create an invalid tags (missing defaults)
-#'   attr(x, "tags") <- list(id = "case_ID")
-#'
-#'   ## the below issues an error
+#'   ## the below issues an error as datatagr doesn't know any defaults
 #'   ## note: tryCatch is only used to avoid a genuine error in the example
-#'   tryCatch(validate_tags(x), error = paste)
+#'   tryCatch(validate_datatagr(x), error = paste)
+#'
+#'   ## validation requires you to specify the types directly
+#'   validate_datatagr(x, ref_types = tags_types(
+#'     mph = c("integer", "numeric"),
+#'     distance = "numeric"
+#'   ))
 #' }
 validate_tags <- function(x) {
   checkmate::assert_class(x, "datatagr")

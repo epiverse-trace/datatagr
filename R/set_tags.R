@@ -14,33 +14,22 @@
 #'
 #' @examples
 #'
-#' if (require(outbreaks)) {
-#'   ## create a datatagr
-#'   x <- make_datatagr(measles_hagelloch_1861, date_onset = "date_of_rash")
-#'   tags(x)
+#' ## create a datatagr
+#' x <- make_datatagr(cars, mph = "speed")
+#' tags(x)
 #'
-#'   ## add new tags and fix an existing one
-#'   x <- set_tags(x,
-#'     age = "age",
-#'     gender = "gender",
-#'     date_onset = "date_of_prodrome"
-#'   )
-#'   tags(x)
+#' ## add new tags and fix an existing one
+#' x <- set_tags(x, distance = "dist")
+#' tags(x)
 #'
-#'   ## add non-default tags using allow_extra
-#'   x <- set_tags(x, severe = "complications", allow_extra = TRUE)
-#'   tags(x)
+#' ## remove tags by setting them to NULL
+#' old_tags <- tags(x)
+#' x <- set_tags(x, mph = NULL, distance = NULL)
+#' tags(x)
 #'
-#'   ## remove tags by setting them to NULL
-#'   old_tags <- tags(x)
-#'   x <- set_tags(x, age = NULL, gender = NULL)
-#'   tags(x)
-#'
-#'   ## setting tags providing a list (used to restore old tags here)
-#'   x <- set_tags(x, !!!old_tags)
-#'   tags(x)
-#' }
-#'
+#' ## setting tags providing a list (used to restore old tags here)
+#' x <- set_tags(x, !!!old_tags)
+#' tags(x)
 set_tags <- function(x, ..., tag_defaults = list(), allow_extra = TRUE) {
   # assert inputs
   checkmate::assertClass(x, "datatagr")

@@ -43,73 +43,60 @@
 #'
 #' @examples
 #'
-#' if (require(outbreaks)) {
-#'   # using base R style
+#' # using base R style
+#' x <- make_datatagr(cars[1:50, ],
+#'   mph = "speed",
+#'   distance = "dist"
+#' )
+#' x
 #'
-#'   ## dataset we'll create a datatagr from, only using the first 50 entries
-#'   measles_hagelloch_1861[1:50, ]
+#' ## check tagged variables
+#' tags(x)
 #'
-#'   ## create datatagr
-#'   x <- make_datatagr(measles_hagelloch_1861[1:50, ],
-#'     id = "case_ID",
-#'     date_onset = "date_of_prodrome",
-#'     age = "age",
-#'     gender = "gender"
-#'   )
-#'   x
+#' ## robust renaming
+#' names(x)[1] <- "identifier"
+#' x
 #'
-#'   ## check tagged variables
-#'   tags(x)
+#' ## example of dropping tags by mistake - default: warning
+#' x[, 2]
 #'
-#'   ## robust renaming
-#'   names(x)[1] <- "identifier"
-#'   x
+#' ## to silence warnings when taggs are dropped
+#' lost_tags_action("none")
+#' x[, 2]
 #'
-#'   ## example of dropping tags by mistake - default: warning
-#'   x[, 2:5]
+#' ## to trigger errors when taggs are dropped
+#' # lost_tags_action("error")
+#' # x[, 2:5]
 #'
-#'   ## to silence warnings when taggs are dropped
-#'   lost_tags_action("none")
-#'   x[, 2:5]
+#' ## reset default behaviour
+#' lost_tags_action()
 #'
-#'   ## to trigger errors when taggs are dropped
-#'   # lost_tags_action("error")
-#'   # x[, 2:5]
+#' # using tidyverse style
 #'
-#'   ## reset default behaviour
-#'   lost_tags_action()
+#' ## example of creating a datatagr, adding a new variable, and adding a tag
+#' ## for it
 #'
+#' if (require(dplyr) && require(magrittr)) {
+#'   x <- cars %>%
+#'     tibble() %>%
+#'     make_datatagr(
+#'       mph = "speed",
+#'       distance = "dist"
+#'     ) %>%
+#'     mutate(result = if_else(speed > 50, "fast", "slow")) %>%
+#'     set_tags(ticket = "result")
 #'
-#'   # using tidyverse style
+#'   head(x)
 #'
-#'   ## example of creating a datatagr, adding a new variable, and adding a tag
-#'   ## for it
+#'   ## extract tagged variables
+#'   x %>%
+#'     select(has_tag(c("mph", "distance")))
 #'
-#'   if (require(dplyr) && require(magrittr)) {
-#'     x <- measles_hagelloch_1861 %>%
-#'       tibble() %>%
-#'       make_datatagr(
-#'         id = "case_ID",
-#'         date_onset = "date_of_prodrome",
-#'         age = "age",
-#'         gender = "gender"
-#'       ) %>%
-#'       mutate(result = if_else(is.na(date_of_death), "survived", "died")) %>%
-#'       set_tags(outcome = "result") %>%
-#'       rename(identifier = case_ID)
+#'   x %>%
+#'     tags()
 #'
-#'     head(x)
-#'
-#'     ## extract tagged variables
-#'     x %>%
-#'       select(has_tag(c("gender", "age")))
-#'
-#'     x %>%
-#'       tags()
-#'
-#'     x %>%
-#'       select(starts_with("date"))
-#'   }
+#'   x %>%
+#'     select(starts_with("dist"))
 #' }
 #'
 #' @keywords internal

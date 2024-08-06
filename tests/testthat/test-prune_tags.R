@@ -1,5 +1,5 @@
 test_that("tests for prune_tags", {
-  x <- make_datatagr(cars, age = "speed", date_onset = "dist")
+  x <- make_datatagr(cars, mph = "speed", distance = "dist")
 
   # Check error messages
   msg <- "Must inherit from class 'datatagr', but has class 'data.frame'."
@@ -8,7 +8,7 @@ test_that("tests for prune_tags", {
   attr(x, "names") <- c("new1", "new2") # hack needed as names<- is now safe
   msg <- paste(
     "The following tags have lost their variable:",
-    " age:speed, date_onset:dist",
+    " mph:speed, distance:dist",
     sep = "\n"
   )
   expect_error(prune_tags(x), msg, class = "datatagr_error")

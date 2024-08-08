@@ -99,79 +99,291 @@ desired behaviour when tagged variables are lost</p></li>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="co"># using base R style</span></span></span>
+<span class="r-in"><span><span class="co"># using base R style</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_datatagr.html">make_datatagr</a></span><span class="op">(</span><span class="va">cars</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span>,</span></span>
+<span class="r-in"><span>  mph <span class="op">=</span> <span class="st">"speed"</span>,</span></span>
+<span class="r-in"><span>  distance <span class="op">=</span> <span class="st">"dist"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // datatagr object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    speed dist</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      4    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      4   10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      7    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      7   22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      8   16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      9   10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7     10   18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     10   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     10   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    11   17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11    11   28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12    12   14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13    12   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14    12   24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15    12   28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16    13   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17    13   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18    13   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19    13   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20    14   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21    14   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22    14   60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23    14   80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24    15   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25    15   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26    15   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27    16   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28    16   40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29    17   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30    17   40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31    17   50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32    18   42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33    18   56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34    18   76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35    18   84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36    19   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37    19   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38    19   68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39    20   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40    20   48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41    20   52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42    20   56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43    20   64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44    22   66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45    23   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46    24   70</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47    24   92</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48    24   93</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49    24  120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50    25   85</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // tags: mph:speed, distance:dist </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## dataset we'll create a datatagr from, only using the first 50 entries</span></span></span>
-<span class="r-in"><span>  <span class="va">measles_hagelloch_1861</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span></span></span>
+<span class="r-in"><span><span class="co">## check tagged variables</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mph</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "speed"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $distance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dist"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## create datatagr</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_datatagr.html">make_datatagr</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span>,</span></span>
-<span class="r-in"><span>    id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
-<span class="r-in"><span>    date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span></span>
-<span class="r-in"><span>    age <span class="op">=</span> <span class="st">"age"</span>,</span></span>
-<span class="r-in"><span>    gender <span class="op">=</span> <span class="st">"gender"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span></span></span>
+<span class="r-in"><span><span class="co">## robust renaming</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"identifier"</span></span></span>
+<span class="r-in"><span><span class="va">x</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // datatagr object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    identifier dist</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           4    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2           4   10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3           7    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4           7   22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5           8   16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6           9   10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7          10   18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8          10   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9          10   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10         11   17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11         11   28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12         12   14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13         12   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14         12   24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15         12   28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16         13   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17         13   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18         13   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19         13   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20         14   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21         14   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22         14   60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23         14   80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24         15   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25         15   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26         15   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27         16   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28         16   40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29         17   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30         17   40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31         17   50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32         18   42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33         18   56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34         18   76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35         18   84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36         19   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37         19   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38         19   68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39         20   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40         20   48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41         20   52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42         20   56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43         20   64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44         22   66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45         23   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46         24   70</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47         24   92</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48         24   93</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49         24  120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50         25   85</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // tags: mph:identifier, distance:dist </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## check tagged variables</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## robust renaming</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"identifier"</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## example of dropping tags by mistake - default: warning</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## to silence warnings when taggs are dropped</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## to trigger errors when taggs are dropped</span></span></span>
-<span class="r-in"><span>  <span class="co"># lost_tags_action("error")</span></span></span>
-<span class="r-in"><span>  <span class="co"># x[, 2:5]</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## reset default behaviour</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># using tidyverse style</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## example of creating a datatagr, adding a new variable, and adding a tag</span></span></span>
-<span class="r-in"><span>  <span class="co">## for it</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="make_datatagr.html">make_datatagr</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>        id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
-<span class="r-in"><span>        date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span></span>
-<span class="r-in"><span>        age <span class="op">=</span> <span class="st">"age"</span>,</span></span>
-<span class="r-in"><span>        gender <span class="op">=</span> <span class="st">"gender"</span></span></span>
-<span class="r-in"><span>      <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>result <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">date_of_death</span><span class="op">)</span>, <span class="st">"survived"</span>, <span class="st">"died"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="set_tags.html">set_tags</a></span><span class="op">(</span>outcome <span class="op">=</span> <span class="st">"result"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>identifier <span class="op">=</span> <span class="va">case_ID</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="co">## extract tagged variables</span></span></span>
-<span class="r-in"><span>    <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"age"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"date"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">}</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: outbreaks</span>
+<span class="r-in"><span><span class="co">## example of dropping tags by mistake - default: warning</span></span></span>
+<span class="r-in"><span><span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>  id:identifier, gender:gender, age:age</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>  mph:identifier</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // datatagr object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    dist</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14   24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15   28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22   60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23   80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28   40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30   40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31   50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32   42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33   56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34   76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35   84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38   68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40   48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41   52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42   56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43   64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44   66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46   70</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47   92</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48   93</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49  120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50   85</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // tags: distance:dist </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## to silence warnings when taggs are dropped</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Lost tags will now be ignored.</span>
+<span class="r-in"><span><span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // datatagr object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    dist</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14   24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15   28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22   60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23   80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28   40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30   40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31   50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32   42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33   56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34   76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35   84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38   68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40   48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41   52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42   56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43   64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44   66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46   70</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47   92</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48   93</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49  120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50   85</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // tags: distance:dist </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## to trigger errors when taggs are dropped</span></span></span>
+<span class="r-in"><span><span class="co"># lost_tags_action("error")</span></span></span>
+<span class="r-in"><span><span class="co"># x[, 2:5]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## reset default behaviour</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Lost tags will now issue a warning.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># using tidyverse style</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## example of creating a datatagr, adding a new variable, and adding a tag</span></span></span>
+<span class="r-in"><span><span class="co">## for it</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">cars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="make_datatagr.html">make_datatagr</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      mph <span class="op">=</span> <span class="st">"speed"</span>,</span></span>
+<span class="r-in"><span>      distance <span class="op">=</span> <span class="st">"dist"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>result <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="va">speed</span> <span class="op">&gt;</span> <span class="fl">50</span>, <span class="st">"fast"</span>, <span class="st">"slow"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="set_tags.html">set_tags</a></span><span class="op">(</span>ticket <span class="op">=</span> <span class="st">"result"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## extract tagged variables</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mph"</span>, <span class="st">"distance"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"dist"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: dplyr</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘dplyr’</span>
@@ -183,27 +395,27 @@ desired behaviour when tagged variables are lost</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     intersect, setdiff, setequal, union</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: magrittr</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>  id:identifier, date_onset:date_of_prodrome, outcome:result</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>  ticket:result</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>  id:identifier, gender:gender, age:age, outcome:result</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>  mph:speed, ticket:result</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> // datatagr object</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 188 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    date_of_prodrome date_of_rash date_of_death</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1861-11-21       1861-11-25   <span style="color: #BB0000;">NA</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1861-11-23       1861-11-27   <span style="color: #BB0000;">NA</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1861-11-28       1861-12-02   <span style="color: #BB0000;">NA</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1861-11-27       1861-11-28   <span style="color: #BB0000;">NA</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1861-11-22       1861-11-27   <span style="color: #BB0000;">NA</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 1861-11-26       1861-11-29   <span style="color: #BB0000;">NA</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1861-11-24       1861-11-28   <span style="color: #BB0000;">NA</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1861-11-21       1861-11-26   <span style="color: #BB0000;">NA</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1861-11-26       1861-11-30   <span style="color: #BB0000;">NA</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1861-11-21       1861-11-25   <span style="color: #BB0000;">NA</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 178 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 50 × 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     dist</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>    10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>    22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>    16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>    10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>    18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>    26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>    34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 40 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> // tags: date_onset:date_of_prodrome </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // tags: distance:dist </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

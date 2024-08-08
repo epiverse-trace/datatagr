@@ -62,7 +62,7 @@ tag exists (if <code>allow_extra</code> is <code>FALSE</code>).</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">validate_tags</span><span class="op">(</span><span class="va">x</span>, allow_extra <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">validate_tags</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -71,12 +71,6 @@ tag exists (if <code>allow_extra</code> is <code>FALSE</code>).</p>
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>a <code>datatagr</code> object</p></dd>
-
-
-<dt id="arg-allow-extra">allow_extra<a class="anchor" aria-label="anchor" href="#arg-allow-extra"></a></dt>
-<dd><p>a <code>logical</code> indicating if additional data tags not
-currently recognized by <code>datatagr</code> should be allowed; if <code>FALSE</code>, unknown
-tags will trigger an error</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -91,28 +85,80 @@ the right classes</p></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="co">## create a valid datatagr</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">cars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="make_datatagr.html">make_datatagr</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
-<span class="r-in"><span>      date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span></span>
-<span class="r-in"><span>      age <span class="op">=</span> <span class="st">"age"</span>,</span></span>
-<span class="r-in"><span>      gender <span class="op">=</span> <span class="st">"gender"</span></span></span>
+<span class="r-in"><span>      mph <span class="op">=</span> <span class="st">"speed"</span>,</span></span>
+<span class="r-in"><span>      distance <span class="op">=</span> <span class="st">"dist"</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">x</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## validation</span></span></span>
-<span class="r-in"><span>  <span class="fu">validate_tags</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## hack to create an invalid tags (missing defaults)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"tags"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"case_ID"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">## the below issues an error</span></span></span>
+<span class="r-in"><span>  <span class="co">## the below issues an error as datatagr doesn't know any defaults</span></span></span>
 <span class="r-in"><span>  <span class="co">## note: tryCatch is only used to avoid a genuine error in the example</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="fu">validate_tags</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, error <span class="op">=</span> <span class="va">paste</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="fu"><a href="validate_datatagr.html">validate_datatagr</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, error <span class="op">=</span> <span class="va">paste</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## validation requires you to specify the types directly</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="validate_datatagr.html">validate_datatagr</a></span><span class="op">(</span><span class="va">x</span>, ref_types <span class="op">=</span> <span class="fu"><a href="tags_types.html">tags_types</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    mph <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"integer"</span>, <span class="st">"numeric"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    distance <span class="op">=</span> <span class="st">"numeric"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Error: The following default tags are missing:\ndate_onset, date_reporting, date_admission, date_discharge, date_outcome, date_death, gender, age, location, occupation, hcw, outcome\n"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // datatagr object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    speed dist</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      4    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      4   10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      7    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      7   22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      8   16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      9   10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7     10   18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     10   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     10   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    11   17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11    11   28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12    12   14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13    12   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14    12   24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15    12   28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16    13   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17    13   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18    13   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19    13   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20    14   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21    14   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22    14   60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23    14   80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24    15   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25    15   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26    15   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27    16   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28    16   40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29    17   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30    17   40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31    17   50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32    18   42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33    18   56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34    18   76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35    18   84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36    19   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37    19   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38    19   68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39    20   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40    20   48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41    20   52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42    20   56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43    20   64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44    22   66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45    23   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46    24   70</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47    24   92</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48    24   93</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49    24  120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50    25   85</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // tags: mph:speed, distance:dist </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -43,11 +43,11 @@
 #'
 lost_tags_action <- function(action = c("warning", "error", "none"),
                              quiet = FALSE) {
-  datatagr_options <- options("datatagr")$datatagr # nolint
+  datatagr_options <- options("datatagr")$datatagr
 
   action <- match.arg(action)
   datatagr_options$lost_tags_action <- action
-  options(datatagr = datatagr_options) # nolint
+  options(datatagr = datatagr_options)
   if (!quiet) {
     if (action == "warning") msg <- "Lost tags will now issue a warning."
     if (action == "error") msg <- "Lost tags will now issue an error."
@@ -64,5 +64,5 @@ lost_tags_action <- function(action = c("warning", "error", "none"),
 #' @rdname lost_tags_action
 
 get_lost_tags_action <- function() {
-  options("datatagr")$datatagr$lost_tags_action # nolint
+  options("datatagr")$datatagr$lost_tags_action
 }

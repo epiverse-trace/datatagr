@@ -18,7 +18,7 @@ test_that("Environment variable is used for initial `lost_tags_action`", {
       library(datatagr)
       get_lost_tags_action()
     },
-    env = c(LINELIST_LOST_ACTION = "error")
+    env = c(DATATAGR_LOST_ACTION = "error")
   )
   expect_identical(res, "error")
 })

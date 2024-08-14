@@ -24,7 +24,7 @@ test_that("prune_tags() doesn't error on a datatagr with extra tags", {
   # https://github.com/epiverse-trace/linelist/issues/63
 
   dat <- data.frame(a = 1)
-  ll <- make_datatagr(dat, a = "a", allow_extra = TRUE)
+  ll <- make_datatagr(dat, a = "a")
 
   expect_no_condition(ll["a"])
   expect_identical(ll, ll["a"])

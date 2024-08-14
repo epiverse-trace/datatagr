@@ -22,9 +22,9 @@
 #' tags_types(date_onset = "Date") # impose a Date class
 #'
 #' # add new types e.g. to allow genetic sequences using ape's format
-#' tags_types(sequence = "DNAbin", allow_extra = TRUE)
+#' tags_types(sequence = "DNAbin")
 #'
-tags_types <- function(..., allow_extra = TRUE) {
+tags_types <- function(...) {
   defaults <- list()
 
   new_values <- rlang::list2(...)

@@ -3,7 +3,7 @@ test_that("tests for validate_datatagr", {
   msg <- "Must inherit from class 'datatagr', but has class 'NULL'."
   expect_error(validate_datatagr(NULL), msg)
 
-  x <- make_datatagr(cars, id = "speed", toto = "dist", allow_extra = TRUE)
+  x <- make_datatagr(cars, id = "speed", toto = "dist")
   msg <- "Allowed types for tag `id`, `toto` are not documented in `ref_types`."
   expect_error(validate_datatagr(x), msg)
   expect_identical(x, validate_datatagr(x, ref_types = list(id = "numeric", toto = "numeric")))

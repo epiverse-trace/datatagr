@@ -39,8 +39,9 @@ set_tags <- function(x, ..., tag_defaults = list(), allow_extra = TRUE) {
   defaults <- tag_defaults
   new_tags <- rlang::list2(...)
 
-  final_tags <- modify_defaults(defaults, old_tags, strict = FALSE)
-  final_tags <- modify_defaults(old_tags, new_tags, strict = !allow_extra)
+  # keep.null ensures empty tags are kept in the resulting list
+  final_tags <- utils::modifyList(defaults, old_tags, keep.null = TRUE)
+  final_tags <- utils::modifyList(old_tags, new_tags, keep.null = TRUE)
 
   tag_variables(x, final_tags)
 }

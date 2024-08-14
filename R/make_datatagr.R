@@ -64,7 +64,8 @@ make_datatagr <- function(x,
 
   args <- rlang::list2(...)
 
-  tags <- modify_defaults(tag_defaults, args, strict = !allow_extra)
+  # keep.null ensures empty tags are kept in the resulting list
+  tags <- utils::modifyList(tag_defaults, args, keep.null = TRUE)
 
   x <- tag_variables(x, tags)
 

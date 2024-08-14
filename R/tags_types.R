@@ -30,5 +30,6 @@ tags_types <- function(..., allow_extra = TRUE) {
   new_values <- rlang::list2(...)
   checkmate::assert_list(new_values, types = "character")
 
-  modify_defaults(defaults = defaults, x = new_values, strict = !allow_extra)
+  # keep.null ensures empty tags are kept in the resulting list
+  utils::modifyList(defaults, new_values, keep.null = TRUE)
 }

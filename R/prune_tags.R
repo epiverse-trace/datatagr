@@ -33,11 +33,8 @@ prune_tags <- function(
   )
   new_tags <- old_tags[!has_lost_column]
 
-  # We can safely always use strict = FALSE since prune_tags() can only remove
-  # tags, and not add new ones.
-  # This is easier than tracking if x was created with strict TRUE or FALSE.
-  # Discussed in https://github.com/epiverse-trace/linelist/issues/63
-  new_tags <- modify_defaults(tag_defaults, new_tags, strict = FALSE)
+  # keep.null ensures empty tags are kept in the resulting list
+  new_tags <- utils::modifyList(tag_defaults, new_tags, keep.null = TRUE)
   out <- x
   attr(out, "tags") <- new_tags
 

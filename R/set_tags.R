@@ -30,10 +30,9 @@
 #' ## setting tags providing a list (used to restore old tags here)
 #' x <- set_tags(x, !!!old_tags)
 #' tags(x)
-set_tags <- function(x, ..., tag_defaults = list(), allow_extra = TRUE) {
+set_tags <- function(x, ..., tag_defaults = list()) {
   # assert inputs
   checkmate::assertClass(x, "datatagr")
-  checkmate::assertLogical(allow_extra)
 
   old_tags <- attr(x, "tags")
   defaults <- tag_defaults

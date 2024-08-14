@@ -30,14 +30,14 @@ test_that("validate_types() validates types", {
 
 test_that("missing ref_type in validate_types()", {
   # Single missing
-  x <- make_datatagr(cars, mph = "speed", d = "dist", allow_extra = TRUE)
+  x <- make_datatagr(cars, mph = "speed", d = "dist")
   expect_error(
     validate_types(x),
     "Allowed types for tag `mph`, `d` are not documented in `ref_types`."
   )
 
   # Two missing
-  x <- make_datatagr(cars, a = "speed", d = "dist", allow_extra = TRUE)
+  x <- make_datatagr(cars, a = "speed", d = "dist")
   expect_error(
     validate_types(x),
     "Allowed types for tag `a`, `d` are not documented in `ref_types`."

@@ -14,10 +14,6 @@
 #' @param tag_defaults a list of default values for the provided tags. Defaults
 #'   to `list()`, effectively defaulting to NULL values.
 #'
-#' @param allow_extra a `logical` indicating if additional data tags not
-#'   currently recognized by `datatagr` should be allowed; if `FALSE`, unknown
-#'   tags will trigger an error
-#'
 #' @seealso
 #'
 #' * An overview of the [datatagr] package
@@ -55,12 +51,10 @@
 #'
 make_datatagr <- function(x,
                           ...,
-                          tag_defaults = list(),
-                          allow_extra = TRUE) {
+                          tag_defaults = list()) {
   # assert inputs
   checkmate::assert_data_frame(x, min.cols = 1)
   assert_not_data_table(x)
-  checkmate::assert_logical(allow_extra)
 
   args <- rlang::list2(...)
 

@@ -4,7 +4,7 @@
 \alias{set_tags}
 \title{Changes tags of a datatagr object}
 \usage{
-set_tags(x, ..., tag_defaults = list(), allow_extra = TRUE)
+set_tags(x, ..., tag_defaults = list())
 }
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble}}
@@ -15,10 +15,6 @@ set_tags(x, ..., tag_defaults = list(), allow_extra = TRUE)
 
 \item{tag_defaults}{a list of default values for the provided tags. Defaults
 to \code{list()}, effectively defaulting to NULL values.}
-
-\item{allow_extra}{a \code{logical} indicating if additional data tags not
-currently recognized by \code{datatagr} should be allowed; if \code{FALSE}, unknown
-tags will trigger an error}
 }
 \value{
 The function returns a \code{datatagr} object.

@@ -34,9 +34,9 @@ type <- function(x) {
   )
 
   switch(x,
-    "date" = c("integer", "numeric", "Date", "POSIXct", "POSIXlt"),
-    "category" = c("character", "factor"),
-    "numeric" = c("numeric", "integer"),
-    "binary" = c("logical", "integer", "character", "factor")
+    date = c("integer", "numeric", "Date", "POSIXct", "POSIXlt"),
+    category = c("character", "factor"),
+    numeric = c("numeric", "integer"),
+    binary = c("logical", "integer", "character", "factor")
   )
 }

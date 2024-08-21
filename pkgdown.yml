@@ -1,9 +1,9 @@
 pandoc: 3.1.11
 pkgdown: 2.1.0.9000
-pkgdown_sha: 1d40a80e6b3564a6d7da0ce467b0a4570aa5665e
+pkgdown_sha: 020dc44c138193ad0a63a9778bb832ac7afed1f1
 articles:
   design-principles: design-principles.html
-last_built: 2024-08-08T08:33Z
+last_built: 2024-08-21T10:59Z
 urls:
   reference: https://epiverse-trace.github.io/datatagr/reference
   article: https://epiverse-trace.github.io/datatagr/articles

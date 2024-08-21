@@ -18,6 +18,8 @@ authors:
   given-names: Chris
   email: chris@data.org
   orcid: https://orcid.org/0000-0003-1050-6809
+repository-code: https://github.com/epiverse-trace/datatagr
+url: https://epiverse-trace.github.io/datatagr/
 contact:
 - family-names: Hartgerink
   given-names: Chris

@@ -7,6 +7,8 @@ Authors@R: c(
   )
 Description: Provides tools to help tag and validate data according to user-specified rules. The 'datatagr' class adds a custom tagging system to classical 'data.frame' objects to identify key data. Once tagged, these variables can be seamlessly used in downstream analyses, making data pipelines more robust and reliable.
 License: MIT + file LICENSE
+URL: https://epiverse-trace.github.io/datatagr/, https://github.com/epiverse-trace/datatagr
+BugReports: https://github.com/epiverse-trace/datatagr/issues
 Depends:
     R (>= 3.1.0)
 Imports:

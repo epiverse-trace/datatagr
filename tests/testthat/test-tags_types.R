@@ -6,6 +6,6 @@ test_that("tests for tags_types", {
 
   x <- tags_types(date_outcome = "Date")
   expect_identical(x$date_outcome, "Date")
-  x <- tags_types(date_outcome = "Date", seq = "DNAbin", allow_extra = TRUE)
+  x <- tags_types(date_outcome = "Date", seq = "DNAbin")
   expect_identical(x$seq, "DNAbin")
 })

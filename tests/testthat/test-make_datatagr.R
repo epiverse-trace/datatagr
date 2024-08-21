@@ -14,13 +14,6 @@ test_that("tests for make_datatagr", {
     "2 assertions failed"
   )
 
-  msg <- "Use only known tags or set `allow_extra = TRUE`"
-  expect_error(
-    make_datatagr(cars, foo = "speed", allow_extra = FALSE),
-    msg,
-    fixed = TRUE
-  )
-
   # test functionalities
   expect_identical(list(), tags(make_datatagr(cars), TRUE))
 
@@ -30,7 +23,7 @@ test_that("tests for make_datatagr", {
   expect_null(tags(x)$outcome)
   expect_null(tags(x)$date_reporting)
 
-  x <- make_datatagr(cars, foo = "speed", bar = "dist", allow_extra = TRUE)
+  x <- make_datatagr(cars, foo = "speed", bar = "dist")
   expect_identical(
     tags(x, TRUE),
     c(list(), foo = "speed", bar = "dist")

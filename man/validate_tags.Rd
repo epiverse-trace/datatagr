@@ -15,8 +15,7 @@ If checks pass, a \code{datatagr} object; otherwise issues an error.
 \description{
 This function evaluates the validity of the tags of a \code{datatagr} object by
 checking that: i) tags are present ii) tags is a \code{list} of \code{character} iii)
-that all default tags are present iv) tagged variables exist v) that no extra
-tag exists (if \code{allow_extra} is \code{FALSE}).
+that all default tags are present iv) tagged variables exist.
 }
 \examples{
 if (require(dplyr) && require(magrittr)) {

@@ -2,8 +2,7 @@
 #'
 #' This function evaluates the validity of the tags of a `datatagr` object by
 #' checking that: i) tags are present ii) tags is a `list` of `character` iii)
-#' that all default tags are present iv) tagged variables exist v) that no extra
-#' tag exists (if `allow_extra` is `FALSE`).
+#' that all default tags are present iv) tagged variables exist.
 #'
 #' @export
 #'

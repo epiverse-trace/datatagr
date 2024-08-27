@@ -59,5 +59,7 @@ validate_datatagr <- function(x,
   validate_tags(x)
   validate_types(x, ref_types)
 
-  x
+  message("'", checkmate::vname(x), "' is a valid datatagr object")
+  
+  invisible(x)
 }

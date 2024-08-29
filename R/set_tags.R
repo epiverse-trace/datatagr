@@ -42,5 +42,5 @@ set_tags <- function(x, ..., tag_defaults = list()) {
   final_tags <- utils::modifyList(defaults, old_tags, keep.null = TRUE)
   final_tags <- utils::modifyList(old_tags, new_tags, keep.null = TRUE)
 
-  tag_variables(x, final_tags)
+  label_variables(x, final_tags)
 }

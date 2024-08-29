@@ -48,3 +48,8 @@ test_that("make_datatagr() errors on data.table input", {
     "NOT be a data.table"
   )
 })
+
+test_that("make_datatagr() works with single & multi-word labels", {
+  make_datatagr(cars, mph = 'speed')
+  make_datatagr(cars, "Miles per hour" = 'speed')
+})

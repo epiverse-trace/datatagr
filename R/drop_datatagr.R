@@ -19,6 +19,11 @@ drop_datatagr <- function(x, remove_tags = TRUE) {
   class(x) <- setdiff(classes, "datatagr")
   if (remove_tags) {
     attr(x, "tags") <- NULL
+    
+    # Set the label attribute to NULL for all variables in x
+    for (var in names(x)) {
+      attr(x[[var]], "label") <- NULL
+    }
   }
   x
 }

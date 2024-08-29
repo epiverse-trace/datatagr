@@ -61,7 +61,7 @@ make_datatagr <- function(x,
   # keep.null ensures empty tags are kept in the resulting list
   tags <- utils::modifyList(tag_defaults, args, keep.null = TRUE)
 
-  x <- tag_variables(x, tags)
+  x <- label_variables(x, tags)
 
   # shape output and return object
   class(x) <- c("datatagr", class(x))

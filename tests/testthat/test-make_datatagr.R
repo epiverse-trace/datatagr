@@ -6,7 +6,7 @@ test_that("tests for make_datatagr", {
   msg <- "Must have at least 1 cols, but has 0 cols."
   expect_error(make_datatagr(data.frame()), msg)
 
-  msg <- "Must be element of set {'speed','dist'}, but is"
+  msg <- "* Variable 'names(labels)[label == labels]': Must be element of"
   expect_error(make_datatagr(cars, outcome = "bar"), msg, fixed = TRUE)
 
   expect_error(
@@ -15,25 +15,26 @@ test_that("tests for make_datatagr", {
   )
 
   # test functionalities
-  expect_identical(list(), labels(make_datatagr(cars), TRUE))
+  expect_identical(list(speed = NULL, dist = NULL), 
+                   labels(make_datatagr(cars), TRUE))
 
-  x <- make_datatagr(cars, date_onset = "dist", date_outcome = "speed")
-  expect_identical(labels(x)$date_onset, "dist")
-  expect_identical(labels(x)$date_outcome, "speed")
-  expect_null(labels(x)$outcome)
-  expect_null(labels(x)$date_reporting)
+  x <- make_datatagr(cars, dist = "Date onset", speed = "Date outcome")
+  expect_identical(labels(x)$dist, "Date onset")
+  expect_identical(labels(x)$speed, "Date outcome")
+  expect_null(labels(x)$'Date onset')
+  expect_null(labels(x)$'Date outcome')
 
-  x <- make_datatagr(cars, foo = "speed", bar = "dist")
+  x <- make_datatagr(cars, speed = "foo", dist = "bar")
   expect_identical(
     labels(x, TRUE),
-    c(list(), foo = "speed", bar = "dist")
+    c(list(), speed = "foo", dist = "bar")
   )
 })
 
 test_that("make_datatagr() works with dynamic dots", {
   expect_identical(
-    make_datatagr(cars, date_onset = "dist", date_outcome = "speed"),
-    make_datatagr(cars, !!!list(date_onset = "dist", date_outcome = "speed"))
+    make_datatagr(cars, dist = "date_onset", speed = "date_outcome"),
+    make_datatagr(cars, !!!list(dist = "date_onset", speed = "date_outcome"))
   )
 })
 
@@ -50,6 +51,6 @@ test_that("make_datatagr() errors on data.table input", {
 })
 
 test_that("make_datatagr() works with single & multi-word labels", {
-  make_datatagr(cars, mph = 'speed')
-  make_datatagr(cars, "Miles per hour" = 'speed')
+  expect_no_condition(make_datatagr(cars, speed = 'mph'))
+  expect_no_condition(make_datatagr(cars, speed = 'Miles per hour'))
 })

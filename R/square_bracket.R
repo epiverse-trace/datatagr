@@ -38,7 +38,7 @@
 #'       distance = "dist"
 #'     ) %>%
 #'     mutate(result = if_else(speed > 50, "fast", "slow")) %>%
-#'     set_tags(ticket = "result")
+#'     set_labels(ticket = "result")
 #'   x
 #'
 #'   ## dangerous removal of a tagged column setting it to NULL issues a warning

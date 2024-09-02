@@ -20,7 +20,7 @@
 #'
 #' @inheritParams validate_types
 #'
-#' @inheritParams set_tags
+#' @inheritParams set_labels
 #'
 #' @return If checks pass, a `datatagr` object; otherwise issues an error.
 #'

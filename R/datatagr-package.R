@@ -12,7 +12,7 @@
 #'   * [make_datatagr()]: to create `datatagr` objects from a `data.frame` or a
 #'   `tibble`
 #'
-#'   * [set_tags()]: to change or add tagged variables in a `datatagr`
+#'   * [set_labels()]: to change or add tagged variables in a `datatagr`
 #'
 #'   * [labels()]: to get the list of labels of a `datatagr`
 #'
@@ -84,7 +84,7 @@
 #'       distance = "dist"
 #'     ) %>%
 #'     mutate(result = if_else(speed > 50, "fast", "slow")) %>%
-#'     set_tags(ticket = "result")
+#'     set_labels(ticket = "result")
 #'
 #'   head(x)
 #'

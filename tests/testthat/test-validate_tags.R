@@ -28,6 +28,6 @@ test_that("tests for validate_tags", {
   x <- make_datatagr(cars)
   expect_identical(x, validate_tags(x))
 
-  x <- set_tags(x, date_onset = "dist", toto = "speed")
+  x <- set_labels(x, date_onset = "dist", toto = "speed")
   expect_identical(x, validate_tags(x))
 })

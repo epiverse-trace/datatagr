@@ -30,8 +30,8 @@ test_that("Compatibility with dplyr::filter()", {
   # nolint end: expect_named_linter
 
   expect_identical(
-    tags(dplyr::filter(x, dist > mean(dist))),
-    tags(x)
+    labels(dplyr::filter(x, dist > mean(dist))),
+    labels(x)
   )
 })
 
@@ -64,8 +64,8 @@ test_that("Compatibility with dplyr::mutate(.keep)", {
   x %>%
     dplyr::mutate(speed = as.integer(speed)) %>%
     expect_s3_class("datatagr") %>%
-    tags() %>%
-    expect_identical(tags(x))
+    labels() %>%
+    expect_identical(labels(x))
 })
 
 test_that("Compatibility with dplyr::relocate()", {
@@ -90,7 +90,7 @@ test_that("Compatibility with dplyr::relocate()", {
 
 test_that("Compatibility with dplyr::rename()", {
   expect_identical(
-    tags(dplyr::rename(x, toto = dist)),
+    labels(dplyr::rename(x, toto = dist)),
     list(date_onset = "toto", date_outcome = "speed")
   )
 
@@ -107,8 +107,8 @@ test_that("Compatibility with dplyr::rename()", {
 
 test_that("Compatibility with dplyr::rename_with()", {
   expect_identical(
-    tags(dplyr::rename_with(x, toupper)),
-    lapply(tags(x), toupper)
+    labels(dplyr::rename_with(x, toupper)),
+    lapply(labels(x), toupper)
   )
 
   # Identity
@@ -126,7 +126,7 @@ test_that("Compatibility with dplyr::select()", {
   x %>%
     dplyr::select("dist") %>%
     expect_s3_class("datatagr") %>%
-    tags() %>%
+    labels() %>%
     expect_identical(list(date_onset = "dist")) %>%
     expect_snapshot_warning()
 
@@ -134,7 +134,7 @@ test_that("Compatibility with dplyr::select()", {
   x %>%
     dplyr::select(dist, vitesse = speed) %>%
     expect_s3_class("datatagr") %>%
-    tags() %>%
+    labels() %>%
     expect_identical(list(date_onset = "dist", date_outcome = "vitesse"))
 })
 
@@ -144,8 +144,8 @@ test_that("Compatibility with dplyr::bind_rows()", {
   rbound_x <- dplyr::bind_rows(x, x)
 
   expect_identical(
-    tags(x),
-    tags(rbound_x)
+    labels(x),
+    labels(rbound_x)
   )
 
   expect_s3_class(

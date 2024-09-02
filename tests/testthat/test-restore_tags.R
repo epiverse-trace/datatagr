@@ -12,9 +12,9 @@ test_that("tests for restore_tags", {
     sep = "\n"
   )
   expect_error(restore_tags(z, tags(x), "error"), msg)
-  expect_warning(restore_tags(z, tags(x), "warning"), msg)
+  expect_warning(restore_tags(z, labels(x), "warning"), msg)
 
   # Check functionality
-  expect_identical(x, restore_tags(x, tags(x)))
-  expect_identical(x, restore_tags(y, tags(x)))
+  expect_identical(x, restore_tags(x, labels(x)))
+  expect_identical(x, restore_tags(y, labels(x)))
 })

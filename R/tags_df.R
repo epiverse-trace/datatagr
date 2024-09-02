@@ -21,7 +21,7 @@
 #' tags_df(x)
 tags_df <- function(x) {
   checkmate::assertClass(x, "datatagr")
-  tags <- unlist(tags(x))
+  tags <- unlist(labels(x))
   out <- drop_datatagr(x, remove_tags = TRUE)[tags]
   names(out) <- names(tags)
   out

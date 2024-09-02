@@ -24,7 +24,7 @@ prune_tags <- function(
   lost_action <- match.arg(lost_action)
 
   # do stuff
-  old_tags <- tags(x, show_null = TRUE)
+  old_tags <- labels(x, show_null = TRUE)
 
   has_lost_column <- vapply(
     old_tags,

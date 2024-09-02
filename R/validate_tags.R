@@ -35,7 +35,7 @@
 #' }
 validate_tags <- function(x) {
   checkmate::assert_class(x, "datatagr")
-  x_tags <- tags(x, show_null = TRUE)
+  x_tags <- labels(x, show_null = TRUE)
 
   stopifnot(
     "`x` has no tags attribute" = !is.null(x_tags)
@@ -45,7 +45,7 @@ validate_tags <- function(x) {
   checkmate::assert_list(x_tags, types = c("character", "null"))
 
   # check that tagged variables exist
-  x_tags_vec <- unlist(tags(x))
+  x_tags_vec <- unlist(labels(x))
   var_exists <- x_tags_vec %in% names(x)
   if (!all(var_exists)) {
     missing_var <- x_tags_vec[!var_exists]

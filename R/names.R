@@ -24,7 +24,7 @@
 #'
 #' ## see results: tags have been updated
 #' head(x)
-#' tags(x)
+#' labels(x)
 #'
 #' # This also works with using `dplyr::rename()` because it uses names<-()
 #' # under the hood
@@ -32,7 +32,7 @@
 #'   x <- x %>%
 #'     rename(speed = "speed in miles")
 #'   head(x)
-#'   tags(x)
+#'   labels(x)
 #' }
 `names<-.datatagr` <- function(x, value) {
   # Strategy for renaming
@@ -58,7 +58,7 @@
   }
 
   # Step 2
-  out_tags <- tags(x, TRUE)
+  out_tags <- labels(x, TRUE)
   for (i in seq_along(out_tags)) {
     if (!is.null(out_tags[[i]])) {
       idx <- match(out_tags[[i]], old_names)

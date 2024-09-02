@@ -7,7 +7,7 @@
 #'
 #' @param x a `data.frame`
 #'
-#' @param tags a list of tags as returned by [tags()]; if default values are
+#' @param tags a list of tags as returned by [labels()]; if default values are
 #'   missing, they will be added to the new list of tags
 #'
 #' @param lost_action a `character` indicating the behaviour to adopt when

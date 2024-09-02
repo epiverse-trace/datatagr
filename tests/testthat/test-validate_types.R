@@ -7,7 +7,7 @@ test_that("tests for validate_types() basic input checking", {
 
 test_that("validate_types() validates types", {
   # Successful validations
-  x <- make_datatagr(cars, mph = "speed")
+  x <- make_datatagr(cars, speed = "Miles per hour")
   expect_silent(
     expect_identical(
       x,
@@ -16,7 +16,7 @@ test_that("validate_types() validates types", {
   )
 
   # Failed validations
-  x <- make_datatagr(cars, mph = "speed")
+  x <- make_datatagr(cars, speed = "Miles per hour")
   expect_error(
     validate_types(x, ref_types = tags_types(mph = "factor")),
     "mph: Must inherit from class 'factor', but has class 'numeric'"

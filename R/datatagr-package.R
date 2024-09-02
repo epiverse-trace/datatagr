@@ -14,7 +14,7 @@
 #'
 #'   * [set_tags()]: to change or add tagged variables in a `datatagr`
 #'
-#'   * [tags()]: to get the list of tags of a `datatagr`
+#'   * [labels()]: to get the list of labels of a `datatagr`
 #'
 #'   * [tags_df()]: to get a `data.frame` of all tagged variables
 #'
@@ -51,7 +51,7 @@
 #' x
 #'
 #' ## check tagged variables
-#' tags(x)
+#' labels(x)
 #'
 #' ## robust renaming
 #' names(x)[1] <- "identifier"
@@ -93,7 +93,7 @@
 #'     select(has_tag(c("mph", "distance")))
 #'
 #'   x %>%
-#'     tags()
+#'     labels()
 #'
 #'   x %>%
 #'     select(starts_with("dist"))

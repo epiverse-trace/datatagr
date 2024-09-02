@@ -5,7 +5,7 @@
 #'
 #' @param x a `data.frame` or a `tibble`, with at least one column
 #'
-#' @param ... A named list with variable names in `x` as list names and the labels as list values. Values set to `NULL` remove the label.
+#' @param labels A named list with variable names in `x` as list names and the labels as list values. Values set to `NULL` remove the label.
 #'
 #' @noRd
 #'
@@ -15,9 +15,7 @@
 #' @details If used several times, the previous label is removed silently.
 #'  Only accepts known variables from the provided `data.frame`.
 #' 
-label_variables <- function(x, ...) {
-  labels <- rlang::list2(...)
-  
+label_variables <- function(x, labels) {
   # Create an assertion collection to fill with assertions and potential errors
   label_errors <- checkmate::makeAssertCollection()
   

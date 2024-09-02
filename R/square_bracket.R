@@ -91,7 +91,7 @@
   }
 
   # Case 2
-  old_tags <- tags(x, show_null = TRUE)
+  old_tags <- labels(x, show_null = TRUE)
   out <- restore_tags(out, old_tags, lost_action)
 
   out
@@ -104,7 +104,7 @@
 `[<-.datatagr` <- function(x, i, j, value) {
   lost_action <- get_lost_tags_action()
   out <- NextMethod()
-  old_tags <- tags(x, show_null = TRUE)
+  old_tags <- labels(x, show_null = TRUE)
   out <- restore_tags(out, old_tags, lost_action)
   out
 }
@@ -116,7 +116,7 @@
 `[[<-.datatagr` <- function(x, i, j, value) {
   lost_action <- get_lost_tags_action()
   out <- NextMethod()
-  old_tags <- tags(x, show_null = TRUE)
+  old_tags <- labels(x, show_null = TRUE)
   out <- restore_tags(out, old_tags, lost_action)
   out
 }
@@ -127,7 +127,7 @@
 `$<-.datatagr` <- function(x, name, value) {
   lost_action <- get_lost_tags_action()
   out <- NextMethod()
-  old_tags <- tags(x, show_null = TRUE)
+  old_tags <- labels(x, show_null = TRUE)
   out <- restore_tags(out, old_tags, lost_action)
   out
 }

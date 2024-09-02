@@ -15,21 +15,21 @@
 #' @examples
 #'
 #' ## create a datatagr
-#' x <- make_datatagr(cars, mph = "speed")
-#' tags(x)
+#' x <- make_datatagr(cars, speed = "Miles per hour")
+#' labels(x)
 #'
 #' ## add new tags and fix an existing one
 #' x <- set_tags(x, distance = "dist")
-#' tags(x)
+#' labels(x)
 #'
 #' ## remove tags by setting them to NULL
 #' old_tags <- tags(x)
 #' x <- set_tags(x, mph = NULL, distance = NULL)
-#' tags(x)
+#' labels(x)
 #'
 #' ## setting tags providing a list (used to restore old tags here)
 #' x <- set_tags(x, !!!old_tags)
-#' tags(x)
+#' labels(x)
 set_tags <- function(x, ..., tag_defaults = list()) {
   # assert inputs
   checkmate::assertClass(x, "datatagr")

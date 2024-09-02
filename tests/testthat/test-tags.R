@@ -1,9 +1,9 @@
 test_that("tests for tags", {
   # Check error messages
-  x <- make_datatagr(cars, mph = "speed")
+  x <- make_datatagr(cars, speed = "Miles per hour")
 
   # Check functionality
-  expect_identical(tags(x), list(mph = "speed"))
-  expect_identical(tags(x, TRUE), attr(x, "tags"))
-  expect_identical(tags(make_datatagr(cars), TRUE), list())
+  expect_identical(labels(x), list(mph = "speed"))
+  expect_identical(labels(x, TRUE), attr(x, "tags"))
+  expect_identical(labels(make_datatagr(cars), TRUE), list())
 })

@@ -16,7 +16,7 @@
 #' * [tags_types()]: for the associated accepted types/classes
 #' * [labels()]: for a list of tagged variables in a `datatagr`
 #' * [set_labels()]: for modifying tags
-#' * [tags_df()]: for selecting variables by tags
+#' * [labels_df()]: for selecting variables by tags
 #'
 #' @export
 #'

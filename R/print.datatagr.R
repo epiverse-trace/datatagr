@@ -31,7 +31,7 @@
 #' }
 print.datatagr <- function(x, ...) {
   cat("\n// datatagr object\n")
-  print(drop_datatagr(x, remove_tags = TRUE))
+  print(drop_datatagr(x, remove_labels = TRUE))
   tags_txt <- paste(names(labels(x)), unlist(labels(x)), sep = ":", collapse = ", ")
   if (tags_txt == "") {
     tags_txt <- "[no tagged variable]"

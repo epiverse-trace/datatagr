@@ -1,5 +1,5 @@
 test_that("tests for print.datatagr", {
-  x <- make_datatagr(cars, date_onset = "dist", date_outcome = "speed")
+  x <- make_datatagr(cars, dist = "Distance in miles", speed = "Miles per hour")
   expect_snapshot_output(print(x))
 
   y <- make_datatagr(cars)

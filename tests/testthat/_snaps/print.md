@@ -54,7 +54,7 @@
     49    24  120
     50    25   85
     
-    // tags: date_onset:dist, date_outcome:speed 
+    labels: speed-Miles per hour, dist-Distance in miles 
 
 ---
 
@@ -112,5 +112,5 @@
     49    24  120
     50    25   85
     
-    // tags: [no tagged variable] 
+    labels: [no labelled variables] 
 

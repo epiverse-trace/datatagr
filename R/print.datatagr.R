@@ -13,8 +13,8 @@
 #' @examples
 #' ## create datatagr
 #' x <- make_datatagr(cars,
-#'   mph = "speed",
-#'   distance = "dist"
+#'   speed = "Miles per hour",
+#'   dist = "Distance in miles"
 #' )
 #'
 #' ## print object - using only the first few entries
@@ -25,17 +25,17 @@
 #'   cars %>%
 #'     tibble() %>%
 #'     make_datatagr(
-#'       mph = "speed",
-#'       distance = "dist"
+#'       speed = "Miles per hour",
+#'       dist = "Distance in miles"
 #'     )
 #' }
 print.datatagr <- function(x, ...) {
   cat("\n// datatagr object\n")
   print(drop_datatagr(x, remove_labels = TRUE))
-  tags_txt <- paste(names(labels(x)), unlist(labels(x)), sep = ":", collapse = ", ")
-  if (tags_txt == "") {
-    tags_txt <- "[no tagged variable]"
+  labels_txt <- paste(names(labels(x)), unlist(labels(x)), sep = "-", collapse = ", ")
+  if (labels_txt == "") {
+    labels_txt <- "[no labelled variables]"
   }
-  cat("\n// tags:", tags_txt, "\n")
+  cat("\nlabels:", labels_txt, "\n")
   invisible(x)
 }

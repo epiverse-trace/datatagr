@@ -1,33 +1,23 @@
-test_that("label_variables() works with specification by position", {
+test_that("label_variables() fails for non-existing variables", {
+  msg <- "* Variable 'namedLabel': Must be element of set {'speed','dist'}, but"
   expect_error(
     label_variables(cars, list(distance = "toto")),
-    "Must be element of set \\{'speed','dist'\\}, but is"
+    msg, fixed = TRUE
   )
-
-  expect_error(
-    label_variables(cars, list(distance = NA)),
-    "Must be element of set \\{'speed','dist'\\}, but is."
-  )
-
-  # Check functionality
-  x <- label_variables(cars, list(distance = "dist"))
-  expect_identical(attr(x, "tags"), list(distance = "dist"))
-
-  x <- label_variables(x, list(vitesse = "speed"))
-  expect_identical(attr(x, "tags"), list(distance = "dist", vitesse = "speed"))
-
-  x <- label_variables(x, list(vitesse = NULL), replace = TRUE) # reset to NULL
-  expect_identical(attr(x, "tags"), list(distance = "dist", vitesse = NULL))
 })
 
-test_that("label_variables() works with specification by position", {
-  expect_error(
-    label_variables(cars, list(distance = 3)),
-    "lower than the number of columns"
-  )
+test_that("label_variables() succeeds in various scenarios", {
+  x <- label_variables(cars, list(dist = "Distance in miles"))
+  expect_identical(attr(x$dist, "label"), "Distance in miles")
+  # Expect NULL because this attribute has not been set at all
+  expect_identical(attr(x$speed, "label"), NULL)
 
-  expect_identical(
-    label_variables(cars, list(distance = 2)),
-    label_variables(cars, list(distance = "dist"))
-  )
+  x <- label_variables(x, list(speed = "vitesse"))
+  expect_identical(attr(x$speed, "label"), "vitesse")
+  expect_identical(attr(x$dist, "label"), "Distance in miles")
+  
+  # reset to NULL
+  x <- label_variables(x, list(speed = NULL, dist = NULL))
+  expect_identical(attr(x$speed, "label"), '')
+  expect_identical(attr(x$dist, "label"), '')
 })

@@ -6,7 +6,7 @@ test_that("tests for make_datatagr", {
   msg <- "Must have at least 1 cols, but has 0 cols."
   expect_error(make_datatagr(data.frame()), msg)
 
-  msg <- "* Variable 'names(labels)[label == labels]': Must be element of"
+  msg <- "* Variable 'namedLabel': Must be element of set {'speed','dist'}, but"
   expect_error(make_datatagr(cars, outcome = "bar"), msg, fixed = TRUE)
 
   expect_error(

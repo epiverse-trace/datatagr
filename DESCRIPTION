@@ -1,11 +1,11 @@
 Package: datatagr
-Title: Generic Data Tagging and Validating
+Title: Generic Data Labelling and Validating
 Version: 0.0.1
 Authors@R: c(
     person("Chris", "Hartgerink", , "chris@data.org", role = "cre",
            comment = c(ORCID = "0000-0003-1050-6809"))
   )
-Description: Provides tools to help tag and validate data according to user-specified rules. The 'datatagr' class adds a custom tagging system to classical 'data.frame' objects to identify key data. Once tagged, these variables can be seamlessly used in downstream analyses, making data pipelines more robust and reliable.
+Description: Provides tools to help label and validate data according to user-specified rules. The 'datatagr' class adds variable level attributes to 'data.frame'columns. Once labelled, these variables can be seamlessly used in downstream analyses, making data pipelines clearer, more robust, and more reliable.
 License: MIT + file LICENSE
 URL: https://epiverse-trace.github.io/datatagr/, https://github.com/epiverse-trace/datatagr
 BugReports: https://github.com/epiverse-trace/datatagr/issues

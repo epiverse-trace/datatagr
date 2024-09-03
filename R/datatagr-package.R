@@ -88,9 +88,9 @@
 #'
 #'   head(x)
 #'
-#'   ## extract tagged variables
+#'   ## extract labelled variables
 #'   x %>%
-#'     select(has_tag(c("mph", "distance")))
+#'     select(has_label(c("mph", "distance")))
 #'
 #'   x %>%
 #'     labels()

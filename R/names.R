@@ -43,7 +43,7 @@
   # 1. Storing old names and new names to have define replacement rules
   # 2. Replace all tagged variables using the replacement rules
 
-  out <- drop_datatagr(x, remove_tags = TRUE)
+  out <- drop_datatagr(x, remove_labels = TRUE)
   names(out) <- value
 
   # Step 1

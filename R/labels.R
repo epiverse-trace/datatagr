@@ -37,6 +37,6 @@ labels <- function(x, show_null = FALSE) {
   if (!show_null) {
     out <- Filter(Negate(is.null), out)
   }
-  
+
   out
 }

@@ -1,7 +1,7 @@
 #' Rename columns of a datatagr
 #'
-#' This function can be used to rename the columns a `datatagr`, adjusting tags
-#' as needed.
+#' This function can be used to rename the columns a `datatagr` (that is, adjust
+#' variable names).
 #'
 #' @param x a `datatagr` object
 #'
@@ -14,40 +14,38 @@
 #' @examples
 #' ## create datatagr
 #' x <- make_datatagr(cars,
-#'   mph = "speed",
-#'   distance = "dist"
+#'   speed = "Miles per hour",
+#'   dist = "Distance in miles"
 #' )
 #' head(x)
 #'
 #' ## change names
-#' names(x)[1] <- "speed in miles"
+#' names(x)[1] <- "mph"
 #'
-#' ## see results: tags have been updated
+#' ## see results: columns have been updated
 #' head(x)
-#' labels(x)
 #'
 #' # This also works with using `dplyr::rename()` because it uses names<-()
 #' # under the hood
 #' if (require(dplyr) && require(magrittr)) {
 #'   x <- x %>%
-#'     rename(speed = "speed in miles")
+#'     rename(speed = "mph")
 #'   head(x)
 #'   labels(x)
 #' }
 `names<-.datatagr` <- function(x, value) {
   # Strategy for renaming
 
-  # Since renaming cannot drop columns, we can update tags to match new variable
+  # Since renaming cannot drop columns, we can update labels to match new variable
   # names. We do this by:
 
   # 1. Storing old names and new names to have define replacement rules
-  # 2. Replace all tagged variables using the replacement rules
+  # 2. Replace all labelled variables using the replacement rules
 
   out <- drop_datatagr(x, remove_labels = TRUE)
   names(out) <- value
 
   # Step 1
-  old_names <- names(x)
   new_names <- names(out)
   if (anyNA(new_names)) {
     stop(
@@ -58,15 +56,10 @@
   }
 
   # Step 2
-  out_tags <- labels(x, TRUE)
-  for (i in seq_along(out_tags)) {
-    if (!is.null(out_tags[[i]])) {
-      idx <- match(out_tags[[i]], old_names)
-      out_tags[[i]] <- new_names[idx]
-    }
-  }
-
-  attr(out, "tags") <- out_tags
+  out_labels <- labels(x, show_null = TRUE)
+  names(out_labels) <- new_names
+  out <- label_variables(out, out_labels)
   class(out) <- class(x)
+  
   out
 }

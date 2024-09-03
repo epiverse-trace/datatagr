@@ -14,9 +14,9 @@
 #'
 #' * An overview of the [datatagr] package
 #' * [tags_types()]: for the associated accepted types/classes
-#' * [labels()]: for a list of tagged variables in a `datatagr`
-#' * [set_labels()]: for modifying tags
-#' * [labels_df()]: for selecting variables by tags
+#' * [labels()]: for a list of labelled variables in a `datatagr`
+#' * [set_labels()]: for modifying labels
+#' * [labels_df()]: for selecting variables by labels
 #'
 #' @export
 #'

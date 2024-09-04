@@ -1,18 +1,18 @@
 test_that("tests for [ operator", {
-  x <- make_datatagr(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
   on.exit(lost_labels_action())
 
   # errors
   lost_labels_action("warning", quiet = TRUE)
-  msg <- "The following tags have lost their variable:\n age:dist"
+  msg <- "The following labelled variables are lost:\n dist - Distance in miles"
   expect_warning(x[, 1], msg)
 
   lost_labels_action("error", quiet = TRUE)
-  msg <- "The following tags have lost their variable:\n age:dist"
+  msg <- "The following labelled variables are lost:\n dist - Distance in miles"
   expect_error(x[, 1], msg)
 
   lost_labels_action("warning", quiet = TRUE)
-  msg <- "The following tags have lost their variable:\n id:speed, age:dist"
+  msg <- "The following labelled variables are lost:\n speed - Miles per hour, dist - Distance in miles"
   expect_warning(x[, NULL], msg)
 
   # functionalities
@@ -22,7 +22,7 @@ test_that("tests for [ operator", {
   expect_identical(x[, 1, drop = TRUE], cars[, 1])
 
   lost_labels_action("none", quiet = TRUE)
-  expect_identical(x[, 1], make_datatagr(cars[, 1, drop = FALSE], id = "speed"))
+  expect_identical(x[, 1], make_datatagr(cars[, 1, drop = FALSE], speed = "Miles per hour"))
 
   # [ behaves exactly as in the simple data.frame case, including when subset
   # only cols. https://github.com/epiverse-trace/linelist/issues/51
@@ -57,13 +57,13 @@ test_that("tests for [<- operator", {
 
   # errors
   lost_labels_action("warning", quiet = TRUE)
-  x <- make_datatagr(cars, id = "speed", age = "dist")
-  msg <- "The following tags have lost their variable:\n id:speed"
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
+  msg <- "The following labelled variables are lost:\n speed - Miles per hour"
   expect_warning(x[, 1] <- NULL, msg)
 
   lost_labels_action("error", quiet = TRUE)
-  x <- make_datatagr(cars, id = "speed", age = "dist")
-  msg <- "The following tags have lost their variable:\n id:speed"
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
+  msg <- "The following labelled variables are lost:\n speed - Miles per hour"
   expect_error(x[, 1] <- NULL, msg)
 
   # functionalities
@@ -71,7 +71,7 @@ test_that("tests for [<- operator", {
   expect_identical(x$speed[1:3], rep(1, 3))
 
   lost_labels_action("none", quiet = TRUE)
-  x <- make_datatagr(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
   x[, 1:2] <- NULL
   expect_identical(ncol(x), 0L)
 })
@@ -81,49 +81,61 @@ test_that("tests for [[<- operator", {
 
   # errors
   lost_labels_action("warning", quiet = TRUE)
-  x <- make_datatagr(cars, id = "speed", age = "dist")
-  msg <- "The following tags have lost their variable:\n id:speed"
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
+  msg <- "The following labelled variables are lost:\n speed - Miles per hour"
   expect_warning(x[[1]] <- NULL, msg)
 
   lost_labels_action("error", quiet = TRUE)
-  x <- make_datatagr(cars, id = "speed", age = "dist")
-  msg <- "The following tags have lost their variable:\n id:speed"
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
+  msg <- "The following labelled variables are lost:\n speed - Miles per hour"
   expect_error(x[[1]] <- NULL, msg)
 
   # functionalities
   x[[1]] <- 1L
-  expect_identical(x$speed, rep(1L, nrow(x)))
+  y <- rep(1L, nrow(x))
+  attr(y, "label") <- "Miles per hour"
+  expect_identical(x$speed, y)
 
   lost_labels_action("none", quiet = TRUE)
-  x <- make_datatagr(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
   x[[2]] <- NULL
   x[[1]] <- NULL
   expect_identical(ncol(x), 0L)
 })
 
-test_that("$<- operator detects tag loss", {
+test_that("$<- operator detects label loss", {
   on.exit(lost_labels_action())
 
   # errors
   lost_labels_action("warning", quiet = TRUE)
-  x <- make_datatagr(cars, id = "speed", age = "dist")
-  msg <- "The following tags have lost their variable:\n id:speed"
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
+  msg <- "The following labelled variables are lost:\n speed - Miles per hour"
   expect_warning(x$speed <- NULL, msg)
 
   lost_labels_action("error", quiet = TRUE)
-  x <- make_datatagr(cars, id = "speed", age = "dist")
-  msg <- "The following tags have lost their variable:\n id:speed"
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
+  msg <- "The following labelled variables are lost:\n speed - Miles per hour"
   expect_error(x$speed <- NULL, msg)
 
   lost_labels_action("none", quiet = TRUE)
-  x <- make_datatagr(cars, id = "speed", age = "dist")
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
   x$speed <- NULL
   x$dist <- NULL
   expect_identical(ncol(x), 0L)
 })
 
-test_that("$<- allows innocuous tag modification", {
-  x <- make_datatagr(cars, id = "speed", age = "dist")
+test_that("$<- allows innocuous label modification", {
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
   expect_no_condition(x$speed <- 1L)
-  expect_identical(x$speed, rep(1L, nrow(x)))
+  y <- rep(1L, nrow(x))
+  attr(y, "label") <- "Miles per hour"
+  expect_identical(x$speed, y)
+})
+
+test_that("[<- allows innocuous label modification", {
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
+  expect_no_condition(x[1] <- 1L)
+  y <- rep(1L, nrow(x))
+  attr(y, "label") <- "Miles per hour"
+  expect_identical(x$speed, y)
 })

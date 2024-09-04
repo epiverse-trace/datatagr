@@ -1,7 +1,7 @@
 #' Subsetting of datatagr objects
 #'
 #' The `[]` and `[[]]` operators for `datatagr` objects behaves like for regular
-#' `data.frame` or `tibble`, but check that tagged variables are not lost, and
+#' `data.frame` or `tibble`, but check that labelled variables are not lost, and
 #' takes the appropriate action if this is the case (warning, error, or ignore,
 #' depending on the general option set via [lost_labels_action()]) .
 #'
@@ -19,7 +19,7 @@
 #' @return If no drop is happening, a `datatagr`. Otherwise an atomic vector.
 #'
 #' @seealso
-#' * [lost_labels_action()] to set the behaviour to adopt when tags are
+#' * [lost_labels_action()] to set the behaviour to adopt when labels are
 #'   lost through subsetting; default is to issue a warning
 #' * [get_lost_labels_action()] to check the current the behaviour
 #'
@@ -41,7 +41,7 @@
 #'     set_labels(ticket = "result")
 #'   x
 #'
-#'   ## dangerous removal of a tagged column setting it to NULL issues a warning
+#'   ## dangerous removal of a labelled column setting it to NULL issues a warning
 #'   x[, 1] <- NULL
 #'   x
 #'
@@ -60,7 +60,7 @@
   # 1. that the subsetted object is still a `data.frame` or a `tibble`; if not,
   # we automatically drop the `datatagr` class and tags
   # 2. if the output is going to be a `datatagr` we need to restore previous
-  # tags with the appropriate behaviour in case of missing tagged variables
+  # labels with the appropriate behaviour in case of missing labelled variables
   #
   # Note that the [ operator's implementation is messy and does not seem to pass
   # the drop argument well when using NextMethod(); also it does not allow extra
@@ -91,8 +91,8 @@
   }
 
   # Case 2
-  old_tags <- labels(x, show_null = TRUE)
-  out <- restore_tags(out, old_tags, lost_action)
+  old_labels <- labels(x, show_null = TRUE)
+  out <- restore_labels(out, old_labels, lost_action)
 
   out
 }
@@ -103,10 +103,15 @@
 
 `[<-.datatagr` <- function(x, i, j, value) {
   lost_action <- get_lost_labels_action()
-  out <- NextMethod()
-  old_tags <- labels(x, show_null = TRUE)
-  out <- restore_tags(out, old_tags, lost_action)
-  out
+  old_labels <- labels(x, show_null = TRUE)
+  
+  class(x) <- setdiff(class(x), "datatagr")
+  x <- NextMethod() 
+  
+  # Call restore_labels to restore the labels
+  x <- restore_labels(x, old_labels, lost_action)
+  
+  x
 }
 
 #' @export
@@ -115,19 +120,30 @@
 
 `[[<-.datatagr` <- function(x, i, j, value) {
   lost_action <- get_lost_labels_action()
-  out <- NextMethod()
-  old_tags <- labels(x, show_null = TRUE)
-  out <- restore_tags(out, old_tags, lost_action)
-  out
+  old_labels <- labels(x, show_null = TRUE)
+  
+  class(x) <- setdiff(class(x), "datatagr")
+  x <- NextMethod() 
+  
+  # Call restore_labels to restore the labels
+  x <- restore_labels(x, old_labels, lost_action)
+  
+  x
 }
+
 
 #' @export
 #'
 #' @rdname sub_datatagr
 `$<-.datatagr` <- function(x, name, value) {
   lost_action <- get_lost_labels_action()
-  out <- NextMethod()
-  old_tags <- labels(x, show_null = TRUE)
-  out <- restore_tags(out, old_tags, lost_action)
-  out
+  old_labels <- labels(x, show_null = TRUE)
+  
+  class(x) <- setdiff(class(x), "datatagr")
+  x <- NextMethod() 
+  
+  # Call restore_labels to restore the labels
+  x <- restore_labels(x, old_labels, lost_action)
+  
+  x
 }

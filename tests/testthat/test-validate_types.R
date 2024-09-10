@@ -11,35 +11,27 @@ test_that("validate_types() validates types", {
   expect_silent(
     expect_identical(
       x,
-      validate_types(x, ref_types = tags_types(mph = "numeric"))
+      validate_types(x, speed = "numeric")
     )
   )
-
+  
   # Failed validations
   x <- make_datatagr(cars, speed = "Miles per hour")
   expect_error(
-    validate_types(x, ref_types = tags_types(mph = "factor")),
-    "mph: Must inherit from class 'factor', but has class 'numeric'"
+    validate_types(x, speed = "factor"),
+    "speed: Must inherit from class 'factor', but has class 'numeric'"
   )
-
-  x <- make_datatagr(cars, mph = "speed", distance = "dist")
+  
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
   expect_snapshot_error(
-    validate_types(x, ref_types = tags_types(mph = "factor", distance = "character"))
+    validate_types(x, speed = "factor", dist = "character")
   )
 })
 
-test_that("missing ref_type in validate_types()", {
-  # Single missing
-  x <- make_datatagr(cars, mph = "speed", d = "dist")
+test_that("ensure validate_types throws error if no types provided", {
+  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
   expect_error(
     validate_types(x),
-    "Allowed types for tag `mph`, `d` are not documented in `ref_types`."
-  )
-
-  # Two missing
-  x <- make_datatagr(cars, a = "speed", d = "dist")
-  expect_error(
-    validate_types(x),
-    "Allowed types for tag `a`, `d` are not documented in `ref_types`."
+    "Assertion on 'types' failed: Must have length >= 1, but has length 0."
   )
 })

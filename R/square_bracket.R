@@ -141,12 +141,15 @@
 `$<-.datatagr` <- function(x, name, value) {
   lost_action <- get_lost_labels_action()
   old_labels <- labels(x, show_null = TRUE)
+  new_labels <- old_labels
+  
+  new_labels[[name]] <- attr(value, "label")
   
   class(x) <- setdiff(class(x), "datatagr")
   x <- NextMethod() 
   
   # Call restore_labels to restore the labels
-  x <- restore_labels(x, old_labels, lost_action)
+  x <- restore_labels(x, new_labels, lost_action)
   
   x
 }

@@ -35,6 +35,7 @@ label_variables <- function(x, labels) {
   # Vectorized approach does not work, so we use a for.. loop instead
   for (name in names(labels)) {
     label_value <- unlist(labels[names(labels) == name])
+    
     attr(x[[name]], "label") <- ifelse(is.null(label_value), 
                                        "", 
                                        as.character(label_value))

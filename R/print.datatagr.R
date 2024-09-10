@@ -32,10 +32,18 @@
 print.datatagr <- function(x, ...) {
   cat("\n// datatagr object\n")
   print(drop_datatagr(x, remove_labels = TRUE))
-  labels_txt <- paste(names(labels(x)), unlist(labels(x)), sep = "-", collapse = ", ")
+
+  # Extract names and values from labels(x)
+  label_values <- unlist(labels(x))
+  label_names <- names(label_values)
+
+  # Construct the labels_txt string from the filtered pairs
+  labels_txt <- paste(label_names, label_values, sep = "-", collapse = ", ")
+
   if (labels_txt == "") {
     labels_txt <- "[no labelled variables]"
   }
   cat("\nlabels:", labels_txt, "\n")
+  
   invisible(x)
 }

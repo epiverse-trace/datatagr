@@ -1,12 +1,10 @@
 test_that("tests for set_labels()", {
   x <- make_datatagr(cars, dist = "Distance")
 
-  # Check error messages
-  msg <- "Must inherit from class 'datatagr', but has class 'data.frame'."
-  expect_error(set_labels(cars), msg)
-
-  msg <- "* Variable 'names(labels)[label == labels]': Must be element of set"
-  expect_error(set_labels(x, toto = "speed"), msg, fixed = TRUE)
+  # Check whether error messages are the same as before
+  # Uses snapshot to prevent formatting issues in validating the error message
+  expect_snapshot(set_labels(cars), error = TRUE)
+  expect_snapshot(set_labels(x, toto = "speed"), error = TRUE)
 
   # Check functionality
   expect_identical(x, set_labels(x))

@@ -12,31 +12,32 @@
 #'
 #' @examples
 #' x <- make_datatagr(cars,
-#'   mph = "speed",
-#'   distance = "dist"
+#'   speed = "Miles per hour",
+#'   dist = "Distance in miles"
 #' )
 #'
 #' validate_types(
 #'   x,
-#'   tags_types(
-#'     mph = type("numeric"),
-#'     distance = type("numeric")
+#'   types(
+#'     speed = type("numeric"),
+#'     dist = "integer"
 #'   )
 #' )
 #'
 type <- function(x) {
   # ensure case insensitivity
   x <- tolower(x)
-
+  
   checkmate::assert_string(x)
   checkmate::assert_choice(x,
-    choices = c("date", "category", "numeric", "binary")
+                           choices = c("date", "category", "numeric", "binary")
   )
-
+  
   switch(x,
-    date = c("integer", "numeric", "Date", "POSIXct", "POSIXlt"),
-    category = c("character", "factor"),
-    numeric = c("numeric", "integer"),
-    binary = c("logical", "integer", "character", "factor")
+         date = c("integer", "numeric", "Date", "POSIXct", "POSIXlt"),
+         category = c("character", "factor"),
+         numeric = c("numeric", "integer"),
+         binary = c("logical", "integer", "character", "factor")
   )
 }
+

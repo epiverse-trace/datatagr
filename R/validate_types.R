@@ -1,26 +1,25 @@
-#' Check tagged variables are the right class
+#' Type check variables
 #'
-#' This function checks the class of each tagged variable in a `datatagr`
-#' against pre-defined accepted classes in [tags_types()].
+#' This function checks the type of variables in a `datatagr` against 
+#' accepted classes. Only checks the type of provided variables and ignores 
+#' those not provided.
 #'
 #' @export
 #'
 #' @param x a `datatagr` object
 #'
-#' @param ref_types a `list` providing allowed types for all tags, as returned
-#'   by [tags_types()]
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A named list with variable names in `x` as list names and the related types as list values. 
 #'
 #' @return A named `list`.
 #'
 #' @seealso
-#' * [tags_types()] to change allowed types
-#' * [validate_tags()] to perform a series of checks on the tags
-#' * [validate_datatagr()] to combine `validate_tags` and `validate_types`
+#' * [validate_labels()] to perform a series of checks on variables
+#' * [validate_datatagr()] to combine `validate_labels` and `validate_types`
 #'
 #' @examples
 #' x <- make_datatagr(cars,
-#'   mph = "speed",
-#'   distance = "dist"
+#'   speed = "Miles per hour",
+#'   dist = "Distance in miles"
 #' )
 #' x
 #'
@@ -29,31 +28,25 @@
 #' tryCatch(validate_types(x), error = paste)
 #'
 #' ## to allow other types, e.g. gender to be integer, character or factor
-#' validate_types(x, tags_types(mph = "numeric", distance = c(
+#' validate_types(x, speed = "numeric", dist = c(
 #'   "integer",
 #'   "character", "numeric"
-#' )))
+#' ))
 #'
-validate_types <- function(x, ref_types = tags_types()) {
+validate_types <- function(x, ...) {
   checkmate::assert_class(x, "datatagr")
+  types <- rlang::list2(...)
+  checkmate::assert_list(types, min.len = 1)
+  checkmate::assert_list(types, types = "character")
 
-  df_to_check <- labels_df(x)
-
-  if (!all(names(df_to_check) %in% names(ref_types))) {
-    stop(
-      "Allowed types for tag ",
-      toString(paste0("`", setdiff(names(df_to_check), names(ref_types)), "`")),
-      " are not documented in `ref_types`.",
-      call. = FALSE
-    )
-  }
+  vars_to_check <- intersect(names(x), names(types))
 
   type_checks <- lapply(
-    names(df_to_check),
-    function(tag) {
-      allowed_types <- ref_types[[tag]]
+    vars_to_check,
+    function(var) {
+      allowed_types <- types[[var]]
       checkmate::check_multi_class(
-        df_to_check[[tag]],
+        x[[var]],
         allowed_types,
         null.ok = TRUE
       )
@@ -66,7 +59,7 @@ validate_types <- function(x, ref_types = tags_types()) {
       "Some tags have the wrong class:\n",
       sprintf(
         "  - %s: %s\n",
-        names(df_to_check)[!has_correct_types],
+        vars_to_check[!has_correct_types],
         type_checks[!has_correct_types]
       ),
       call. = FALSE

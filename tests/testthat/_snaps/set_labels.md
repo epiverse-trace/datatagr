@@ -11,7 +11,7 @@
     Code
       set_labels(x, toto = "speed")
     Condition
-      Error in `test_file()`:
+      Error in `base::tryCatch()`:
       ! 1 assertions failed:
        * Variable 'namedLabel': Must be element of set {'speed','dist'}, but
        * is 'toto'.

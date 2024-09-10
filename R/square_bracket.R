@@ -66,12 +66,12 @@
   # the drop argument well when using NextMethod(); also it does not allow extra
   # args, in case we wanted to use them; so declassing the object instead using
   # the drop_datatagr() function
-
+  
   lost_action <- get_lost_labels_action()
-
+  
   # Handle the corner case where only 1 arg is passed (x[i]) to subset by column
   n_args <- nargs() - !missing(drop)
-
+  
   if (n_args <= 2L) {
     # Avoid "'drop' argument will be ignored" warning in [.data.frame() from our
     # default value. When we subset this way, drop is always considered to be
@@ -84,16 +84,16 @@
   } else {
     out <- drop_datatagr(x)[i, j, drop = drop]
   }
-
+  
   # Case 1
   if (is.null(ncol(out))) {
     return(out)
   }
-
+  
   # Case 2
   old_labels <- labels(x, show_null = TRUE)
   out <- restore_labels(out, old_labels, lost_action)
-
+  
   out
 }
 
@@ -104,12 +104,26 @@
 `[<-.datatagr` <- function(x, i, j, value) {
   lost_action <- get_lost_labels_action()
   old_labels <- labels(x, show_null = TRUE)
-  
+  new_labels <- old_labels
+
+  # Handle different types of indexing
+  if (missing(j)) {
+    # Single index (e.g., x[1] <- value)
+    if (!is.null(attr(value, "label"))) {
+      new_labels[[i]] <- attr(value, "label")
+    }
+  } else {
+    # Row and column index (e.g., x[,1] <- value)
+    if (!is.null(attr(value, "label"))) {
+      new_labels[[j]] <- attr(value, "label")
+    }
+  }
+
   class(x) <- setdiff(class(x), "datatagr")
   x <- NextMethod() 
   
   # Call restore_labels to restore the labels
-  x <- restore_labels(x, old_labels, lost_action)
+  x <- restore_labels(x, new_labels, lost_action)
   
   x
 }
@@ -123,8 +137,14 @@
   old_labels <- labels(x, show_null = TRUE)
   new_labels <- old_labels
   
-  new_labels[[i]] <- attr(value, "label")
+  # new_labels[[i]] <- attr(value, "label")
+   # Check if the assignment is to the "label" attribute
+  if (missing(j) && !is.null(attr(value, "label"))) {
+    new_labels[[i]] <- attr(value, "label")
+  } 
 
+  lost_labels(old_labels, new_labels, lost_action)
+  
   class(x) <- setdiff(class(x), "datatagr")
   x <- NextMethod() 
   
@@ -143,7 +163,13 @@
   old_labels <- labels(x, show_null = TRUE)
   new_labels <- old_labels
   
-  new_labels[[name]] <- attr(value, "label")
+  # new_labels[[name]] <- attr(value, "label")
+  # Check if the assignment is to the "label" attribute
+  if (is.null(attr(x[[name]], "label")) && !is.null(attr(value, "label"))) {
+    new_labels[[name]] <- attr(value, "label")
+  } 
+
+  lost_labels(old_labels, new_labels, lost_action)
   
   class(x) <- setdiff(class(x), "datatagr")
   x <- NextMethod() 

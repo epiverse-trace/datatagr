@@ -17,27 +17,23 @@
 #' x <- make_datatagr(cars, speed = "Miles per hour")
 #' labels(x)
 #'
-#' ## add new tags and fix an existing one
+#' ## add new labels and fix an existing one
 #' x <- set_labels(x, dist = "Distance")
 #' labels(x)
 #'
-#' ## remove tags by setting them to NULL
-#' old_tags <- labels(x)
+#' ## remove labels by setting them to NULL
+#' old_labels <- labels(x)
 #' x <- set_labels(x, speed = NULL, dist = NULL)
 #' labels(x)
 #'
-#' ## setting tags providing a list (used to restore old tags here)
-#' x <- set_labels(x, !!!old_tags)
+#' ## setting labels providing a list (used to restore old labels here)
+#' x <- set_labels(x, !!!old_labels)
 #' labels(x)
 set_labels <- function(x, ...) {
   # assert inputs
   checkmate::assertClass(x, "datatagr")
-
-  old <- labels(x)
-  new <- rlang::list2(...)
-
-  # keep.null ensures NULL labels are kept in the resulting list
-  updated <- utils::modifyList(old, new, keep.null = TRUE)
-
-  label_variables(x, updated)
+  
+  labels <- rlang::list2(...)
+  
+  label_variables(x, labels)
 }

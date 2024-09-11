@@ -41,7 +41,7 @@
 #'   * `print()`: prints info about the `datatagr` in addition to the
 #'   `data.frame` or `tibble`
 #'
-#' @note The package does not aim to have complete integration with [dplyr]
+#' @note The package does not aim to have complete integration with \pkg{dplyr}
 #' functions. For example, [dplyr::mutate()] and [dplyr::bind_rows()] will
 #' not preserve labels. We only provide compatibility for [dplyr::rename()].
 #'

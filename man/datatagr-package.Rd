@@ -12,7 +12,7 @@ Once tagged, these variables can be seamlessly used in downstream analyses,
 making data pipelines more robust and reliable.
 }
 \note{
-The package does not aim to have complete integration with \link{dplyr}
+The package does not aim to have complete integration with \pkg{dplyr}
 functions. For example, \code{\link[dplyr:mutate]{dplyr::mutate()}} and \code{\link[dplyr:bind_rows]{dplyr::bind_rows()}} will
 not preserve labels. We only provide compatibility for \code{\link[dplyr:rename]{dplyr::rename()}}.
 }

@@ -34,11 +34,11 @@
 #'   ## create a datatagr
 #'   x <- cars %>%
 #'     make_datatagr(
-#'       mph = "speed",
-#'       distance = "dist"
+#'       speed = "Miles per hour",
+#'       dist = "Distance in miles"
 #'     ) %>%
 #'     mutate(result = if_else(speed > 50, "fast", "slow")) %>%
-#'     set_labels(ticket = "result")
+#'     set_labels(result = "Ticket")
 #'   x
 #'
 #'   ## dangerous removal of a labelled column setting it to NULL issues a warning

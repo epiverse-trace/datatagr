@@ -18,10 +18,8 @@
 #'
 #' validate_types(
 #'   x,
-#'   types(
-#'     speed = type("numeric"),
-#'     dist = "integer"
-#'   )
+#'   speed = type("numeric"),
+#'   dist = "numeric"
 #' )
 #'
 type <- function(x) {

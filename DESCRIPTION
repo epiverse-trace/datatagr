@@ -5,7 +5,7 @@ Authors@R: c(
     person("Chris", "Hartgerink", , "chris@data.org", role = "cre",
            comment = c(ORCID = "0000-0003-1050-6809"))
   )
-Description: Provides tools to help label and validate data according to user-specified rules. The 'datatagr' class adds variable level attributes to 'data.frame'columns. Once labelled, these variables can be seamlessly used in downstream analyses, making data pipelines clearer, more robust, and more reliable.
+Description: Provides tools to help label and validate data according to user-specified rules. The 'datatagr' class adds variable level attributes to 'data.frame' columns. Once labelled, these variables can be seamlessly used in downstream analyses, making data pipelines clearer, more robust, and more reliable.
 License: MIT + file LICENSE
 URL: https://epiverse-trace.github.io/datatagr/, https://github.com/epiverse-trace/datatagr
 BugReports: https://github.com/epiverse-trace/datatagr/issues

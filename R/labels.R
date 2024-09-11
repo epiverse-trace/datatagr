@@ -11,7 +11,7 @@
 #'
 #' @export
 #'
-#' @return The function returns a named `list` where names indicate which column they correspond to, and values indicate 
+#' @return The function returns a named `list` where names indicate which column they correspond to, and values indicate
 #'   the relevant labels.
 #'
 #' @details Labels are stored as the `label` attribute of the column variable.
@@ -28,11 +28,11 @@
 #' labels(x, TRUE)
 labels <- function(x, show_null = FALSE) {
   checkmate::assertClass(x, "datatagr")
-  out <- lapply(names(x), FUN = function (var) {
+  out <- lapply(names(x), FUN = function(var) {
     attr(x[[var]], "label")
   })
   names(out) <- names(x)
-  
+
   # Filter out NULL values if show_null is FALSE
   if (!show_null) {
     out <- Filter(Negate(is.null), out)

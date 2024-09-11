@@ -4,7 +4,7 @@
 #'
 #' @returns A numeric vector containing the position of the columns with the
 #'   requested labels
-#'   
+#'
 #' @note Using this in a pipeline results in a 'datatagr' object, but does not
 #'   maintain the variable labels at this time.
 #'

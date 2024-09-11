@@ -27,17 +27,16 @@
 type <- function(x) {
   # ensure case insensitivity
   x <- tolower(x)
-  
+
   checkmate::assert_string(x)
   checkmate::assert_choice(x,
-                           choices = c("date", "category", "numeric", "binary")
+    choices = c("date", "category", "numeric", "binary")
   )
-  
+
   switch(x,
-         date = c("integer", "numeric", "Date", "POSIXct", "POSIXlt"),
-         category = c("character", "factor"),
-         numeric = c("numeric", "integer"),
-         binary = c("logical", "integer", "character", "factor")
+    date = c("integer", "numeric", "Date", "POSIXct", "POSIXlt"),
+    category = c("character", "factor"),
+    numeric = c("numeric", "integer"),
+    binary = c("logical", "integer", "character", "factor")
   )
 }
-

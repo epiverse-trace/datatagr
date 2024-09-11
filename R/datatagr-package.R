@@ -1,8 +1,8 @@
 #' Base Tools for Labelling and Validating Data
 #'
 #' The *datatagr* package provides tools to help label and validate data. The
-#' 'datatagr' class adds variable level attributes to 'data.frame' columns. 
-#' Once tagged, these variables can be seamlessly used in downstream analyses, 
+#' 'datatagr' class adds variable level attributes to 'data.frame' columns.
+#' Once tagged, these variables can be seamlessly used in downstream analyses,
 #' making data pipelines more robust and reliable.
 #'
 #' @aliases datatagr
@@ -40,9 +40,9 @@
 #'
 #'   * `print()`: prints info about the `datatagr` in addition to the
 #'   `data.frame` or `tibble`
-#' 
-#' @note The package does not aim to have complete integration with [dplyr] 
-#' functions. For example, [dplyr::mutate()] and [dplyr::bind_rows()] will 
+#'
+#' @note The package does not aim to have complete integration with [dplyr]
+#' functions. For example, [dplyr::mutate()] and [dplyr::bind_rows()] will
 #' not preserve labels. We only provide compatibility for [dplyr::rename()].
 #'
 #' @examples
@@ -89,7 +89,7 @@
 #'     ) %>%
 #'     mutate(result = if_else(speed > 50, "fast", "slow")) %>%
 #'     set_labels(result = "Ticket yes/no")
-#'     
+#'
 #'   head(x)
 #'
 #'   ## extract labelled variables

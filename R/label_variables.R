@@ -14,32 +14,34 @@
 #'
 #' @details If used several times, the previous label is removed silently.
 #'  Only accepts known variables from the provided `data.frame`.
-#' 
+#'
 label_variables <- function(x, labels) {
   # Create an assertion collection to fill with assertions and potential errors
   label_errors <- checkmate::makeAssertCollection()
-  
+
   # assert_choice() gives clearer error messages than assert_subset() so we
   # use it in a loop with a assertion collection to ensure all issues are
   # returned in the first run.
   vapply(names(labels), FUN = function(namedLabel) {
-    checkmate::assert_choice(namedLabel, names(x), 
-                             null.ok = TRUE, add = label_errors)
+    checkmate::assert_choice(namedLabel, names(x),
+      null.ok = TRUE, add = label_errors
+    )
     TRUE
   }, FUN.VALUE = logical(1))
-  
+
   # Report back on the filled assertion collection
   checkmate::reportAssertions(label_errors)
-  
+
   # Add the labels to the right location
   # Vectorized approach does not work, so we use a for.. loop instead
   for (name in names(labels)) {
     label_value <- unlist(labels[names(labels) == name])
-    
-    attr(x[[name]], "label") <- ifelse(is.null(label_value), 
-                                       "", 
-                                       as.character(label_value))
+
+    attr(x[[name]], "label") <- ifelse(is.null(label_value),
+      "",
+      as.character(label_value)
+    )
   }
-  
+
   x
 }

@@ -4,63 +4,56 @@
 \alias{validate_datatagr}
 \title{Checks the content of a datatagr object}
 \usage{
-validate_datatagr(x, ref_types = tags_types())
+validate_datatagr(x, ...)
 }
 \arguments{
 \item{x}{a \code{datatagr} object}
 
-\item{ref_types}{a \code{list} providing allowed types for all tags, as returned
-by \code{\link[=tags_types]{tags_types()}}}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A named list with variable names in \code{x} as list names and the related types as list values.}
 }
 \value{
 If checks pass, a \code{datatagr} object; otherwise issues an error.
 }
 \description{
 This function evaluates the validity of a \code{datatagr} object by checking the
-object class, its tags, and the types of the tagged variables. It combines
-validations checks made by \code{\link[=validate_types]{validate_types()}} and \code{\link[=validate_tags]{validate_tags()}}. See
+object class, its labels, and the types of variables. It combines
+validation checks made by \code{\link[=validate_types]{validate_types()}} and \code{\link[=validate_labels]{validate_labels()}}. See
 'Details' section for more information on the checks performed.
 }
 \details{
 The following checks are performed:
 \itemize{
 \item \code{x} is a \code{datatagr} object
-\item \code{x} has a well-formed \code{tags} attribute
-\item all default tags are present (even if \code{NULL})
-\item all tagged variables correspond to existing columns
-\item all tagged variables have an acceptable class
-\item (optional) \code{x} has no extra tag beyond the default tags
+\item variables in \code{x} have a well-formed \code{label} attribute
+\item variables correspond to the specified types
 }
 }
 \examples{
 
-if (require(magrittr)) {
-  ## create a valid datatagr
-  x <- cars \%>\%
-    make_datatagr(
-      mph = "speed",
-      distance = "dist"
-    )
-  x
+## create a valid datatagr
+x <- cars |>
+  make_datatagr(
+    speed = "Miles per hour",
+    dist = "Distance in miles"
+  )
+x
 
-  ## validation
-  validate_datatagr(x, ref_types = tags_types(
-    mph = c("numeric", "factor"),
-    distance = "numeric"
-  ))
+## validation
+validate_datatagr(x,
+  speed = c("numeric", "factor"),
+  dist = "numeric"
+)
 
-  ## the below issues an error
-  ## note: tryCatch is only used to avoid a genuine error in the example
-  tryCatch(validate_datatagr(x, ref_types = tags_types(
-    mph = c("numeric", "factor"),
-    distance = "factor"
-  )), error = paste)
-}
+## the below issues an error
+## note: tryCatch is only used to avoid a genuine error in the example
+tryCatch(validate_datatagr(x,
+  speed = c("numeric", "factor"),
+  dist = "factor"
+), error = paste)
 }
 \seealso{
 \itemize{
-\item \code{\link[=tags_types]{tags_types()}} to change allowed types
-\item \code{\link[=validate_types]{validate_types()}} to check if tagged variables have the right classes
-\item \code{\link[=validate_tags]{validate_tags()}} to perform a series of checks on the tags
+\item \code{\link[=validate_types]{validate_types()}} to check if variables have the right types
+\item \code{\link[=validate_labels]{validate_labels()}} to perform a series of checks on the tags
 }
 }

@@ -140,8 +140,10 @@ test_that("Compatibility with dplyr::select()", {
     dplyr::select(dist, vitesse = speed) %>%
     expect_s3_class("datatagr") %>%
     labels() %>%
-    expect_identical(list(dist = "Distance in miles", 
-                          vitesse = "Miles per hour"))
+    expect_identical(list(
+      dist = "Distance in miles",
+      vitesse = "Miles per hour"
+    ))
 })
 
 # Data.frames ----
@@ -154,5 +156,3 @@ test_that("Compatibility with dplyr::bind_rows()", {
     "datatagr"
   )
 })
-
-

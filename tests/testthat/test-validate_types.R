@@ -14,14 +14,14 @@ test_that("validate_types() validates types", {
       validate_types(x, speed = "numeric")
     )
   )
-  
+
   # Failed validations
   x <- make_datatagr(cars, speed = "Miles per hour")
   expect_error(
     validate_types(x, speed = "factor"),
     "speed: Must inherit from class 'factor', but has class 'numeric'"
   )
-  
+
   x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
   expect_snapshot_error(
     validate_types(x, speed = "factor", dist = "character")

@@ -43,9 +43,9 @@ If no drop is happening, a \code{datatagr}. Otherwise an atomic vector.
 }
 \description{
 The \verb{[]} and \verb{[[]]} operators for \code{datatagr} objects behaves like for regular
-\code{data.frame} or \code{tibble}, but check that tagged variables are not lost, and
+\code{data.frame} or \code{tibble}, but check that labelled variables are not lost, and
 takes the appropriate action if this is the case (warning, error, or ignore,
-depending on the general option set via \code{\link[=lost_tags_action]{lost_tags_action()}}) .
+depending on the general option set via \code{\link[=lost_labels_action]{lost_labels_action()}}) .
 }
 \examples{
 if (require(dplyr) && require(magrittr)) {
@@ -56,10 +56,10 @@ if (require(dplyr) && require(magrittr)) {
       distance = "dist"
     ) \%>\%
     mutate(result = if_else(speed > 50, "fast", "slow")) \%>\%
-    set_tags(ticket = "result")
+    set_labels(ticket = "result")
   x
 
-  ## dangerous removal of a tagged column setting it to NULL issues a warning
+  ## dangerous removal of a labelled column setting it to NULL issues a warning
   x[, 1] <- NULL
   x
 
@@ -72,8 +72,8 @@ if (require(dplyr) && require(magrittr)) {
 }
 \seealso{
 \itemize{
-\item \code{\link[=lost_tags_action]{lost_tags_action()}} to set the behaviour to adopt when tags are
+\item \code{\link[=lost_labels_action]{lost_labels_action()}} to set the behaviour to adopt when labels are
 lost through subsetting; default is to issue a warning
-\item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}} to check the current the behaviour
+\item \code{\link[=get_lost_labels_action]{get_lost_labels_action()}} to check the current the behaviour
 }
 }

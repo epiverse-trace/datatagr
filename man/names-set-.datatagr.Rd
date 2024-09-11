@@ -15,30 +15,29 @@
 a \code{datatagr} with new column names
 }
 \description{
-This function can be used to rename the columns a \code{datatagr}, adjusting tags
-as needed.
+This function can be used to rename the columns a \code{datatagr} (that is, adjust
+variable names).
 }
 \examples{
 ## create datatagr
 x <- make_datatagr(cars,
-  mph = "speed",
-  distance = "dist"
+  speed = "Miles per hour",
+  dist = "Distance in miles"
 )
 head(x)
 
 ## change names
-names(x)[1] <- "speed in miles"
+names(x)[1] <- "mph"
 
-## see results: tags have been updated
+## see results: columns have been updated
 head(x)
-tags(x)
 
 # This also works with using `dplyr::rename()` because it uses names<-()
 # under the hood
 if (require(dplyr) && require(magrittr)) {
   x <- x \%>\%
-    rename(speed = "speed in miles")
+    rename(speed = "mph")
   head(x)
-  tags(x)
+  labels(x)
 }
 }

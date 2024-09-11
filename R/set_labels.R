@@ -1,7 +1,7 @@
 #' Change labels of a datatagr object
 #'
 #' This function changes the `labels` of a `datatagr` object, using the same
-#' syntax as the constructor [make_datatagr()]. 
+#' syntax as the constructor [make_datatagr()].
 #'
 #' @inheritParams make_datatagr
 #'
@@ -32,8 +32,8 @@
 set_labels <- function(x, ...) {
   # assert inputs
   checkmate::assertClass(x, "datatagr")
-  
+
   labels <- rlang::list2(...)
-  
+
   label_variables(x, labels)
 }

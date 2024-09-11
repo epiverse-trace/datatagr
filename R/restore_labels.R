@@ -1,9 +1,9 @@
 #' Restore labels of a datatagr
 #'
 #' Internal. This function is used to restore labels of a `datatagr` object which
-#' may have lost its labels after handling for example through `dplyr` verbs. 
-#' Specific actions can be triggered when some of the labelled variables have 
-#' disappeared from the object. 
+#' may have lost its labels after handling for example through `dplyr` verbs.
+#' Specific actions can be triggered when some of the labelled variables have
+#' disappeared from the object.
 #'
 #' @param x a `data.frame`
 #'
@@ -28,21 +28,22 @@ restore_labels <- function(x, newLabels,
   checkmate::assertClass(x, "data.frame")
   checkmate::assertClass(newLabels, "list")
   lost_action <- match.arg(lost_action)
-  
+
   # Match the remaining variables to the provided labels
   common_vars <- intersect(names(x), names(newLabels))
-  if (length(common_vars) == 0 && length(names(x) >0)) 
-    stop('No matching labels provided.')
-  
+  if (length(common_vars) == 0 && length(names(x) > 0)) {
+    stop("No matching labels provided.")
+  }
+
   lost_vars <- setdiff(names(newLabels), names(x))
-  
+
   if (lost_action != "none" && length(lost_vars) > 0) {
     lost_labels <- lapply(lost_vars, function(label) newLabels[[label]])
-    
+
     lost_msg <- paste(lost_vars,
-                      lost_labels,
-                      sep = " - ",
-                      collapse = ", "
+      lost_labels,
+      sep = " - ",
+      collapse = ", "
     )
     msg <- paste(
       "The following labelled variables are lost:\n",
@@ -57,15 +58,15 @@ restore_labels <- function(x, newLabels,
       stop(errorCondition(msg, class = "datatagr_error"))
     }
   }
-  
+
   for (name in common_vars) {
     attr(x[[name]], "label") <- as.character(newLabels[[name]])
   }
-  
+
   # Ensure class consistency
   if (!inherits(x, "datatagr")) {
     class(x) <- c("datatagr", class(x))
   }
-  
+
   x
 }

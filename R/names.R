@@ -60,6 +60,6 @@
   names(out_labels) <- new_names
   out <- label_variables(out, out_labels)
   class(out) <- class(x)
-  
+
   out
 }

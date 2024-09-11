@@ -8,7 +8,8 @@
 #'
 #' @param x a `datatagr` object
 #'
-#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A named list with variable names in `x` as list names and the related types as list values.
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A named list with variable
+#' names in `x` as list names and the related types as list values.
 #'
 #' @return A named `list`.
 #'

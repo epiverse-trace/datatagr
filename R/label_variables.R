@@ -1,11 +1,13 @@
 #' Add labels to variables
 #'
 #' Internal. This function will label pre-defined variables in a
-#' `data.frame` by adding a label attribute to the column. This can be used for one or multiple variables at the same time.
+#' `data.frame` by adding a label attribute to the column. This can be used for
+#' one or multiple variables at the same time.
 #'
 #' @param x a `data.frame` or a `tibble`, with at least one column
 #'
-#' @param labels A named list with variable names in `x` as list names and the labels as list values. Values set to `NULL` remove the label.
+#' @param labels A named list with variable names in `x` as list names and the
+#' labels as list values. Values set to `NULL` remove the label.
 #'
 #' @noRd
 #'

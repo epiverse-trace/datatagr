@@ -14,12 +14,12 @@ including \code{NULL} ones, should be returned; if \code{FALSE}, only labels wit
 non-NULL value are returned; defaults to \code{FALSE}}
 }
 \value{
-The function returns a named \code{list} where names indicate which column they correspond to, and values indicate
-the relevant labels.
+The function returns a named \code{list} where names indicate which column
+they correspond to, and values indicate the relevant labels.
 }
 \description{
-This function returns the list of labels identifying specific variable types in
-a \code{datatagr}.
+This function returns the list of labels identifying specific variable types
+in a \code{datatagr} object.
 }
 \details{
 Labels are stored as the \code{label} attribute of the column variable.

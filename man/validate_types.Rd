@@ -9,7 +9,8 @@ validate_types(x, ...)
 \arguments{
 \item{x}{a \code{datatagr} object}
 
-\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A named list with variable names in \code{x} as list names and the related types as list values.}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A named list with variable
+names in \code{x} as list names and the related types as list values.}
 }
 \value{
 A named \code{list}.

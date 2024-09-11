@@ -1,14 +1,16 @@
 #' Create a datatagr from a data.frame
 #'
 #' This function converts a `data.frame` or a `tibble` into a `datatagr` object,
-#' where data are labelled and validated. The output will seem to be the same `data.frame`, but
-#' `datatagr`-aware packages will then be able to automatically use labelled
-#' fields for further data cleaning and analysis.
+#' where data are labelled and validated. The output will seem to be the same
+#' `data.frame`, but `datatagr`-aware packages will then be able to
+#' automatically use labelled fields for further data cleaning and analysis.
 #'
 #' @param x a `data.frame` or a `tibble`
 #'
-#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A named list with variable names in `x` as list names and the labels as list values. Values set to `NULL` remove the label. When specifying labels, please also see
-#'   `default_values`.
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A named list with variable
+#' names in `x` as list names and the labels as list values. Values set to
+#' `NULL` remove the label. When specifying labels, please also see
+#' `default_values`.
 #'
 #' @seealso
 #'

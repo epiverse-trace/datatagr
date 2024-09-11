@@ -1,7 +1,7 @@
 #' Get the list of labels in a datatagr
 #'
-#' This function returns the list of labels identifying specific variable types in
-#' a `datatagr`.
+#' This function returns the list of labels identifying specific variable types
+#' in a `datatagr` object.
 #'
 #' @param x a `datatagr` object
 #'
@@ -11,8 +11,8 @@
 #'
 #' @export
 #'
-#' @return The function returns a named `list` where names indicate which column they correspond to, and values indicate
-#'   the relevant labels.
+#' @return The function returns a named `list` where names indicate which column
+#' they correspond to, and values indicate the relevant labels.
 #'
 #' @details Labels are stored as the `label` attribute of the column variable.
 #'

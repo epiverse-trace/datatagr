@@ -1,15 +1,15 @@
 #' Restore labels of a datatagr
 #'
-#' Internal. This function is used to restore labels of a `datatagr` object which
-#' may have lost its labels after handling for example through `dplyr` verbs.
-#' Specific actions can be triggered when some of the labelled variables have
-#' disappeared from the object.
+#' Internal. This function is used to restore labels of a `datatagr` object
+#' which may have lost its labels after handling for example through `dplyr`
+#' verbs. Specific actions can be triggered when some of the labelled variables
+#' have disappeared from the object.
 #'
 #' @param x a `data.frame`
 #'
-#' @param labels a list of labels as returned by [labels()]; if default values are
-#'   missing, they will be added to the new list of labels. Matches column names
-#'   with `x` to restore labels. Throws an error if no matches are found.
+#' @param labels a list of labels as returned by [labels()]; if default values
+#' are missing, they will be added to the new list of labels. Matches column
+#' names with `x` to restore labels. Throws an error if no matches are found.
 #'
 #' @param lost_action a `character` indicating the behaviour to adopt when
 #'   labelled variables have been lost: "error" (default) will issue an error;
@@ -31,7 +31,7 @@ restore_labels <- function(x, newLabels,
 
   # Match the remaining variables to the provided labels
   common_vars <- intersect(names(x), names(newLabels))
-  if (length(common_vars) == 0 && length(names(x) > 0)) {
+  if (length(common_vars) == 0 && length(names(x)) > 0) {
     stop("No matching labels provided.")
   }
 

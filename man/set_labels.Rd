@@ -9,7 +9,9 @@ set_labels(x, ...)
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble}}
 
-\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A named list with variable names in \code{x} as list names and the labels as list values. Values set to \code{NULL} remove the label. When specifying labels, please also see
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A named list with variable
+names in \code{x} as list names and the labels as list values. Values set to
+\code{NULL} remove the label. When specifying labels, please also see
 \code{default_values}.}
 }
 \value{

@@ -5,8 +5,8 @@
 #'
 #' @param x a `datatagr` object
 #'
-#' @param remove_labels a `logical` indicating if labels should be removed from the
-#'   attributes; defaults to `TRUE`
+#' @param remove_labels a `logical` indicating if labels should be removed from
+#' the attributes; defaults to `TRUE`
 #'
 #' @noRd
 #'

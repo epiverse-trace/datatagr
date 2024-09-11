@@ -31,7 +31,7 @@
 #' }
 print.datatagr <- function(x, ...) {
   cat("\n// datatagr object\n")
-  print(drop_datatagr(x, remove_labels = TRUE))
+  print(drop_datatagr(x))
 
   # Extract names and values from labels(x)
   label_values <- unlist(labels(x))

@@ -27,8 +27,8 @@ not preserve labels. We only provide compatibility for \code{\link[dplyr:rename]
 \item \code{\link[=lost_labels_action]{lost_labels_action()}}: to change the behaviour of actions where labelled
 variables are lost (e.g. removing columns storing labelled variables) to
 issue warnings, errors, or do nothing
-\item \code{\link[=get_lost_labels_action]{get_lost_labels_action()}}: to check the current behaviour of actions where
-labelled variables are lost
+\item \code{\link[=get_lost_labels_action]{get_lost_labels_action()}}: to check the current behaviour of actions
+where labelled variables are lost
 }
 }
 

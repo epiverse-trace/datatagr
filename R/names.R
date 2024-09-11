@@ -36,13 +36,13 @@
 `names<-.datatagr` <- function(x, value) {
   # Strategy for renaming
 
-  # Since renaming cannot drop columns, we can update labels to match new variable
-  # names. We do this by:
+  # Since renaming cannot drop columns, we can update labels to match new
+  # variable names. We do this by:
 
   # 1. Storing old names and new names to have define replacement rules
   # 2. Replace all labelled variables using the replacement rules
 
-  out <- drop_datatagr(x, remove_labels = TRUE)
+  out <- drop_datatagr(x)
   names(out) <- value
 
   # Step 1

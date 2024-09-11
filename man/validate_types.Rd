@@ -2,27 +2,27 @@
 % Please edit documentation in R/validate_types.R
 \name{validate_types}
 \alias{validate_types}
-\title{Check tagged variables are the right class}
+\title{Type check variables}
 \usage{
-validate_types(x, ref_types = tags_types())
+validate_types(x, ...)
 }
 \arguments{
 \item{x}{a \code{datatagr} object}
 
-\item{ref_types}{a \code{list} providing allowed types for all tags, as returned
-by \code{\link[=tags_types]{tags_types()}}}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A named list with variable names in \code{x} as list names and the related types as list values.}
 }
 \value{
 A named \code{list}.
 }
 \description{
-This function checks the class of each tagged variable in a \code{datatagr}
-against pre-defined accepted classes in \code{\link[=tags_types]{tags_types()}}.
+This function checks the type of variables in a \code{datatagr} against
+accepted classes. Only checks the type of provided variables and ignores
+those not provided.
 }
 \examples{
 x <- make_datatagr(cars,
-  mph = "speed",
-  distance = "dist"
+  speed = "Miles per hour",
+  dist = "Distance in miles"
 )
 x
 
@@ -31,16 +31,15 @@ x
 tryCatch(validate_types(x), error = paste)
 
 ## to allow other types, e.g. gender to be integer, character or factor
-validate_types(x, tags_types(mph = "numeric", distance = c(
+validate_types(x, speed = "numeric", dist = c(
   "integer",
   "character", "numeric"
-)))
+))
 
 }
 \seealso{
 \itemize{
-\item \code{\link[=tags_types]{tags_types()}} to change allowed types
-\item \code{\link[=validate_tags]{validate_tags()}} to perform a series of checks on the tags
-\item \code{\link[=validate_datatagr]{validate_datatagr()}} to combine \code{validate_tags} and \code{validate_types}
+\item \code{\link[=validate_labels]{validate_labels()}} to perform a series of checks on variables
+\item \code{\link[=validate_datatagr]{validate_datatagr()}} to combine \code{validate_labels} and \code{validate_types}
 }
 }

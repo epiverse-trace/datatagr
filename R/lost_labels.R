@@ -15,11 +15,11 @@ lost_labels <- function(old, new, lost_action) {
 
   if (lost_action != "none" && length(lost_vars) > 0) {
     lost_labels <- lapply(lost_vars, function(label) old[[label]])
-    
+
     lost_msg <- paste(lost_vars,
-                      lost_labels,
-                      sep = " - ",
-                      collapse = ", "
+      lost_labels,
+      sep = " - ",
+      collapse = ", "
     )
     msg <- paste(
       "The following labelled variables are lost:\n",

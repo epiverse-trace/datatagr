@@ -25,31 +25,31 @@
 #'
 #' @examples
 #'
-#'   ## create a valid datatagr
-#'   x <- cars |>
-#'     make_datatagr(
-#'       speed = "Miles per hour",
-#'       dist = "Distance in miles"
-#'     )
-#'   x
-#'
-#'   ## validation
-#'   validate_datatagr(x, 
-#'     speed = c("numeric", "factor"),
-#'     dist = "numeric"
+#' ## create a valid datatagr
+#' x <- cars |>
+#'   make_datatagr(
+#'     speed = "Miles per hour",
+#'     dist = "Distance in miles"
 #'   )
+#' x
 #'
-#'   ## the below issues an error
-#'   ## note: tryCatch is only used to avoid a genuine error in the example
-#'   tryCatch(validate_datatagr(x,
-#'     speed = c("numeric", "factor"),
-#'     dist = "factor"
-#'   ), error = paste)
+#' ## validation
+#' validate_datatagr(x,
+#'   speed = c("numeric", "factor"),
+#'   dist = "numeric"
+#' )
+#'
+#' ## the below issues an error
+#' ## note: tryCatch is only used to avoid a genuine error in the example
+#' tryCatch(validate_datatagr(x,
+#'   speed = c("numeric", "factor"),
+#'   dist = "factor"
+#' ), error = paste)
 validate_datatagr <- function(x,
                               ...) {
   checkmate::assert_class(x, "datatagr")
   validate_labels(x)
   validate_types(x, ...)
-  
+
   x
 }

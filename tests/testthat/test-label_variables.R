@@ -2,7 +2,8 @@ test_that("label_variables() fails for non-existing variables", {
   msg <- "* Variable 'namedLabel': Must be element of set {'speed','dist'}, but"
   expect_error(
     label_variables(cars, list(distance = "toto")),
-    msg, fixed = TRUE
+    msg,
+    fixed = TRUE
   )
 })
 
@@ -15,9 +16,9 @@ test_that("label_variables() succeeds in various scenarios", {
   x <- label_variables(x, list(speed = "vitesse"))
   expect_identical(attr(x$speed, "label"), "vitesse")
   expect_identical(attr(x$dist, "label"), "Distance in miles")
-  
+
   # reset to NULL
   x <- label_variables(x, list(speed = NULL, dist = NULL))
-  expect_identical(attr(x$speed, "label"), '')
-  expect_identical(attr(x$dist, "label"), '')
+  expect_identical(attr(x$speed, "label"), "")
+  expect_identical(attr(x$dist, "label"), "")
 })

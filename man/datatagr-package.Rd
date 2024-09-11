@@ -4,26 +4,31 @@
 \name{datatagr-package}
 \alias{datatagr-package}
 \alias{datatagr}
-\title{Base Tools for Tagging and Validating Data}
+\title{Base Tools for Labelling and Validating Data}
 \description{
-The \emph{datatagr} package provides tools to help tag and validate data. The
-'datatagr' class adds a custom tagging system to classical 'data.frame'
-objects to identify key data. Once tagged, these variables can be seamlessly
-used in downstream analyses, making data pipelines more robust and reliable.
+The \emph{datatagr} package provides tools to help label and validate data. The
+'datatagr' class adds variable level attributes to 'data.frame' columns.
+Once tagged, these variables can be seamlessly used in downstream analyses,
+making data pipelines more robust and reliable.
+}
+\note{
+The package does not aim to have complete integration with \link{dplyr}
+functions. For example, \code{\link[dplyr:mutate]{dplyr::mutate()}} and \code{\link[dplyr:bind_rows]{dplyr::bind_rows()}} will
+not preserve labels. We only provide compatibility for \code{\link[dplyr:rename]{dplyr::rename()}}.
 }
 \section{Main functions}{
 
 \itemize{
 \item \code{\link[=make_datatagr]{make_datatagr()}}: to create \code{datatagr} objects from a \code{data.frame} or a
 \code{tibble}
-\item \code{\link[=set_tags]{set_tags()}}: to change or add tagged variables in a \code{datatagr}
-\item \code{\link[=tags]{tags()}}: to get the list of tags of a \code{datatagr}
-\item \code{\link[=tags_df]{tags_df()}}: to get a \code{data.frame} of all tagged variables
-\item \code{\link[=lost_tags_action]{lost_tags_action()}}: to change the behaviour of actions where tagged
-variables are lost (e.g. removing columns storing tagged variables) to
+\item \code{\link[=set_labels]{set_labels()}}: to change or add labelled variables in a \code{datatagr}
+\item \code{\link[=labels]{labels()}}: to get the list of labels of a \code{datatagr}
+\item \code{\link[=labels_df]{labels_df()}}: to get a \code{data.frame} of all tagged variables
+\item \code{\link[=lost_labels_action]{lost_labels_action()}}: to change the behaviour of actions where labelled
+variables are lost (e.g. removing columns storing labelled variables) to
 issue warnings, errors, or do nothing
-\item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}}: to check the current behaviour of actions where
-tagged variables are lost
+\item \code{\link[=get_lost_labels_action]{get_lost_labels_action()}}: to check the current behaviour of actions where
+labelled variables are lost
 }
 }
 
@@ -32,13 +37,13 @@ tagged variables are lost
 
 Specific methods commonly used to handle \code{data.frame} are provided for
 \code{datatagr} objects, typically to help flag or prevent actions which could
-alter or lose tagged variables (and may thus break downstream data
+alter or lose labelled variables (and may thus break downstream data
 pipelines).
 \itemize{
 \item \verb{names() <-} (and related functions, such as \code{\link[dplyr:rename]{dplyr::rename()}}) will
-rename tags as needed
+rename labels as needed
 \item \verb{x[...] <-} and \verb{x[[...]] <-} (see \link{sub_datatagr}): will adopt the
-desired behaviour when tagged variables are lost
+desired behaviour when labelled variables are lost
 \item \code{print()}: prints info about the \code{datatagr} in addition to the
 \code{data.frame} or \code{tibble}
 }
@@ -48,58 +53,69 @@ desired behaviour when tagged variables are lost
 
 # using base R style
 x <- make_datatagr(cars[1:50, ],
-  mph = "speed",
-  distance = "dist"
+  speed = "Miles per hour",
+  dist = "Distance in miles"
 )
 x
 
-## check tagged variables
-tags(x)
+## check labelled variables
+labels(x)
 
 ## robust renaming
 names(x)[1] <- "identifier"
 x
 
-## example of dropping tags by mistake - default: warning
+## example of dropping labels by mistake - default: warning
 x[, 2]
 
-## to silence warnings when taggs are dropped
-lost_tags_action("none")
+## to silence warnings when labels are dropped
+lost_labels_action("none")
 x[, 2]
 
-## to trigger errors when taggs are dropped
-# lost_tags_action("error")
+## to trigger errors when labels are dropped
+# lost_labels_action("error")
 # x[, 2:5]
 
 ## reset default behaviour
-lost_tags_action()
+lost_labels_action()
 
 # using tidyverse style
 
-## example of creating a datatagr, adding a new variable, and adding a tag
+## example of creating a datatagr, adding a new variable, and adding a label
 ## for it
 
 if (require(dplyr) && require(magrittr)) {
   x <- cars \%>\%
     tibble() \%>\%
     make_datatagr(
-      mph = "speed",
-      distance = "dist"
+      speed = "Miles per hour",
+      dist = "Distance in miles"
     ) \%>\%
     mutate(result = if_else(speed > 50, "fast", "slow")) \%>\%
-    set_tags(ticket = "result")
+    set_labels(result = "Ticket yes/no")
 
   head(x)
 
-  ## extract tagged variables
+  ## extract labelled variables
   x \%>\%
-    select(has_tag(c("mph", "distance")))
+    select(has_label(c("Ticket yes/no")))
 
+  ## Retrieve all labels
   x \%>\%
-    tags()
+    labels()
 
+  ## Select based on variable name
   x \%>\%
-    select(starts_with("dist"))
+    select(starts_with("speed"))
+}
+
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://epiverse-trace.github.io/datatagr/}
+  \item \url{https://github.com/epiverse-trace/datatagr}
+  \item Report bugs at \url{https://github.com/epiverse-trace/datatagr/issues}
 }
 
 }

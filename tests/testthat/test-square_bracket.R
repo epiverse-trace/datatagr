@@ -1,3 +1,5 @@
+library(dplyr)
+
 test_that("tests for [ operator", {
   x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
   on.exit(lost_labels_action())
@@ -74,19 +76,19 @@ test_that("tests for [<- operator", {
   x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
   x[, 1:2] <- NULL
   expect_identical(ncol(x), 0L)
-  
+
   x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
-  x[,1] <- 'test1'
+  x[, 1] <- "test1"
   # should update the values
   # Should maintain the label
   expect_identical(attr(x$speed, "label"), "Miles per hour")
-  attr(x[,1], "label") <- "Test label assignment 1"
+  attr(x[, 1], "label") <- "Test label assignment 1"
   # should update the label
   expect_identical(attr(x$speed, "label"), "Test label assignment 1")
   # should not activate the lost_action
-  
+
   x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
-  x[1] <- 'test2'
+  x[1] <- "test2"
   # should update the values
   # Should maintain the label
   expect_identical(attr(x$speed, "label"), "Miles per hour")

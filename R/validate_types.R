@@ -1,14 +1,14 @@
 #' Type check variables
 #'
-#' This function checks the type of variables in a `datatagr` against 
-#' accepted classes. Only checks the type of provided variables and ignores 
+#' This function checks the type of variables in a `datatagr` against
+#' accepted classes. Only checks the type of provided variables and ignores
 #' those not provided.
 #'
 #' @export
 #'
 #' @param x a `datatagr` object
 #'
-#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A named list with variable names in `x` as list names and the related types as list values. 
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A named list with variable names in `x` as list names and the related types as list values.
 #'
 #' @return A named `list`.
 #'

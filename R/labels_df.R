@@ -21,7 +21,7 @@
 #' labels_df(x)
 labels_df <- function(x) {
   checkmate::assertClass(x, "datatagr")
-  
+
   labels <- unlist(labels(x))
   out <- drop_datatagr(x, remove_labels = TRUE)
 
@@ -29,6 +29,6 @@ labels_df <- function(x) {
   common_names <- intersect(names(out), names(labels))
   # Replace the names of out that are in the intersection with the corresponding labels
   names(out)[match(common_names, names(out))] <- labels[common_names]
-  
+
   out
 }

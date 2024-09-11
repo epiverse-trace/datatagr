@@ -44,6 +44,6 @@ print.datatagr <- function(x, ...) {
     labels_txt <- "[no labelled variables]"
   }
   cat("\nlabels:", labels_txt, "\n")
-  
+
   invisible(x)
 }

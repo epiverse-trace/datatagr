@@ -20,15 +20,15 @@ These can be used to provide comprehensive typesetting when creating a
 }
 \examples{
 x <- make_datatagr(cars,
-  mph = "speed",
-  distance = "dist"
+  speed = "Miles per hour",
+  dist = "Distance in miles"
 )
 
 validate_types(
   x,
-  tags_types(
-    mph = type("numeric"),
-    distance = type("numeric")
+  types(
+    speed = type("numeric"),
+    dist = "integer"
   )
 )
 

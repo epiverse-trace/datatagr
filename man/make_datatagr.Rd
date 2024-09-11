@@ -4,44 +4,40 @@
 \alias{make_datatagr}
 \title{Create a datatagr from a data.frame}
 \usage{
-make_datatagr(x, ..., tag_defaults = list())
+make_datatagr(x, ...)
 }
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble}}
 
-\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A series of tags provided as
-\code{tag_name = "column_name"}. When specifying tags, please also see
-\code{tag_defaults} to specify default values.}
-
-\item{tag_defaults}{a list of default values for the provided tags. Defaults
-to \code{list()}, effectively defaulting to NULL values.}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A named list with variable names in \code{x} as list names and the labels as list values. Values set to \code{NULL} remove the label. When specifying labels, please also see
+\code{default_values}.}
 }
 \value{
 The function returns a \code{datatagr} object.
 }
 \description{
 This function converts a \code{data.frame} or a \code{tibble} into a \code{datatagr} object,
-where data are tagged. The output will seem to be the same \code{data.frame}, but
-\code{datatagr}-aware packages will then be able to automatically use tagged
+where data are labelled and validated. The output will seem to be the same \code{data.frame}, but
+\code{datatagr}-aware packages will then be able to automatically use labelled
 fields for further data cleaning and analysis.
 }
 \examples{
 
 x <- make_datatagr(cars,
-  mph = "speed",
-  distance = "dist"
+  speed = "Miles per hour",
+  dist = "Distance in miles"
 )
 
 ## print result - just first few entries
 head(x)
 
 ## check tags
-tags(x)
+labels(x)
 
 ## Tags can also be passed as a list with the splice operator (!!!)
 my_tags <- list(
-  mph = "speed",
-  distance = "dist"
+  speed = "Miles per hour",
+  dist = "Distance in miles"
 )
 new_x <- make_datatagr(cars, !!!my_tags)
 
@@ -52,9 +48,8 @@ identical(x, new_x)
 \seealso{
 \itemize{
 \item An overview of the \link{datatagr} package
-\item \code{\link[=tags_types]{tags_types()}}: for the associated accepted types/classes
-\item \code{\link[=tags]{tags()}}: for a list of tagged variables in a \code{datatagr}
-\item \code{\link[=set_tags]{set_tags()}}: for modifying tags
-\item \code{\link[=tags_df]{tags_df()}}: for selecting variables by tags
+\item \code{\link[=labels]{labels()}}: for a list of labelled variables in a \code{datatagr}
+\item \code{\link[=set_labels]{set_labels()}}: for modifying labels
+\item \code{\link[=labels_df]{labels_df()}}: for selecting variables by labels
 }
 }

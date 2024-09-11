@@ -1,7 +1,7 @@
 #' Check and set behaviour for lost labels
 #'
 #' This function determines the behaviour to adopt when labelled variables of a
-#' `datatagr` are lost for example through subsetting. This is achieved using 
+#' `datatagr` are lost for example through subsetting. This is achieved using
 #' `options` defined for the `datatagr` package.
 #'
 #' @param action a `character` indicating the behaviour to adopt when labelled
@@ -42,7 +42,7 @@
 #' lost_labels_action()
 #'
 lost_labels_action <- function(action = c("warning", "error", "none"),
-                             quiet = FALSE) {
+                               quiet = FALSE) {
   datatagr_options <- options("datatagr")$datatagr
 
   action <- match.arg(action)

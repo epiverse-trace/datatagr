@@ -12,7 +12,7 @@ test_that("tests for set_labels()", {
   expect_identical(labels(x)$speed, "Miles per hour")
   expect_identical(labels(x)$dist, "Distance")
 
-  x <- set_labels(x, speed = 'Km per hour', dist = "Kilometre distance")
-  y <- set_labels(x, !!!list(speed = 'Km per hour', dist = "Kilometre distance"))
+  x <- set_labels(x, speed = "Km per hour", dist = "Kilometre distance")
+  y <- set_labels(x, !!!list(speed = "Km per hour", dist = "Kilometre distance"))
   expect_identical(x, y)
 })

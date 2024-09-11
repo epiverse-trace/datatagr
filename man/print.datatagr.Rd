@@ -20,8 +20,8 @@ This function prints datatagr objects.
 \examples{
 ## create datatagr
 x <- make_datatagr(cars,
-  mph = "speed",
-  distance = "dist"
+  speed = "Miles per hour",
+  dist = "Distance in miles"
 )
 
 ## print object - using only the first few entries
@@ -32,8 +32,8 @@ if (require(tibble) && require(magrittr)) {
   cars \%>\%
     tibble() \%>\%
     make_datatagr(
-      mph = "speed",
-      distance = "dist"
+      speed = "Miles per hour",
+      dist = "Distance in miles"
     )
 }
 }

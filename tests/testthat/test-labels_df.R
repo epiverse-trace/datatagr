@@ -18,10 +18,10 @@ test_that("tests for labels_df without unlabeled variables", {
 
 test_that("labels_df with unlabeled variables works as expected", {
   x <- make_datatagr(cars,
-                     dist = "Distance in miles"
+    dist = "Distance in miles"
   )
   y <- cars[c("speed", "dist")]
   names(y) <- c("speed", "Distance in miles")
-  
+
   expect_identical(labels_df(x), y)
 })

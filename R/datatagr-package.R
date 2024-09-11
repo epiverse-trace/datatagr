@@ -22,8 +22,8 @@
 #'   variables are lost (e.g. removing columns storing labelled variables) to
 #'   issue warnings, errors, or do nothing
 #'
-#'   * [get_lost_labels_action()]: to check the current behaviour of actions where
-#'   labelled variables are lost
+#'   * [get_lost_labels_action()]: to check the current behaviour of actions
+#'   where labelled variables are lost
 #'
 #' @section Dedicated methods:
 #'

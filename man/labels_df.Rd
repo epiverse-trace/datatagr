@@ -13,9 +13,9 @@ labels_df(x)
 A \code{data.frame} of with variables renamed according to their labels.
 }
 \description{
-This function returns a \code{data.frame}, where labelled variables (as stored in the
-\code{datatagr} object) are renamed. Note that the output is no longer a \code{datatagr}, but a regular
-\code{data.frame}. Unlabeled variables are unaffected.
+This function returns a \code{data.frame}, where labelled variables (as stored in
+the \code{datatagr} object) are renamed. Note that the output is no longer a
+\code{datatagr}, but a regular \code{data.frame}. Unlabeled variables are unaffected.
 }
 \examples{
 

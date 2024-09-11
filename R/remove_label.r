@@ -1,4 +1,4 @@
-#' Internal. Remove the "label" attribute from a specific variable in a data frame
+#' Internal. Remove "label" attribute from a specific variable in a data frame
 #'
 #' @noRd
 #'

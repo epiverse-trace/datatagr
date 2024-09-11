@@ -41,7 +41,7 @@
 #'     set_labels(result = "Ticket")
 #'   x
 #'
-#'   ## dangerous removal of a labelled column setting it to NULL issues a warning
+#'   ## dangerous removal of a labelled column setting it to NULL issues warning
 #'   x[, 1] <- NULL
 #'   x
 #'
@@ -137,7 +137,6 @@
   old_labels <- labels(x, show_null = TRUE)
   new_labels <- old_labels
 
-  # new_labels[[i]] <- attr(value, "label")
   # Check if the assignment is to the "label" attribute
   if (missing(j) && !is.null(attr(value, "label"))) {
     new_labels[[i]] <- attr(value, "label")
@@ -163,7 +162,6 @@
   old_labels <- labels(x, show_null = TRUE)
   new_labels <- old_labels
 
-  # new_labels[[name]] <- attr(value, "label")
   # Check if the assignment is to the "label" attribute
   if (is.null(attr(x[[name]], "label")) && !is.null(attr(value, "label"))) {
     new_labels[[name]] <- attr(value, "label")

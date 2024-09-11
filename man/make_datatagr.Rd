@@ -9,7 +9,9 @@ make_datatagr(x, ...)
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble}}
 
-\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A named list with variable names in \code{x} as list names and the labels as list values. Values set to \code{NULL} remove the label. When specifying labels, please also see
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A named list with variable
+names in \code{x} as list names and the labels as list values. Values set to
+\code{NULL} remove the label. When specifying labels, please also see
 \code{default_values}.}
 }
 \value{
@@ -17,9 +19,9 @@ The function returns a \code{datatagr} object.
 }
 \description{
 This function converts a \code{data.frame} or a \code{tibble} into a \code{datatagr} object,
-where data are labelled and validated. The output will seem to be the same \code{data.frame}, but
-\code{datatagr}-aware packages will then be able to automatically use labelled
-fields for further data cleaning and analysis.
+where data are labelled and validated. The output will seem to be the same
+\code{data.frame}, but \code{datatagr}-aware packages will then be able to
+automatically use labelled fields for further data cleaning and analysis.
 }
 \examples{
 

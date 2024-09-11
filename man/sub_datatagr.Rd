@@ -59,7 +59,7 @@ if (require(dplyr) && require(magrittr)) {
     set_labels(result = "Ticket")
   x
 
-  ## dangerous removal of a labelled column setting it to NULL issues a warning
+  ## dangerous removal of a labelled column setting it to NULL issues warning
   x[, 1] <- NULL
   x
 

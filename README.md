@@ -5,7 +5,7 @@
 <!-- `packagename` is extracted from the DESCRIPTION file -->
 <!-- `gh_repo` is extracted via a special environment variable in GitHub Actions -->
 
-# *datatagr*: Generic Data Tagging and Validating <img src="man/figures/logo.svg" align="right" width="120" alt="Logo for datatagr" />
+# *datatagr*: Generic Data Labelling and Validating <img src="man/figures/logo.svg" align="right" width="120" alt="Logo for datatagr" />
 
 <!-- badges: start -->
 
@@ -14,19 +14,16 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![R-CMD-check](https://github.com/epiverse-trace/datatagr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/datatagr/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/epiverse-trace/datatagr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/epiverse-trace/datatagr?branch=main)
-[![lifecycle-concept](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-concept.svg)](https://www.reconverse.org/lifecycle.html#concept)
+[![lifecycle-concept](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-concept.svg)](https://www.reconverse.org/lifecycle.html#experimental)
 
 <!-- badges: end -->
 
-**datatagr** provides functions to tag, validate, and safeguard data of
-any kind. datatagr is an abstraction from **linelist**, which applies
-these principles for epidemiological data. The original proposal for
-this package can be found on [the Discussion
+**datatagr** provides functions to label and validate data of any kind.
+datatagr is an abstraction from
+[**linelist**](https://github.com/epiverse-trace/linelist), which
+applies these principles to epidemiological linelist data. The original
+proposal for this package can be found on [the Discussion
 board](https://github.com/orgs/epiverse-trace/discussions/221).
-
-> \![INFO\] For our project management and roadmap, please [see the
-> relevant GitHub
-> Project](https://github.com/orgs/epiverse-trace/projects/41).
 
 ## Installation
 
@@ -38,28 +35,72 @@ You can install the development version of datatagr from
 pak::pak("epiverse-trace/datatagr")
 ```
 
-## Example
+## Getting started
 
-These examples illustrate some of the current functionalities
+``` r
+library(datatagr)
+
+# Create a datatagr object
+x <- make_datatagr(cars, speed = 'Miles per hour', dist = 'Distance in miles')
+
+# Validate the data are of a specific type
+validate_datatagr(x, 
+  speed = 'numeric',        # speed should be numeric
+  # type() is a helper function of related classes
+  dist = type('numeric')    # dist should be numeric, integer
+)
+```
 
 ## Development
 
 ### Lifecycle
 
-This package is currently a *concept*, as defined by the [RECON software
-lifecycle](https://www.reconverse.org/lifecycle.html). This means that
-essential features and mechanisms are still being developed, and the
-package is not ready for use outside of the development team.
+This package is currently a *experimental*, as defined by the [RECON
+software lifecycle](https://www.reconverse.org/lifecycle.html). This
+means that essential features and mechanisms are still being developed,
+and the package is not ready for use outside of the development team.
 
 ### Contributions
 
 Contributions are welcome via [pull
-requests](https://github.com/epiverse-trace/datatagr/pulls).
+requests](https://github.com/epiverse-trace/datatagr/pulls). Anything
+bigger than a typo fix or a small documentation update should be
+discussed in an issue first. If you want to report a bug or suggest an
+enhancement, please open an issue. 😊
+
+<details>
+<summary>
+Common issues
+</summary>
+
+To make it easier for us to evaluate your contribution, without common
+issues, please run the following commands before submitting a pull
+request:
+
+``` r
+styler::style_pkg()
+spelling::update_wordlist(pkg = ".", vignettes = TRUE)
+devtools::document()
+
+lintr::lint_package()
+
+devtools::test()
+devtools::check()
+```
+
+This will reduce the time it takes for us to review your contribution.
+Thank you! 😊
+
+</details>
 
 ### Related projects
 
 This project is related to other existing projects in R or other
 languages, but also differs from them in the following aspects:
+
+- [linelist](https://github.com/epiverse-trace/linelist): A package for
+  managing and validating linelist data - the original inspiration for
+  datatagr.
 
 ### Code of Conduct
 

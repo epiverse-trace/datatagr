@@ -92,55 +92,105 @@ None of the sections are required, feel free to remove any sections not relevant
 <div class="section level2">
 <h2 id="scope">Scope<a class="anchor" aria-label="anchor" href="#scope"></a>
 </h2>
-<p>&lt; Outline the aims of the package, potentially mention some of the
-key exported functions, and maybe how it links with other R packages. It
-is also possible to mention certain aspects that fall outside of the
-package’s scope. &gt;</p>
+<p><strong>datatagr</strong> provides generic labelling and validation
+tools. In contrast to the original versions of <strong>linelist</strong>
+(<code>&lt;=v1.1.4</code>), datatagr functions at the variable level
+instead of the object level.</p>
+<p>The validation tooling is specific to type checking variables and
+providing feedback on potential data loss or coercion. It does not aim
+to do complex validations at this time.</p>
 </div>
 <div class="section level2">
 <h2 id="naming-conventions">Naming conventions<a class="anchor" aria-label="anchor" href="#naming-conventions"></a>
 </h2>
-<p>&lt; Description of the scheme and/or conventions used for naming
-functions and arguments. This can be the use of a prefix on all exported
-functions, a name mould (“all function are named verb_object”), or any
-other naming convention that is used throughout the package. &gt;</p>
+<p>We separate functions as much as is reasonable into their own files
+under <code>R/</code>. If there are tests available for a file under
+<code>R/</code>, it follows the convention of
+<code>test-&lt;filename&gt;.R</code> under <code>tests/testthat/</code>.
+Not all source code has respective tests.</p>
+<p>We try to make function names as descriptive as possible, while
+keeping them short. This is to make the package easy to use and
+understand.</p>
 </div>
 <div class="section level2">
 <h2 id="inputoutputinteroperability">Input/Output/Interoperability<a class="anchor" aria-label="anchor" href="#inputoutputinteroperability"></a>
 </h2>
-<p>&lt; Describe the data structures (i.e. vectors,
-<code>&lt;data.frames&gt;</code> or classes) that are given as input to
-the key functions and what data structures the functions return. The
-design decisions around these I/O choices could also mention how it
-enhances interoperability with other R packages or pipelines (e.g. with
-<code>%&gt;%</code>). &gt;</p>
+<p>Any data frame object can be passed into <strong>datatagr</strong>.
+Output from datatagr remains a data frame object, with an additional
+datatagr class attribute. This means it remains interoperable with all
+the regular data frame operations one may attempt to do.</p>
+<p><strong>datatagr</strong> is interoperable with pipes (that is,
+<code>|&gt;</code> or <code>%&gt;%</code>). This allows for easy
+chaining of functions. Note that there are no guarantees that label
+attributes are preserved when piping or wrangling in another way. For
+example, <strong>dplyr</strong> drops variable level attributes when
+using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">dplyr::mutate()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="design-decisions">Design decisions<a class="anchor" aria-label="anchor" href="#design-decisions"></a>
 </h2>
-<p>&lt; A list of bullet points each explaining a design decision and
-its reasoning. &gt;</p>
+<ul>
+<li>
+<strong>Generic</strong>: The package is designed to be a generic
+tool for labelling and validating data. This is to ensure that the
+package can be used in a wide range of contexts and is not limited to a
+specific use case. Any specific use cases should be implemented in
+separate packages.</li>
+<li>
+<strong>Local</strong>: We keep functions as local as possible. This
+means operations should be as precise as is feasible, to be
+non-destructive and ensure changes on one variable do not unexpectedly
+affect another. This helps ensure the package is predictable and easy to
+use + maintain.</li>
+<li>
+<strong>Minimize number of functions</strong>: We aim to keep the
+number of functions in the package to a minimum. This helps usability
+and maintainability.</li>
+<li>
+<strong>Base R</strong>: We aim to use base R functions where
+possible. This is to ensure that the package is lightweight and does not
+have many dependencies. This is for example why we do not use
+<strong>labelled</strong> as the labelling package.</li>
+</ul>
+<p>If you feel like we did not uphold one of these design decisions,
+please let us know 😊</p>
+<div class="section level3">
+<h3 id="quirks">Quirks<a class="anchor" aria-label="anchor" href="#quirks"></a>
+</h3>
+<p>Any package development has quirks. We outline quirks we are aware of
+here:</p>
+<ul>
+<li>Currently, emptying labels leads to setting them to <code>""</code>
+(empty character strings). Preferably we would end up setting them to
+<code>NULL</code> in the end.</li>
+</ul>
+</div>
 </div>
 <div class="section level2">
 <h2 id="dependencies">Dependencies<a class="anchor" aria-label="anchor" href="#dependencies"></a>
 </h2>
-<p>&lt; A list of dependencies used by the package with some explanation
-as to why they are required. Not all dependencies need to be explained
-and it is best to explain the key dependencies. It can be used to give
-context to why certain dependencies are used (e.g. “This package is
-expected to be used in tidyverse pipelines and as such, we consider
-these tidyverse packages good dependencies that will already be
-installed on a user’s computer.”). This section can also mention
-dependencies that are planned to be removed or added in future
-development. Suggested dependencies do not need to be explained unless
-they are unusual and may surprise developers with their inclusion.
-&gt;</p>
+<ul>
+<li>
+<strong>checkmate</strong> - provide assertions for function
+arguments</li>
+<li>
+<strong>lifecycle</strong> - help manage function lifecycle</li>
+<li>
+<strong>rlang</strong> - <code>...</code> to list parsing</li>
+<li>
+<strong>tidyselect</strong> - ensure we can use pipes in
+<code><a href="../reference/has_label.html">has_label()</a></code>
+</li>
+</ul>
 </div>
 <div class="section level2">
 <h2 id="development-journey">Development journey<a class="anchor" aria-label="anchor" href="#development-journey"></a>
 </h2>
-<p>&lt; If the package has undergone any large refactoring this section
-can be used to explain the changes. &gt;</p>
+<p>The <strong>datatagr</strong> package is a major refactor of
+<strong>linelist</strong> <code>v1.1.4</code>. The refactor was
+necessary to make the package more generic and to make the codebase more
+maintainable. The refactor was completed in a series of steps documented
+in <a href="https://github.com/epiverse-trace/datatagr/pull/37" class="external-link">#37</a>.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

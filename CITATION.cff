@@ -7,12 +7,12 @@ cff-version: 1.2.0
 message: 'To cite package "datatagr" in publications use:'
 type: software
 license: MIT
-title: 'datatagr: Generic Data Tagging and Validating'
+title: 'datatagr: Generic Data Labelling and Validating'
 version: 0.0.1
-abstract: Provides tools to help tag and validate data according to user-specified
-  rules. The 'datatagr' class adds a custom tagging system to classical 'data.frame'
-  objects to identify key data. Once tagged, these variables can be seamlessly used
-  in downstream analyses, making data pipelines more robust and reliable.
+abstract: Provides tools to help label and validate data according to user-specified
+  rules. The 'datatagr' class adds variable level attributes to 'data.frame' columns.
+  Once labelled, these variables can be seamlessly used in downstream analyses, making
+  data pipelines clearer, more robust, and more reliable.
 authors:
 - family-names: Hartgerink
   given-names: Chris

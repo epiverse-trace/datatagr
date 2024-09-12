@@ -8,7 +8,7 @@
 \description{
 The \emph{datatagr} package provides tools to help label and validate data. The
 'datatagr' class adds variable level attributes to 'data.frame' columns.
-Once tagged, these variables can be seamlessly used in downstream analyses,
+Once labelled, these variables can be seamlessly used in downstream analyses,
 making data pipelines more robust and reliable.
 }
 \note{

@@ -24,24 +24,44 @@ None of the sections are required, feel free to remove any sections not relevant
 
 ## Scope
 
-< Outline the aims of the package, potentially mention some of the key exported functions, and maybe how it links with other R packages. It is also possible to mention certain aspects that fall outside of the package's scope. >
+**datatagr** provides generic labelling and validation tools. In contrast to the original versions of **linelist** (`<=v1.1.4`), datatagr functions at the variable level instead of the object level. 
+
+The validation tooling is specific to type checking variables and providing feedback on potential data loss or coercion. It does not aim to do complex validations at this time.
 
 ## Naming conventions
 
-< Description of the scheme and/or conventions used for naming functions and arguments. This can be the use of a prefix on all exported functions, a name mould ("all function are named verb_object"), or any other naming convention that is used throughout the package. >
+We separate functions as much as is reasonable into their own files under `R/`. If there are tests available for a file under `R/`, it follows the convention of `test-<filename>.R` under `tests/testthat/`. Not all source code has respective tests. 
+
+We try to make function names as descriptive as possible, while keeping them short. This is to make the package easy to use and understand.
 
 ## Input/Output/Interoperability
 
-< Describe the data structures (i.e. vectors, `<data.frames>` or classes) that are given as input to the key functions and what data structures the functions return. The design decisions around these I/O choices could also mention how it enhances interoperability with other R packages or pipelines (e.g. with `%>%`). >
+Any data frame object can be passed into **datatagr**. Output from datatagr remains a data frame object, with an additional datatagr class attribute. This means it remains interoperable with all the regular data frame operations one may attempt to do. 
+
+**datatagr** is interoperable with pipes (that is, `|>` or `%>%`). This allows for easy chaining of functions. Note that there are no guarantees that label attributes are preserved when piping or wrangling in another way. For example, **dplyr** drops variable level attributes when using `dplyr::mutate()`.
 
 ## Design decisions
 
-< A list of bullet points each explaining a design decision and its reasoning. >
+* **Generic**: The package is designed to be a generic tool for labelling and validating data. This is to ensure that the package can be used in a wide range of contexts and is not limited to a specific use case. Any specific use cases should be implemented in separate packages.
+* **Local**: We keep functions as local as possible. This means operations should be as precise as is feasible, to be non-destructive and ensure changes on one variable do not unexpectedly affect another. This helps ensure the package is predictable and easy to use + maintain.
+* **Minimize number of functions**: We aim to keep the number of functions in the package to a minimum. This helps usability and maintainability.
+* **Base R**: We aim to use base R functions where possible. This is to ensure that the package is lightweight and does not have many dependencies. This is for example why we do not use **labelled** as the labelling package.
+
+If you feel like we did not uphold one of these design decisions, please let us know 😊
+
+### Quirks
+
+Any package development has quirks. We outline quirks we are aware of here:
+
+* Currently, emptying labels leads to setting them to `""` (empty character strings). Preferably we would end up setting them to `NULL` in the end.
 
 ## Dependencies
 
-< A list of dependencies used by the package with some explanation as to why they are required. Not all dependencies need to be explained and it is best to explain the key dependencies. It can be used to give context to why certain dependencies are used (e.g. "This package is expected to be used in tidyverse pipelines and as such, we consider these tidyverse packages good dependencies that will already be installed on a user's computer."). This section can also mention dependencies that are planned to be removed or added in future development. Suggested dependencies do not need to be explained unless they are unusual and may surprise developers with their inclusion. >
+* **checkmate** - provide assertions for function arguments
+* **lifecycle** - help manage function lifecycle
+* **rlang** - `...` to list parsing
+* **tidyselect** - ensure we can use pipes in `has_label()`
 
 ## Development journey
 
-< If the package has undergone any large refactoring this section can be used to explain the changes. >
+The **datatagr** package is a major refactor of **linelist** `v1.1.4`. The refactor was necessary to make the package more generic and to make the codebase more maintainable. The refactor was completed in a series of steps documented in [#37](https://github.com/epiverse-trace/datatagr/pull/37).

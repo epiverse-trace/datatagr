@@ -7,4 +7,5 @@ Unlabeled
 dplyr
 lifecycle
 linelist
-tidyverse
+rlang
+tidyselect

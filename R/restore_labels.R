@@ -17,8 +17,6 @@
 #'
 #' @noRd
 #'
-#' @seealso [prune_labels()] for removing labels which have lost their variables
-#'
 #' @return The function returns a `datatagr` object with updated labels.
 #'
 

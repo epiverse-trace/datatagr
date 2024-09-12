@@ -6,7 +6,8 @@
 #'   requested labels
 #'
 #' @note Using this in a pipeline results in a 'datatagr' object, but does not
-#'   maintain the variable labels at this time.
+#'   maintain the variable labels at this time. It is primarily useful to make
+#'   your pipelines human readable.
 #'
 #' @export
 #'

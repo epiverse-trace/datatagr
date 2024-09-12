@@ -10,7 +10,7 @@
 #'
 #' @noRd
 #'
-#' @return The function returns the same object without the `datatagr` class.
+#' @return The function returns the object without the `datatagr` class.
 #'
 drop_datatagr <- function(x, remove_labels = TRUE) {
   classes <- class(x)

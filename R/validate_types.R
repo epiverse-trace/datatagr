@@ -57,7 +57,7 @@ validate_types <- function(x, ...) {
 
   if (!all(has_correct_types)) {
     stop(
-      "Some tags have the wrong class:\n",
+      "Some labels have the wrong class:\n",
       sprintf(
         "  - %s: %s\n",
         vars_to_check[!has_correct_types],

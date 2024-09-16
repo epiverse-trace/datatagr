@@ -33,15 +33,15 @@
 #' ## print result - just first few entries
 #' head(x)
 #'
-#' ## check tags
+#' ## check labels
 #' labels(x)
 #'
-#' ## Tags can also be passed as a list with the splice operator (!!!)
-#' my_tags <- list(
+#' ## Labels can also be passed as a list with the splice operator (!!!)
+#' my_labels <- list(
 #'   speed = "Miles per hour",
 #'   dist = "Distance in miles"
 #' )
-#' new_x <- make_datatagr(cars, !!!my_tags)
+#' new_x <- make_datatagr(cars, !!!my_labels)
 #'
 #' ## The output is strictly equivalent to the previous one
 #' identical(x, new_x)

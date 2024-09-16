@@ -7,8 +7,8 @@
 \title{Base Tools for Labelling and Validating Data}
 \description{
 The \emph{datatagr} package provides tools to help label and validate data. The
-'datatagr' class adds variable level attributes to 'data.frame' columns.
-Once labelled, these variables can be seamlessly used in downstream analyses,
+'datatagr' class adds column level attributes to a 'data.frame'.
+Once labelled, variables can be seamlessly used in downstream analyses,
 making data pipelines more robust and reliable.
 }
 \note{
@@ -25,7 +25,7 @@ not preserve labels. We only provide compatibility for \code{\link[dplyr:rename]
 \item \code{\link[=labels]{labels()}}: to get the list of labels of a \code{datatagr}
 \item \code{\link[=labels_df]{labels_df()}}: to get a \code{data.frame} of all tagged variables
 \item \code{\link[=lost_labels_action]{lost_labels_action()}}: to change the behaviour of actions where labelled
-variables are lost (e.g. removing columns storing labelled variables) to
+variables are lost (e.g removing columns storing labelled variables) to
 issue warnings, errors, or do nothing
 \item \code{\link[=get_lost_labels_action]{get_lost_labels_action()}}: to check the current behaviour of actions
 where labelled variables are lost

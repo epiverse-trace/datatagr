@@ -10,7 +10,7 @@
 #'
 #' @return If checks pass, a `datatagr` object; otherwise issues an error.
 #'
-#' @seealso [validate_types()] to check if tagged variables have
+#' @seealso [validate_types()] to check if labelled variables have
 #'   the right classes
 #'
 #' @examples
@@ -37,7 +37,7 @@ validate_labels <- function(x) {
 
   if (is.null(unlist(x_labels))) stop("`x` has no labels")
 
-  # check that x is a list, and each tag is a `character`
+  # check that x is a list, and each label is a `character`
   checkmate::assert_list(x_labels, types = c("character", "null"))
 
   x

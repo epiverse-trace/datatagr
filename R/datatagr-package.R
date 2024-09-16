@@ -1,8 +1,8 @@
 #' Base Tools for Labelling and Validating Data
 #'
 #' The *datatagr* package provides tools to help label and validate data. The
-#' 'datatagr' class adds variable level attributes to 'data.frame' columns.
-#' Once labelled, these variables can be seamlessly used in downstream analyses,
+#' 'datatagr' class adds column level attributes to a 'data.frame'.
+#' Once labelled, variables can be seamlessly used in downstream analyses,
 #' making data pipelines more robust and reliable.
 #'
 #' @aliases datatagr
@@ -19,7 +19,7 @@
 #'   * [labels_df()]: to get a `data.frame` of all tagged variables
 #'
 #'   * [lost_labels_action()]: to change the behaviour of actions where labelled
-#'   variables are lost (e.g. removing columns storing labelled variables) to
+#'   variables are lost (e.g removing columns storing labelled variables) to
 #'   issue warnings, errors, or do nothing
 #'
 #'   * [get_lost_labels_action()]: to check the current behaviour of actions

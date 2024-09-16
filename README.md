@@ -55,7 +55,7 @@ validate_datatagr(x,
 
 ### Lifecycle
 
-This package is currently a *experimental*, as defined by the [RECON
+This package is currently *experimental*, as defined by the [RECON
 software lifecycle](https://www.reconverse.org/lifecycle.html). This
 means that essential features and mechanisms are still being developed,
 and the package is not ready for use outside of the development team.
@@ -66,16 +66,18 @@ Contributions are welcome via [pull
 requests](https://github.com/epiverse-trace/datatagr/pulls). Anything
 bigger than a typo fix or a small documentation update should be
 discussed in an issue first. If you want to report a bug or suggest an
-enhancement, please open an issue. 😊
+enhancement, please open an issue. 😊 See also [the general Epiverse
+TRACE contribution
+document](https://github.com/epiverse-trace/.github/blob/main/CONTRIBUTING.md).
 
 <details>
 <summary>
 Common issues
 </summary>
 
-To make it easier for us to evaluate your contribution, without common
-issues, please run the following commands before submitting a pull
-request:
+To make it easier for us to evaluate your contribution, please run the
+following commands before submitting a pull request to ensure your code
+is consistent with the rest of the package:
 
 ``` r
 styler::style_pkg()

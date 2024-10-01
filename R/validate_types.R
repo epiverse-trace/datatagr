@@ -37,8 +37,7 @@
 validate_types <- function(x, ...) {
   checkmate::assert_class(x, "datatagr")
   types <- rlang::list2(...)
-  checkmate::assert_list(types, min.len = 1)
-  checkmate::assert_list(types, types = "character")
+  checkmate::assert_list(types, min.len = 1, types = "character")
 
   vars_to_check <- intersect(names(x), names(types))
 

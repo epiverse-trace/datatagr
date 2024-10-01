@@ -76,8 +76,8 @@ To make it easier for us to evaluate your contribution, please run the following
 
 ```r
 styler::style_pkg()
-spelling::update_wordlist(pkg = ".", vignettes = TRUE)
 devtools::document()
+spelling::update_wordlist(pkg = ".", vignettes = TRUE)
 
 lintr::lint_package()
 

@@ -54,7 +54,9 @@
     49    24  120
     50    25   85
     
-    labels: speed-Miles per hour, dist-Distance in miles 
+    labelled variables:
+     speed - Miles per hour
+     dist - Distance in miles 
 
 ---
 
@@ -112,5 +114,5 @@
     49    24  120
     50    25   85
     
-    labels: [no labelled variables] 
+    [no labelled variables]
 

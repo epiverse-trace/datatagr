@@ -14,7 +14,7 @@ test_that("tests for [ operator", {
   expect_error(x[, 1], msg)
 
   lost_labels_action("warning", quiet = TRUE)
-  msg <- "The following labelled variables are lost:\n speed - Miles per hour, dist - Distance in miles"
+  msg <- "The following labelled variables are lost:\n speed - Miles per hour\n dist - Distance in miles"
   expect_warning(x[, NULL], msg)
 
   # functionalities

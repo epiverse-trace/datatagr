@@ -38,12 +38,13 @@ print.datatagr <- function(x, ...) {
   label_names <- names(label_values)
 
   # Construct the labels_txt string from the filtered pairs
-  labels_txt <- paste(label_names, label_values, sep = " - ", collapse = ", ")
+  labels_txt <- vars_labels(label_names, label_values)
 
   if (labels_txt == "") {
-    labels_txt <- "[no labelled variables]"
+    cat("\n[no labelled variables]\n")
+  } else {
+    cat("\nlabelled variables:\n", labels_txt, "\n")
   }
-  cat("\nlabels:", labels_txt, "\n")
 
   invisible(x)
 }

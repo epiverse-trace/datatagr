@@ -122,5 +122,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Chris Hartgerink \email{chris@data.org} (\href{https://orcid.org/0000-0003-1050-6809}{ORCID})
 
+Other contributors:
+\itemize{
+  \item Hugo Gruson \email{hugo@data.org} (\href{https://orcid.org/0000-0002-4094-1476}{ORCID}) [reviewer]
+}
+
 }
 \keyword{internal}

@@ -6,7 +6,7 @@
 \alias{datatagr}
 \title{Base Tools for Labelling and Validating Data}
 \description{
-The \emph{datatagr} package provides tools to help label and validate data. The
+The \pkg{datatagr} package provides tools to help label and validate data. The
 'datatagr' class adds column level attributes to a 'data.frame'.
 Once labelled, variables can be seamlessly used in downstream analyses,
 making data pipelines more robust and reliable.

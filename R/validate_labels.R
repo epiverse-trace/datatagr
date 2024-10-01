@@ -37,7 +37,7 @@ validate_labels <- function(x) {
 
   if (is.null(unlist(x_labels))) stop("`x` has no labels")
 
-  # check that x is a list, and each label is a `character`
+  # check that x_labels is a list, and each label is a `character`
   checkmate::assert_list(x_labels, types = c("character", "null"))
 
   x

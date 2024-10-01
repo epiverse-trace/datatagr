@@ -81,8 +81,8 @@ is consistent with the rest of the package:
 
 ``` r
 styler::style_pkg()
-spelling::update_wordlist(pkg = ".", vignettes = TRUE)
 devtools::document()
+spelling::update_wordlist(pkg = ".", vignettes = TRUE)
 
 lintr::lint_package()
 
@@ -100,6 +100,9 @@ Thank you! 😊
 This project is related to other existing projects in R or other
 languages, but also differs from them in the following aspects:
 
+- [labelled](https://github.com/larmarange/labelled/): A package for
+  labelling data in R, but it is more focused on labelling variables
+  than validating them.
 - [linelist](https://github.com/epiverse-trace/linelist): A package for
   managing and validating linelist data - the original inspiration for
   datatagr.

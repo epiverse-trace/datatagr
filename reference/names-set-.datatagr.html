@@ -26,7 +26,8 @@ variable names)."><meta property="og:image" content="https://epiverse-trace.gith
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/design-principles.html">Design Principles for {datatagr}</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/compat-dplyr.html">Compatibility with dplyr</a></li>
+    <li><a class="dropdown-item" href="../articles/design-principles.html">Design Principles for {datatagr}</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -96,7 +97,9 @@ variable names).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     8   16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     9   10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> labels: speed-Miles per hour, dist-Distance in miles </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> labelled variables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  speed - Miles per hour</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  dist - Distance in miles </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## change names</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"mph"</span></span></span>
@@ -113,7 +116,9 @@ variable names).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5   8   16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6   9   10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> labels: mph-Miles per hour, dist-Distance in miles </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> labelled variables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  mph - Miles per hour</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  dist - Distance in miles </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># This also works with using `dplyr::rename()` because it uses names&lt;-()</span></span></span>
 <span class="r-in"><span><span class="co"># under the hood</span></span></span>
@@ -140,7 +145,7 @@ variable names).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
 </div>
 
     </footer></div>

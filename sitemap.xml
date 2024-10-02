@@ -2,6 +2,7 @@
 <url><loc>https://epiverse-trace.github.io/datatagr/404.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/datatagr/LICENSE-text.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/datatagr/LICENSE.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/datatagr/articles/compat-dplyr.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/datatagr/articles/design-principles.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/datatagr/articles/index.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/datatagr/authors.html</loc></url>
@@ -23,5 +24,6 @@
 <url><loc>https://epiverse-trace.github.io/datatagr/reference/validate_datatagr.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/datatagr/reference/validate_labels.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/datatagr/reference/validate_types.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/datatagr/reference/vars_labels.html</loc></url>
 </urlset>
 

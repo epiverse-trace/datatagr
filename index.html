@@ -43,7 +43,8 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/design-principles.html">Design Principles for {datatagr}</a></li>
+<li><a class="dropdown-item" href="articles/compat-dplyr.html">Compatibility with dplyr</a></li>
+    <li><a class="dropdown-item" href="articles/design-principles.html">Design Principles for {datatagr}</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
@@ -119,8 +120,8 @@ Common issues
 </summary><p>To make it easier for us to evaluate your contribution, please run the following commands before submitting a pull request to ensure your code is consistent with the rest of the package:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">styler</span><span class="fu">::</span><span class="fu">style_pkg</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">spelling</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/spelling/reference/wordlist.html" class="external-link">update_wordlist</a></span><span class="op">(</span>pkg <span class="op">=</span> <span class="st">"."</span>, vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">spelling</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/spelling/reference/wordlist.html" class="external-link">update_wordlist</a></span><span class="op">(</span>pkg <span class="op">=</span> <span class="st">"."</span>, vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">lintr</span><span class="fu">::</span><span class="fu">lint_package</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -134,6 +135,8 @@ Common issues
 </h3>
 <p>This project is related to other existing projects in R or other languages, but also differs from them in the following aspects:</p>
 <ul>
+<li>
+<a href="https://github.com/larmarange/labelled/" class="external-link">labelled</a>: A package for labelling data in R, but it is more focused on labelling variables than validating them.</li>
 <li>
 <a href="https://github.com/epiverse-trace/linelist" class="external-link">linelist</a>: A package for managing and validating linelist data - the original inspiration for datatagr.</li>
 </ul>
@@ -182,7 +185,8 @@ Common issues
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Chris Hartgerink <br><small class="roles"> Maintainer </small> <a href="https://orcid.org/0000-0003-1050-6809" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Chris Hartgerink <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0003-1050-6809" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
@@ -205,7 +209,7 @@ Common issues
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
 </div>
 
     </footer>

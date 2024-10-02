@@ -1,0 +1,220 @@
+---
+title: "Compatibility with dplyr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Compatibility with dplyr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+**datatagr** philosophy is to prevent you from accidentally losing valuable data, but to otherwise be totally transparent and not to interfere with your workflow.
+
+One popular ecosystem for data science workflow is the **tidyverse**. We try to ensure decent datatagr compatibility with the tidyverse. All dplyr verbs are tested in the `tests/test-compat-dplyr.R` file.
+
+```{r}
+library(datatagr)
+library(dplyr)
+
+x <- make_datatagr(
+  cars,
+  speed = "Miles per hour",
+  dist = "Distance in miles"
+)
+
+head(x)
+```
+
+## Verbs operating on rows
+
+datatagr does not modify anything regarding the behaviour for row-operations. As such, it is fully compatible with dplyr verbs operating on rows out-of-the-box.
+You can see in the following examples that datatagr does not produce any errors, warnings or messspeeds and its labels are conserved through dplyr operations on rows.
+
+### `dplyr::arrange()` ✅
+
+```{r}
+x %>%
+  arrange(speed) %>%
+  head()
+```
+
+### `dplyr:distinct()` ✅
+
+```{r}
+x %>%
+  distinct() %>%
+  head()
+```
+
+### `dplyr::filter()` ✅
+
+```{r}
+x %>%
+  filter(speed >= 50) %>%
+  head()
+```
+
+### `dplyr::slice()` ✅
+
+```{r}
+x %>%
+  slice(5:10)
+
+x %>%
+  slice_head(n = 5)
+
+x %>%
+  slice_tail(n = 5)
+
+x %>%
+  slice_min(speed, n = 3)
+
+x %>%
+  slice_max(speed, n = 3)
+
+x %>%
+  slice_sample(n = 5)
+```
+
+## Verbs operating on columns
+
+During operations on columns, datatagr will:
+
+- stay invisible and conserve labels if no labelled column is affected by the operation
+- trigger `lost_labels_action()` if labelled columns are affected by the operation
+
+### `dplyr::mutate()` ✓ (partial)
+
+There is an incomplete compatibility with `dplyr::mutate()` in that simple renames without any actual modification of the column don't update the labels. In this scenario, users should rather use `dplyr::rename()`
+
+Although `dplyr::mutate()` is not able to leverspeed to full power of datatagr labels, datatagr objects behave as expected the same way a data.frame would:
+
+```{r}
+# In place modification doesn't lose labels
+x %>%
+  mutate(speed = speed + 10) %>%
+  head()
+
+# New columns don't affect existing labels
+x %>%
+  mutate(ticket = speed >= 50) %>%
+  head()
+
+# .keep = "unused" generate expected tag loss conditions
+x %>%
+  mutate(edad = speed, .keep = "unused") %>%
+  head()
+```
+
+### `dplyr::pull()` ✅
+
+`dplyr::pull()` returns a vector, which results, as expected, in the loss of the datatagr class and labels:
+
+```{r}
+x %>%
+  pull(speed)
+```
+
+### `dplyr::relocate()` ✅
+
+```{r}
+x %>%
+  relocate(speed, .before = 1) %>%
+  head()
+```
+
+
+### `dplyr::rename()` & `dplyr::rename_with()` ✅
+
+`dplyr::rename()` is fully compatible out-of-the-box with datatagr, meaning that labels will be updated at the same time that columns are renamed. This is possibly because it uses `names<-()` under the hood, which datatagr provides a custom `names<-.datatagr()` method for:
+
+```{r}
+x %>%
+  rename(edad = speed) %>%
+  head()
+
+x %>%
+  rename_with(toupper) %>%
+  head()
+```
+
+### `dplyr::select()` ✅
+
+`dplyr::select()` is fully compatible with datatagr, including when columns are renamed in a `select()`:
+
+```{r}
+# Works fine
+x %>%
+  select(speed, dist) %>%
+  head()
+
+# labels are updated!
+x %>%
+  select(dist, edad = speed) %>%
+  head()
+```
+
+## Verbs operating on groups ✘
+
+Groups are not yet supported. Applying any verb operating on group to a datatagr will silently convert it back to a data.frame or tibble.
+
+## Verbs operating on data.frames
+
+### `dplyr::bind_rows()` ✅
+
+```{r}
+dim(x)
+
+dim(bind_rows(x, x))
+```
+
+### `dplyr::bind_cols()` ✘
+
+`bind_cols()` is currently incompatible with datatagr:
+
+- labels from the second element are lost
+- Warnings are produced about lost labels, even for labels that are not actually lost
+
+```{r}
+bind_cols(
+  suppressWarnings(select(x, speed)),
+  suppressWarnings(select(x, dist))
+) %>%
+  head()
+```
+
+### Joins ✘
+
+Joins are currently not compatible with datatagr as labels from the second element are silently dropped.
+
+```{r}
+full_join(
+  suppressWarnings(select(x, speed, dist)),
+  suppressWarnings(select(x, dist, speed))
+) %>%
+  head()
+```
+
+## Verbs operating on multiple columns
+
+### `dplyr::pick()` ✘
+
+`pick()` makes tidyselect functions work in usually tidyselect-incompatible functions, such as:
+
+```{r}
+x %>%
+  dplyr::arrange(dplyr::pick(ends_with("loc"))) %>%
+  head()
+```
+
+As such, we could expect it to work with datatagr custom tidyselect-like function: `has_label()` but it's not the case since `pick()` currently strips out all attributes, including the `datatagr` class and all labels.
+This unclassing is documented in `?pick`:
+
+> `pick()` returns a data frame containing the selected columns for the current group.
+

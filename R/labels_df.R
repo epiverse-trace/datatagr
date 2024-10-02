@@ -25,10 +25,8 @@ labels_df <- function(x) {
   labels <- unlist(labels(x))
   out <- drop_datatagr(x)
 
-  # Find the intersection of names(out) and names(labels)
-  common_names <- intersect(names(out), names(labels))
   # Replace the names of out that are in intersection with corresponding labels
-  names(out)[match(common_names, names(out))] <- labels[common_names]
+  names(out)[match(names(labels), names(out))] <- labels[names(labels)]
 
   out
 }

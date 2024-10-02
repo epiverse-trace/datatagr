@@ -1,7 +1,7 @@
 #' Base Tools for Labelling and Validating Data
 #'
-#' The \pkg{datatagr} package provides tools to help label and validate data. The
-#' 'datatagr' class adds column level attributes to a 'data.frame'.
+#' The \pkg{datatagr} package provides tools to help label and validate data.
+#' The 'datatagr' class adds column level attributes to a 'data.frame'.
 #' Once labelled, variables can be seamlessly used in downstream analyses,
 #' making data pipelines more robust and reliable.
 #'

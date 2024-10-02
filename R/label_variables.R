@@ -39,6 +39,10 @@ label_variables <- function(x, labels) {
   for (name in names(labels)) {
     label_value <- unlist(labels[names(labels) == name])
 
+    # We use the `label` attribute to store the label
+    # We use `ifelse` to handle the case where the label is set to `NULL`
+    # This is because `as.character(NULL)` returns `character(0)`
+    # attr(x[[name]], "label") <- NULL does not have the desired result
     attr(x[[name]], "label") <- ifelse(is.null(label_value),
       "",
       as.character(label_value)

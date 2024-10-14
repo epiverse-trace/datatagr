@@ -1,7 +1,7 @@
 test_that("tests for restore_labels", {
   # These are now order dependent for the tests
-  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
-  y <- drop_datatagr(x)
+  x <- make_safeframe(cars, speed = "Miles per hour", dist = "Distance in miles")
+  y <- drop_safeframe(x)
   z <- y
   names(z) <- c("titi", "toto")
 
@@ -16,13 +16,13 @@ test_that("tests for restore_labels", {
   expect_identical(x, restore_labels(y, labels(x)))
 
   # Classes are correct for different operator use
-  expect_equal(class(x), c("datatagr", "data.frame"))
+  expect_equal(class(x), c("safeframe", "data.frame"))
   y <- restore_labels(y, labels(x))
-  expect_equal(class(y), c("datatagr", "data.frame"))
+  expect_equal(class(y), c("safeframe", "data.frame"))
   x[[1]] <- "test"
-  expect_equal(class(x), c("datatagr", "data.frame"))
+  expect_equal(class(x), c("safeframe", "data.frame"))
   x[1] <- "test2"
-  expect_equal(class(x), c("datatagr", "data.frame"))
+  expect_equal(class(x), c("safeframe", "data.frame"))
   x$speed <- "test3"
-  expect_equal(class(x), c("datatagr", "data.frame"))
+  expect_equal(class(x), c("safeframe", "data.frame"))
 })

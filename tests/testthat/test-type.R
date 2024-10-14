@@ -20,7 +20,7 @@ test_that("type() returns all options as expected", {
 })
 
 test_that("type() works nicely when combined with validate_types()", {
-  x <- make_datatagr(cars,
+  x <- make_safeframe(cars,
     speed = "Miles per hour",
     dist = "Distance in miles"
   )

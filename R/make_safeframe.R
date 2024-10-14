@@ -1,8 +1,8 @@
-#' Create a datatagr from a data.frame
+#' Create a safeframe from a data.frame
 #'
-#' This function converts a `data.frame` or a `tibble` into a `datatagr` object,
-#' where data are labelled and validated. The output will seem to be the same
-#' `data.frame`, but `datatagr`-aware packages will then be able to
+#' This function converts a `data.frame` or a `tibble` into a `safeframe`
+#' object, where data are labelled and validated. The output will seem to be the
+#' same `data.frame`, but `safeframe`-aware packages will then be able to
 #' automatically use labelled fields for further data cleaning and analysis.
 #'
 #' @param x a `data.frame` or a `tibble`
@@ -14,18 +14,18 @@
 #'
 #' @seealso
 #'
-#' * An overview of the [datatagr] package
-#' * [labels()]: for a list of labelled variables in a `datatagr`
+#' * An overview of the [safeframe] package
+#' * [labels()]: for a list of labelled variables in a `safeframe`
 #' * [set_labels()]: for modifying labels
 #' * [labels_df()]: for selecting variables by labels
 #'
 #' @export
 #'
-#' @return The function returns a `datatagr` object.
+#' @return The function returns a `safeframe` object.
 #'
 #' @examples
 #'
-#' x <- make_datatagr(cars,
+#' x <- make_safeframe(cars,
 #'   speed = "Miles per hour",
 #'   dist = "Distance in miles"
 #' )
@@ -41,13 +41,13 @@
 #'   speed = "Miles per hour",
 #'   dist = "Distance in miles"
 #' )
-#' new_x <- make_datatagr(cars, !!!my_labels)
+#' new_x <- make_safeframe(cars, !!!my_labels)
 #'
 #' ## The output is strictly equivalent to the previous one
 #' identical(x, new_x)
 #'
-make_datatagr <- function(x,
-                          ...) {
+make_safeframe <- function(x,
+                           ...) {
   # assert inputs
   checkmate::assert_data_frame(x, min.cols = 1)
   assert_not_data_table(x)
@@ -56,6 +56,6 @@ make_datatagr <- function(x,
   x <- label_variables(x, labels)
 
   # shape output and return object
-  class(x) <- c("datatagr", class(x))
+  class(x) <- c("safeframe", class(x))
   x
 }

@@ -1,20 +1,20 @@
 #' Base Tools for Labelling and Validating Data
 #'
-#' The \pkg{datatagr} package provides tools to help label and validate data.
-#' The 'datatagr' class adds column level attributes to a 'data.frame'.
+#' The \pkg{safeframe} package provides tools to help label and validate data.
+#' The 'safeframe' class adds column level attributes to a 'data.frame'.
 #' Once labelled, variables can be seamlessly used in downstream analyses,
 #' making data pipelines more robust and reliable.
 #'
-#' @aliases datatagr
+#' @aliases safeframe
 #'
 #' @section Main functions:
 #'
-#'   * [make_datatagr()]: to create `datatagr` objects from a `data.frame` or a
-#'   `tibble`
+#'   * [make_safeframe()]: to create `safeframe` objects from a `data.frame` or
+#'   a `tibble`
 #'
-#'   * [set_labels()]: to change or add labelled variables in a `datatagr`
+#'   * [set_labels()]: to change or add labelled variables in a `safeframe`
 #'
-#'   * [labels()]: to get the list of labels of a `datatagr`
+#'   * [labels()]: to get the list of labels of a `safeframe`
 #'
 #'   * [labels_df()]: to get a `data.frame` of all tagged variables
 #'
@@ -28,17 +28,17 @@
 #' @section Dedicated methods:
 #'
 #'   Specific methods commonly used to handle `data.frame` are provided for
-#'   `datatagr` objects, typically to help flag or prevent actions which could
+#'   `safeframe` objects, typically to help flag or prevent actions which could
 #'   alter or lose labelled variables (and may thus break downstream data
 #'   pipelines).
 #'
 #'   * `names() <-` (and related functions, such as [dplyr::rename()]) will
 #'   rename labels as needed
 #'
-#'   * `x[...] <-` and `x[[...]] <-` (see [sub_datatagr]): will adopt the
+#'   * `x[...] <-` and `x[[...]] <-` (see [sub_safeframe]): will adopt the
 #'    desired behaviour when labelled variables are lost
 #'
-#'   * `print()`: prints info about the `datatagr` in addition to the
+#'   * `print()`: prints info about the `safeframe` in addition to the
 #'   `data.frame` or `tibble`
 #'
 #' @note The package does not aim to have complete integration with \pkg{dplyr}
@@ -48,7 +48,7 @@
 #' @examples
 #'
 #' # using base R style
-#' x <- make_datatagr(cars[1:50, ],
+#' x <- make_safeframe(cars[1:50, ],
 #'   speed = "Miles per hour",
 #'   dist = "Distance in miles"
 #' )
@@ -77,13 +77,13 @@
 #'
 #' # using tidyverse style
 #'
-#' ## example of creating a datatagr, adding a new variable, and adding a label
+#' ## example of creating a safeframe, adding a new variable, and adding a label
 #' ## for it
 #'
 #' if (require(dplyr) && require(magrittr)) {
 #'   x <- cars %>%
 #'     tibble() %>%
-#'     make_datatagr(
+#'     make_safeframe(
 #'       speed = "Miles per hour",
 #'       dist = "Distance in miles"
 #'     ) %>%

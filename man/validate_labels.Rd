@@ -2,36 +2,36 @@
 % Please edit documentation in R/validate_labels.R
 \name{validate_labels}
 \alias{validate_labels}
-\title{Checks the labels of a datatagr object}
+\title{Checks the labels of a safeframe object}
 \usage{
 validate_labels(x)
 }
 \arguments{
-\item{x}{a \code{datatagr} object}
+\item{x}{a \code{safeframe} object}
 }
 \value{
-If checks pass, a \code{datatagr} object; otherwise issues an error.
+If checks pass, a \code{safeframe} object; otherwise issues an error.
 }
 \description{
-This function evaluates the validity of the labels of a \code{datatagr} object by
+This function evaluates the validity of the labels of a \code{safeframe} object by
 checking that: i) labels are present ii) labels is a \code{list} of \code{character} or
 \code{NULL} values.
 }
 \examples{
-## create a valid datatagr
+## create a valid safeframe
 x <- cars |>
-  make_datatagr(
+  make_safeframe(
     speed = "Miles per hour",
     dist = "Distance in miles"
   )
 x
 
-## the below issues an error as datatagr doesn't know any defaults
+## the below issues an error as safeframe doesn't know any defaults
 ## note: tryCatch is only used to avoid a genuine error in the example
-tryCatch(validate_datatagr(x), error = paste)
+tryCatch(validate_safeframe(x), error = paste)
 
 ## validation requires you to specify the types directly
-validate_datatagr(x,
+validate_safeframe(x,
   speed = c("integer", "numeric"),
   dist = "numeric"
 )

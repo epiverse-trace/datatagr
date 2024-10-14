@@ -17,13 +17,13 @@ requested labels
 A selector function to use in \pkg{tidyverse} functions
 }
 \note{
-Using this in a pipeline results in a 'datatagr' object, but does not
+Using this in a pipeline results in a 'safeframe' object, but does not
 maintain the variable labels at this time. It is primarily useful to make
 your pipelines human readable.
 }
 \examples{
-## create datatagr
-x <- make_datatagr(cars,
+## create safeframe
+x <- make_safeframe(cars,
   speed = "Miles per hour",
   dist = "Distance in miles"
 )

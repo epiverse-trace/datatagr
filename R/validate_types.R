@@ -1,12 +1,12 @@
 #' Type check variables
 #'
-#' This function checks the type of variables in a `datatagr` against
+#' This function checks the type of variables in a `safeframe` against
 #' accepted classes. Only checks the type of provided variables and ignores
 #' those not provided.
 #'
 #' @export
 #'
-#' @param x a `datatagr` object
+#' @param x a `safeframe` object
 #'
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A named list with variable
 #' names in `x` as list names and the related types as list values.
@@ -15,10 +15,10 @@
 #'
 #' @seealso
 #' * [validate_labels()] to perform a series of checks on variables
-#' * [validate_datatagr()] to combine `validate_labels` and `validate_types`
+#' * [validate_safeframe()] to combine `validate_labels` and `validate_types`
 #'
 #' @examples
-#' x <- make_datatagr(cars,
+#' x <- make_safeframe(cars,
 #'   speed = "Miles per hour",
 #'   dist = "Distance in miles"
 #' )
@@ -35,7 +35,7 @@
 #' ))
 #'
 validate_types <- function(x, ...) {
-  checkmate::assert_class(x, "datatagr")
+  checkmate::assert_class(x, "safeframe")
   types <- rlang::list2(...)
   checkmate::assert_list(types, min.len = 1, types = "character")
 

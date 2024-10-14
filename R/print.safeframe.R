@@ -1,8 +1,8 @@
-#' Printing method for datatagr objects
+#' Printing method for safeframe objects
 #'
-#' This function prints datatagr objects.
+#' This function prints safeframe objects.
 #'
-#' @param x a `datatagr` object
+#' @param x a `safeframe` object
 #'
 #' @param ... further arguments to be passed to 'print'
 #'
@@ -11,8 +11,8 @@
 #' @export
 #'
 #' @examples
-#' ## create datatagr
-#' x <- make_datatagr(cars,
+#' ## create safeframe
+#' x <- make_safeframe(cars,
 #'   speed = "Miles per hour",
 #'   dist = "Distance in miles"
 #' )
@@ -24,14 +24,14 @@
 #' if (require(tibble) && require(magrittr)) {
 #'   cars %>%
 #'     tibble() %>%
-#'     make_datatagr(
+#'     make_safeframe(
 #'       speed = "Miles per hour",
 #'       dist = "Distance in miles"
 #'     )
 #' }
-print.datatagr <- function(x, ...) {
-  cat("\n// datatagr object\n")
-  print(drop_datatagr(x))
+print.safeframe <- function(x, ...) {
+  cat("\n// safeframe object\n")
+  print(drop_safeframe(x))
 
   # Extract names and values from labels(x)
   label_values <- unlist(labels(x))

@@ -1,5 +1,5 @@
 test_that("tests for the names<- operator", {
-  x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
+  x <- make_safeframe(cars, speed = "Miles per hour", dist = "Distance in miles")
   old_x <- x
   old_class <- class(x)
   old_names <- names(x)

@@ -16,10 +16,10 @@ A vector of classes
 \description{
 Function to swiftly provide access to generic categories of types within R.
 These can be used to provide comprehensive typesetting when creating a
-\code{datatagr} object.
+\code{safeframe} object.
 }
 \examples{
-x <- make_datatagr(cars,
+x <- make_safeframe(cars,
   speed = "Miles per hour",
   dist = "Distance in miles"
 )

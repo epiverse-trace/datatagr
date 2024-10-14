@@ -1,8 +1,8 @@
 ---
-title: "Design Principles for {datatagr}"
+title: "Design Principles for {safeframe}"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Design Principles for {datatagr}}
+  %\VignetteIndexEntry{Design Principles for {safeframe}}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette outlines the design decisions that have been taken during the development of the `{datatagr}` R package, and provides some of the reasoning, and possible pros and cons of each decision.
+This vignette outlines the design decisions that have been taken during the development of the `{safeframe}` R package, and provides some of the reasoning, and possible pros and cons of each decision.
 
 This document is primarily intended to be read by those interested in understanding the code within the package and for potential package contributors.
 
@@ -24,7 +24,7 @@ None of the sections are required, feel free to remove any sections not relevant
 
 ## Scope
 
-**datatagr** provides generic labelling and validation tools. In contrast to the original versions of **linelist** (`<=v1.1.4`), datatagr functions at the variable level instead of the object level. 
+**safeframe** provides generic labelling and validation tools. In contrast to the original versions of **linelist** (`<=v1.1.4`), safeframe functions at the variable level instead of the object level. 
 
 The validation tooling is specific to type checking variables and providing feedback on potential data loss or coercion. It does not aim to do complex validations at this time.
 
@@ -36,9 +36,9 @@ We try to make function names as descriptive as possible, while keeping them sho
 
 ## Input/Output/Interoperability
 
-Any data frame object can be passed into **datatagr**. Output from datatagr remains a data frame object, with an additional datatagr class attribute. This means it remains interoperable with all the regular data frame operations one may attempt to do. 
+Any data frame object can be passed into **safeframe**. Output from safeframe remains a data frame object, with an additional safeframe class attribute. This means it remains interoperable with all the regular data frame operations one may attempt to do. 
 
-**datatagr** is interoperable with pipes (that is, `|>` or `%>%`). This allows for easy chaining of functions. Note that there are no guarantees that label attributes are preserved when piping or wrangling in another way. For example, **dplyr** drops variable level attributes when using `dplyr::mutate()`.
+**safeframe** is interoperable with pipes (that is, `|>` or `%>%`). This allows for easy chaining of functions. Note that there are no guarantees that label attributes are preserved when piping or wrangling in another way. For example, **dplyr** drops variable level attributes when using `dplyr::mutate()`.
 
 ## Design decisions
 
@@ -64,4 +64,4 @@ Any package development has quirks. We outline quirks we are aware of here:
 
 ## Development journey
 
-The **datatagr** package is a major refactor of **linelist** `v1.1.4`. The refactor was necessary to make the package more generic and to make the codebase more maintainable. The refactor was completed in a series of steps documented in [#37](https://github.com/epiverse-trace/datatagr/pull/37).
+The **safeframe** package is a major refactor of **linelist** `v1.1.4`. The refactor was necessary to make the package more generic and to make the codebase more maintainable. The refactor was completed in a series of steps documented in [#37](https://github.com/epiverse-trace/safeframe/pull/37).

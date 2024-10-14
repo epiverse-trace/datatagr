@@ -1,19 +1,20 @@
-#' Rename columns of a datatagr
+#' Rename columns of a safeframe
 #'
-#' This function can be used to rename the columns a `datatagr` (that is, adjust
+#' This function can be used to rename the columns a `safeframe` (that is,
+#' adjust
 #' variable names).
 #'
-#' @param x a `datatagr` object
+#' @param x a `safeframe` object
 #'
 #' @param value a `character` vector to set the new names of the columns of `x`
 #'
-#' @return a `datatagr` with new column names
+#' @return a `safeframe` with new column names
 #'
 #' @export
 #'
 #' @examples
-#' ## create datatagr
-#' x <- make_datatagr(cars,
+#' ## create safeframe
+#' x <- make_safeframe(cars,
 #'   speed = "Miles per hour",
 #'   dist = "Distance in miles"
 #' )
@@ -33,7 +34,7 @@
 #'   head(x)
 #'   labels(x)
 #' }
-`names<-.datatagr` <- function(x, value) {
+`names<-.safeframe` <- function(x, value) {
   # Strategy for renaming
 
   # Since renaming cannot drop columns, we can update labels to match new
@@ -42,7 +43,7 @@
   # 1. Storing old names and new names to have define replacement rules
   # 2. Replace all labelled variables using the replacement rules
 
-  out <- drop_datatagr(x)
+  out <- drop_safeframe(x)
   names(out) <- value
 
   # Step 1

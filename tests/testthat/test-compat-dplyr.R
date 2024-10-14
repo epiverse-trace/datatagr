@@ -1,15 +1,15 @@
 skip_if_not_installed("dplyr")
 
-x <- make_datatagr(cars, speed = "Miles per hour", dist = "Distance in miles")
+x <- make_safeframe(cars, speed = "Miles per hour", dist = "Distance in miles")
 
 # Rows ----
 
 test_that("Compatibility with dplyr::arrange()", {
   ordered_x <- expect_no_warning(dplyr::arrange(x, dist))
 
-  expect_s3_class(ordered_x, "datatagr")
+  expect_s3_class(ordered_x, "safeframe")
   expect_identical(
-    drop_datatagr(ordered_x),
+    drop_safeframe(ordered_x),
     dplyr::arrange(cars, dist)
   )
 })
@@ -38,7 +38,7 @@ test_that("Compatibility with dplyr::filter()", {
 test_that("Compatibility with dplyr::slice()", {
   x %>%
     dplyr::slice(5:10) %>%
-    expect_s3_class("datatagr") %>%
+    expect_s3_class("safeframe") %>%
     dim() %>%
     expect_identical(c(6L, ncol(x)))
 })
@@ -48,7 +48,7 @@ test_that("Compatibility with dplyr::slice()", {
 test_that("Compatibility with dplyr::transmute()", {
   x %>%
     dplyr::transmute(vitesse = speed) %>%
-    expect_s3_class("datatagr") %>%
+    expect_s3_class("safeframe") %>%
     expect_snapshot_warning()
 })
 
@@ -58,7 +58,7 @@ test_that("Compatibility with dplyr::mutate(.keep)", {
   # labels as it does in the rename() case.
   x %>%
     dplyr::mutate(vitesse = speed, .keep = "unused") %>%
-    expect_s3_class("datatagr") %>%
+    expect_s3_class("safeframe") %>%
     expect_snapshot_warning()
 })
 
@@ -130,7 +130,7 @@ test_that("Compatibility with dplyr::rename_with()", {
 test_that("Compatibility with dplyr::select()", {
   x %>%
     dplyr::select("dist") %>%
-    expect_s3_class("datatagr") %>%
+    expect_s3_class("safeframe") %>%
     labels() %>%
     expect_identical(list(dist = "Distance in miles")) %>%
     expect_snapshot_warning()
@@ -138,7 +138,7 @@ test_that("Compatibility with dplyr::select()", {
   # Even when renames happen
   x %>%
     dplyr::select(dist, vitesse = speed) %>%
-    expect_s3_class("datatagr") %>%
+    expect_s3_class("safeframe") %>%
     labels() %>%
     expect_identical(list(
       dist = "Distance in miles",
@@ -153,6 +153,6 @@ test_that("Compatibility with dplyr::bind_rows()", {
 
   expect_s3_class(
     x,
-    "datatagr"
+    "safeframe"
   )
 })

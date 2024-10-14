@@ -1,5 +1,5 @@
 test_that("tests for set_labels()", {
-  x <- make_datatagr(cars, dist = "Distance")
+  x <- make_safeframe(cars, dist = "Distance")
 
   # Check whether error messages are the same as before
   # Uses snapshot to prevent formatting issues in validating the error message

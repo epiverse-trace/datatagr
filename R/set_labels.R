@@ -1,20 +1,20 @@
-#' Change labels of a datatagr object
+#' Change labels of a safeframe object
 #'
-#' This function changes the `labels` of a `datatagr` object, using the same
-#' syntax as the constructor [make_datatagr()].
+#' This function changes the `labels` of a `safeframe` object, using the same
+#' syntax as the constructor [make_safeframe()].
 #'
-#' @inheritParams make_datatagr
+#' @inheritParams make_safeframe
 #'
-#' @seealso [make_datatagr()] to create a `datatagr` object
+#' @seealso [make_safeframe()] to create a `safeframe` object
 #'
 #' @export
 #'
-#' @return The function returns a `datatagr` object.
+#' @return The function returns a `safeframe` object.
 #'
 #' @examples
 #'
-#' ## create a datatagr
-#' x <- make_datatagr(cars, speed = "Miles per hour")
+#' ## create a safeframe
+#' x <- make_safeframe(cars, speed = "Miles per hour")
 #' labels(x)
 #'
 #' ## add new labels and fix an existing one
@@ -31,7 +31,7 @@
 #' labels(x)
 set_labels <- function(x, ...) {
   # assert inputs
-  checkmate::assertClass(x, "datatagr")
+  checkmate::assertClass(x, "safeframe")
 
   labels <- rlang::list2(...)
 

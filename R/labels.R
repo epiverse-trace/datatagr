@@ -1,9 +1,9 @@
-#' Get the list of labels in a datatagr
+#' Get the list of labels in a safeframe
 #'
 #' This function returns the list of labels identifying specific variable types
-#' in a `datatagr` object.
+#' in a `safeframe` object.
 #'
-#' @param x a `datatagr` object
+#' @param x a `safeframe` object
 #'
 #' @param show_null a `logical` indicating if the complete list of labels,
 #'   including `NULL` ones, should be returned; if `FALSE`, only labels with a
@@ -18,8 +18,8 @@
 #'
 #' @examples
 #'
-#' ## make a datatagr
-#' x <- make_datatagr(cars, speed = "Miles per hour")
+#' ## make a safeframe
+#' x <- make_safeframe(cars, speed = "Miles per hour")
 #'
 #' ## check non-null labels
 #' labels(x)
@@ -27,7 +27,7 @@
 #' ## get a list of all labels, including NULL ones
 #' labels(x, TRUE)
 labels <- function(x, show_null = FALSE) {
-  checkmate::assertClass(x, "datatagr")
+  checkmate::assertClass(x, "safeframe")
   out <- lapply(names(x), FUN = function(var) {
     attr(x[[var]], "label")
   })

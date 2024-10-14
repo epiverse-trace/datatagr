@@ -2,7 +2,7 @@
 % Please edit documentation in R/set_labels.R
 \name{set_labels}
 \alias{set_labels}
-\title{Change labels of a datatagr object}
+\title{Change labels of a safeframe object}
 \usage{
 set_labels(x, ...)
 }
@@ -15,16 +15,16 @@ names in \code{x} as list names and the labels as list values. Values set to
 \code{default_values}.}
 }
 \value{
-The function returns a \code{datatagr} object.
+The function returns a \code{safeframe} object.
 }
 \description{
-This function changes the \code{labels} of a \code{datatagr} object, using the same
-syntax as the constructor \code{\link[=make_datatagr]{make_datatagr()}}.
+This function changes the \code{labels} of a \code{safeframe} object, using the same
+syntax as the constructor \code{\link[=make_safeframe]{make_safeframe()}}.
 }
 \examples{
 
-## create a datatagr
-x <- make_datatagr(cars, speed = "Miles per hour")
+## create a safeframe
+x <- make_safeframe(cars, speed = "Miles per hour")
 labels(x)
 
 ## add new labels and fix an existing one
@@ -41,5 +41,5 @@ x <- set_labels(x, !!!old_labels)
 labels(x)
 }
 \seealso{
-\code{\link[=make_datatagr]{make_datatagr()}} to create a \code{datatagr} object
+\code{\link[=make_safeframe]{make_safeframe()}} to create a \code{safeframe} object
 }

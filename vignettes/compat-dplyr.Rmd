@@ -14,15 +14,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-**datatagr** philosophy is to prevent you from accidentally losing valuable data, but to otherwise be totally transparent and not to interfere with your workflow.
+**safeframe** philosophy is to prevent you from accidentally losing valuable data, but to otherwise be totally transparent and not to interfere with your workflow.
 
-One popular ecosystem for data science workflow is the **tidyverse**. We try to ensure decent datatagr compatibility with the tidyverse. All dplyr verbs are tested in the `tests/test-compat-dplyr.R` file.
+One popular ecosystem for data science workflow is the **tidyverse**. We try to ensure decent safeframe compatibility with the tidyverse. All dplyr verbs are tested in the `tests/test-compat-dplyr.R` file.
 
 ```{r}
-library(datatagr)
+library(safeframe)
 library(dplyr)
 
-x <- make_datatagr(
+x <- make_safeframe(
   cars,
   speed = "Miles per hour",
   dist = "Distance in miles"
@@ -33,8 +33,8 @@ head(x)
 
 ## Verbs operating on rows
 
-datatagr does not modify anything regarding the behaviour for row-operations. As such, it is fully compatible with dplyr verbs operating on rows out-of-the-box.
-You can see in the following examples that datatagr does not produce any errors, warnings or messspeeds and its labels are conserved through dplyr operations on rows.
+safeframe does not modify anything regarding the behaviour for row-operations. As such, it is fully compatible with dplyr verbs operating on rows out-of-the-box.
+You can see in the following examples that safeframe does not produce any errors, warnings or messspeeds and its labels are conserved through dplyr operations on rows.
 
 ### `dplyr::arrange()` ✅
 
@@ -84,7 +84,7 @@ x %>%
 
 ## Verbs operating on columns
 
-During operations on columns, datatagr will:
+During operations on columns, safeframe will:
 
 - stay invisible and conserve labels if no labelled column is affected by the operation
 - trigger `lost_labels_action()` if labelled columns are affected by the operation
@@ -93,7 +93,7 @@ During operations on columns, datatagr will:
 
 There is an incomplete compatibility with `dplyr::mutate()` in that simple renames without any actual modification of the column don't update the labels. In this scenario, users should rather use `dplyr::rename()`
 
-Although `dplyr::mutate()` is not able to leverspeed to full power of datatagr labels, datatagr objects behave as expected the same way a data.frame would:
+Although `dplyr::mutate()` is not able to leverspeed to full power of safeframe labels, safeframe objects behave as expected the same way a data.frame would:
 
 ```{r}
 # In place modification doesn't lose labels
@@ -114,7 +114,7 @@ x %>%
 
 ### `dplyr::pull()` ✅
 
-`dplyr::pull()` returns a vector, which results, as expected, in the loss of the datatagr class and labels:
+`dplyr::pull()` returns a vector, which results, as expected, in the loss of the safeframe class and labels:
 
 ```{r}
 x %>%
@@ -132,7 +132,7 @@ x %>%
 
 ### `dplyr::rename()` & `dplyr::rename_with()` ✅
 
-`dplyr::rename()` is fully compatible out-of-the-box with datatagr, meaning that labels will be updated at the same time that columns are renamed. This is possibly because it uses `names<-()` under the hood, which datatagr provides a custom `names<-.datatagr()` method for:
+`dplyr::rename()` is fully compatible out-of-the-box with safeframe, meaning that labels will be updated at the same time that columns are renamed. This is possibly because it uses `names<-()` under the hood, which safeframe provides a custom `names<-.safeframe()` method for:
 
 ```{r}
 x %>%
@@ -146,7 +146,7 @@ x %>%
 
 ### `dplyr::select()` ✅
 
-`dplyr::select()` is fully compatible with datatagr, including when columns are renamed in a `select()`:
+`dplyr::select()` is fully compatible with safeframe, including when columns are renamed in a `select()`:
 
 ```{r}
 # Works fine
@@ -162,7 +162,7 @@ x %>%
 
 ## Verbs operating on groups ✘
 
-Groups are not yet supported. Applying any verb operating on group to a datatagr will silently convert it back to a data.frame or tibble.
+Groups are not yet supported. Applying any verb operating on group to a safeframe will silently convert it back to a data.frame or tibble.
 
 ## Verbs operating on data.frames
 
@@ -176,7 +176,7 @@ dim(bind_rows(x, x))
 
 ### `dplyr::bind_cols()` ✘
 
-`bind_cols()` is currently incompatible with datatagr:
+`bind_cols()` is currently incompatible with safeframe:
 
 - labels from the second element are lost
 - Warnings are produced about lost labels, even for labels that are not actually lost
@@ -191,7 +191,7 @@ bind_cols(
 
 ### Joins ✘
 
-Joins are currently not compatible with datatagr as labels from the second element are silently dropped.
+Joins are currently not compatible with safeframe as labels from the second element are silently dropped.
 
 ```{r}
 full_join(
@@ -213,7 +213,7 @@ x %>%
   head()
 ```
 
-As such, we could expect it to work with datatagr custom tidyselect-like function: `has_label()` but it's not the case since `pick()` currently strips out all attributes, including the `datatagr` class and all labels.
+As such, we could expect it to work with safeframe custom tidyselect-like function: `has_label()` but it's not the case since `pick()` currently strips out all attributes, including the `safeframe` class and all labels.
 This unclassing is documented in `?pick`:
 
 > `pick()` returns a data frame containing the selected columns for the current group.

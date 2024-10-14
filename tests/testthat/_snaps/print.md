@@ -1,7 +1,7 @@
-# tests for print.datatagr
+# tests for print.safeframe
 
     
-    // datatagr object
+    // safeframe object
        speed dist
     1      4    2
     2      4   10
@@ -61,7 +61,7 @@
 ---
 
     
-    // datatagr object
+    // safeframe object
        speed dist
     1      4    2
     2      4   10

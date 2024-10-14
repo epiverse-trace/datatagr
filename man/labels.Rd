@@ -2,12 +2,12 @@
 % Please edit documentation in R/labels.R
 \name{labels}
 \alias{labels}
-\title{Get the list of labels in a datatagr}
+\title{Get the list of labels in a safeframe}
 \usage{
 labels(x, show_null = FALSE)
 }
 \arguments{
-\item{x}{a \code{datatagr} object}
+\item{x}{a \code{safeframe} object}
 
 \item{show_null}{a \code{logical} indicating if the complete list of labels,
 including \code{NULL} ones, should be returned; if \code{FALSE}, only labels with a
@@ -19,15 +19,15 @@ they correspond to, and values indicate the relevant labels.
 }
 \description{
 This function returns the list of labels identifying specific variable types
-in a \code{datatagr} object.
+in a \code{safeframe} object.
 }
 \details{
 Labels are stored as the \code{label} attribute of the column variable.
 }
 \examples{
 
-## make a datatagr
-x <- make_datatagr(cars, speed = "Miles per hour")
+## make a safeframe
+x <- make_safeframe(cars, speed = "Miles per hour")
 
 ## check non-null labels
 labels(x)

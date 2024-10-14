@@ -7,7 +7,7 @@
 validate_types(x, ...)
 }
 \arguments{
-\item{x}{a \code{datatagr} object}
+\item{x}{a \code{safeframe} object}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A named list with variable
 names in \code{x} as list names and the related types as list values.}
@@ -16,12 +16,12 @@ names in \code{x} as list names and the related types as list values.}
 A named \code{list}.
 }
 \description{
-This function checks the type of variables in a \code{datatagr} against
+This function checks the type of variables in a \code{safeframe} against
 accepted classes. Only checks the type of provided variables and ignores
 those not provided.
 }
 \examples{
-x <- make_datatagr(cars,
+x <- make_safeframe(cars,
   speed = "Miles per hour",
   dist = "Distance in miles"
 )
@@ -41,6 +41,6 @@ validate_types(x, speed = "numeric", dist = c(
 \seealso{
 \itemize{
 \item \code{\link[=validate_labels]{validate_labels()}} to perform a series of checks on variables
-\item \code{\link[=validate_datatagr]{validate_datatagr()}} to combine \code{validate_labels} and \code{validate_types}
+\item \code{\link[=validate_safeframe]{validate_safeframe()}} to combine \code{validate_labels} and \code{validate_types}
 }
 }

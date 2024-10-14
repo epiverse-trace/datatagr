@@ -1,10 +1,10 @@
 #' Extract a data.frame of all labelled variables
 #'
 #' This function returns a `data.frame`, where labelled variables (as stored in
-#' the `datatagr` object) are renamed. Note that the output is no longer a
-#' `datatagr`, but a regular `data.frame`. Unlabeled variables are unaffected.
+#' the `safeframe` object) are renamed. Note that the output is no longer a
+#' `safeframe`, but a regular `data.frame`. Unlabeled variables are unaffected.
 #'
-#' @param x a `datatagr` object
+#' @param x a `safeframe` object
 #'
 #' @export
 #'
@@ -12,7 +12,7 @@
 #'
 #' @examples
 #'
-#' x <- make_datatagr(cars,
+#' x <- make_safeframe(cars,
 #'   speed = "Miles per hour",
 #'   dist = "Distance in miles"
 #' )
@@ -20,10 +20,10 @@
 #' ## get a data.frame with variables renamed based on labels
 #' labels_df(x)
 labels_df <- function(x) {
-  checkmate::assertClass(x, "datatagr")
+  checkmate::assertClass(x, "safeframe")
 
   labels <- unlist(labels(x))
-  out <- drop_datatagr(x)
+  out <- drop_safeframe(x)
 
   # Replace the names of out that are in intersection with corresponding labels
   names(out)[match(names(labels), names(out))] <- labels[names(labels)]

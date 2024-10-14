@@ -4,7 +4,7 @@
       set_labels(cars)
     Condition
       Error in `set_labels()`:
-      ! Assertion on 'x' failed: Must inherit from class 'datatagr', but has class 'data.frame'.
+      ! Assertion on 'x' failed: Must inherit from class 'safeframe', but has class 'data.frame'.
 
 ---
 

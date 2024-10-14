@@ -1,6 +1,6 @@
-#' Restore labels of a datatagr
+#' Restore labels of a safeframe
 #'
-#' Internal. This function is used to restore labels of a `datatagr` object
+#' Internal. This function is used to restore labels of a `safeframe` object
 #' which may have lost its labels after handling for example through `dplyr`
 #' verbs. Specific actions can be triggered when some of the labelled variables
 #' have disappeared from the object.
@@ -17,7 +17,7 @@
 #'
 #' @noRd
 #'
-#' @return The function returns a `datatagr` object with updated labels.
+#' @return The function returns a `safeframe` object with updated labels.
 #'
 
 restore_labels <- function(x, newLabels,
@@ -45,11 +45,11 @@ restore_labels <- function(x, newLabels,
     )
     if (lost_action == "warning") {
       # nolint next: condition_call_linter.
-      warning(warningCondition(msg, class = "datatagr_warning"))
+      warning(warningCondition(msg, class = "safeframe_warning"))
     }
     if (lost_action == "error") {
       # nolint next: condition_call_linter.
-      stop(errorCondition(msg, class = "datatagr_error"))
+      stop(errorCondition(msg, class = "safeframe_error"))
     }
   }
 
@@ -58,8 +58,8 @@ restore_labels <- function(x, newLabels,
   }
 
   # Ensure class consistency
-  if (!inherits(x, "datatagr")) {
-    class(x) <- c("datatagr", class(x))
+  if (!inherits(x, "safeframe")) {
+    class(x) <- c("safeframe", class(x))
   }
 
   x

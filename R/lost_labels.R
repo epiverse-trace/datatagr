@@ -23,11 +23,11 @@ lost_labels <- function(old, new, lost_action) {
     )
     if (lost_action == "warning") {
       # nolint next: condition_call_linter.
-      warning(warningCondition(msg, class = "datatagr_warning"))
+      warning(warningCondition(msg, class = "safeframe_warning"))
     }
     if (lost_action == "error") {
       # nolint next: condition_call_linter.
-      stop(errorCondition(msg, class = "datatagr_error"))
+      stop(errorCondition(msg, class = "safeframe_error"))
     }
   }
 }

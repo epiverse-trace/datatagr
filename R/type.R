@@ -2,7 +2,7 @@
 #'
 #' Function to swiftly provide access to generic categories of types within R.
 #' These can be used to provide comprehensive typesetting when creating a
-#' `datatagr` object.
+#' `safeframe` object.
 #'
 #' @param x Character indicating the desired type. Options include `date`,
 #' `category`, `numeric`, `binary` at this time.
@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' x <- make_datatagr(cars,
+#' x <- make_safeframe(cars,
 #'   speed = "Miles per hour",
 #'   dist = "Distance in miles"
 #' )

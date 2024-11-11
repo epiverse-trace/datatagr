@@ -9,7 +9,7 @@
 #' @param labels A named list with variable names in `x` as list names and the
 #' labels as list values. Values set to `NULL` remove the label.
 #'
-#' @noRd
+#' @export
 #'
 #' @return The function returns the original object with an additional `"label"`
 #'   attribute on each provided variable.

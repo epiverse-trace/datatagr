@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Compatibility with dplyr • datatagr</title>
+<title>Compatibility with dplyr • safeframe</title>
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="https://epiverse-trace.github.io/blueprints/logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
-    <a class="navbar-brand me-2" href="../index.html">datatagr</a>
+    <a class="navbar-brand me-2" href="../index.html">safeframe</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
 
@@ -41,7 +41,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/compat-dplyr.html">Compatibility with dplyr</a></li>
-    <li><a class="dropdown-item" href="../articles/design-principles.html">Design Principles for {datatagr}</a></li>
+    <li><a class="dropdown-item" href="../articles/design-principles.html">Design Principles for {safeframe}</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -50,7 +50,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/epiverse-trace/datatagr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/epiverse-trace/safeframe/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
@@ -74,23 +74,23 @@
       <img src="../logo.svg" class="logo" alt=""><h1>Compatibility with dplyr</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/datatagr/blob/main/vignettes/compat-dplyr.Rmd" class="external-link"><code>vignettes/compat-dplyr.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/safeframe/blob/main/vignettes/compat-dplyr.Rmd" class="external-link"><code>vignettes/compat-dplyr.Rmd</code></a></small>
       <div class="d-none name"><code>compat-dplyr.Rmd</code></div>
     </div>
 
     
     
-<p><strong>datatagr</strong> philosophy is to prevent you from
+<p><strong>safeframe</strong> philosophy is to prevent you from
 accidentally losing valuable data, but to otherwise be totally
 transparent and not to interfere with your workflow.</p>
 <p>One popular ecosystem for data science workflow is the
-<strong>tidyverse</strong>. We try to ensure decent datatagr
+<strong>tidyverse</strong>. We try to ensure decent safeframe
 compatibility with the tidyverse. All dplyr verbs are tested in the
 <code>tests/test-compat-dplyr.R</code> file.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiverse-trace.github.io/datatagr/">datatagr</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiverse-trace.github.io/safeframe/">safeframe</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'datatagr'</span></span>
+<span><span class="co">#&gt; Attaching package: 'safeframe'</span></span>
 <span><span class="co">#&gt; The following object is masked from 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     labels</span></span>
@@ -104,7 +104,7 @@ compatibility with the tidyverse. All dplyr verbs are tested in the
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_datatagr.html">make_datatagr</a></span><span class="op">(</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_safeframe.html">make_safeframe</a></span><span class="op">(</span></span>
 <span>  <span class="va">cars</span>,</span>
 <span>  speed <span class="op">=</span> <span class="st">"Miles per hour"</span>,</span>
 <span>  dist <span class="op">=</span> <span class="st">"Distance in miles"</span></span>
@@ -112,7 +112,7 @@ compatibility with the tidyverse. All dplyr verbs are tested in the
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1     4    2</span></span>
 <span><span class="co">#&gt; 2     4   10</span></span>
@@ -127,10 +127,10 @@ compatibility with the tidyverse. All dplyr verbs are tested in the
 <div class="section level2">
 <h2 id="verbs-operating-on-rows">Verbs operating on rows<a class="anchor" aria-label="anchor" href="#verbs-operating-on-rows"></a>
 </h2>
-<p>datatagr does not modify anything regarding the behaviour for
+<p>safeframe does not modify anything regarding the behaviour for
 row-operations. As such, it is fully compatible with dplyr verbs
 operating on rows out-of-the-box. You can see in the following examples
-that datatagr does not produce any errors, warnings or messspeeds and
+that safeframe does not produce any errors, warnings or messspeeds and
 its labels are conserved through dplyr operations on rows.</p>
 <div class="section level3">
 <h3 id="dplyrarrange">
@@ -141,7 +141,7 @@ its labels are conserved through dplyr operations on rows.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1     4    2</span></span>
 <span><span class="co">#&gt; 2     4   10</span></span>
@@ -163,7 +163,7 @@ its labels are conserved through dplyr operations on rows.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1     4    2</span></span>
 <span><span class="co">#&gt; 2     4   10</span></span>
@@ -185,7 +185,7 @@ its labels are conserved through dplyr operations on rows.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">speed</span> <span class="op">&gt;=</span> <span class="fl">50</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt; [1] speed dist </span></span>
 <span><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -201,7 +201,7 @@ its labels are conserved through dplyr operations on rows.</p>
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1     8   16</span></span>
 <span><span class="co">#&gt; 2     9   10</span></span>
@@ -217,7 +217,7 @@ its labels are conserved through dplyr operations on rows.</p>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1     4    2</span></span>
 <span><span class="co">#&gt; 2     4   10</span></span>
@@ -232,7 +232,7 @@ its labels are conserved through dplyr operations on rows.</p>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_tail</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1    24   70</span></span>
 <span><span class="co">#&gt; 2    24   92</span></span>
@@ -247,7 +247,7 @@ its labels are conserved through dplyr operations on rows.</p>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_min</a></span><span class="op">(</span><span class="va">speed</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1     4    2</span></span>
 <span><span class="co">#&gt; 2     4   10</span></span>
@@ -261,7 +261,7 @@ its labels are conserved through dplyr operations on rows.</p>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span><span class="va">speed</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1    25   85</span></span>
 <span><span class="co">#&gt; 2    24   70</span></span>
@@ -276,7 +276,7 @@ its labels are conserved through dplyr operations on rows.</p>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1    23   54</span></span>
 <span><span class="co">#&gt; 2    14   80</span></span>
@@ -292,7 +292,7 @@ its labels are conserved through dplyr operations on rows.</p>
 <div class="section level2">
 <h2 id="verbs-operating-on-columns">Verbs operating on columns<a class="anchor" aria-label="anchor" href="#verbs-operating-on-columns"></a>
 </h2>
-<p>During operations on columns, datatagr will:</p>
+<p>During operations on columns, safeframe will:</p>
 <ul>
 <li>stay invisible and conserve labels if no labelled column is affected
 by the operation</li>
@@ -308,7 +308,7 @@ affected by the operation</li>
 modification of the column don’t update the labels. In this scenario,
 users should rather use <code><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">dplyr::rename()</a></code></p>
 <p>Although <code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">dplyr::mutate()</a></code> is not able to leverspeed to
-full power of datatagr labels, datatagr objects behave as expected the
+full power of safeframe labels, safeframe objects behave as expected the
 same way a data.frame would:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># In place modification doesn't lose labels</span></span>
@@ -316,7 +316,7 @@ same way a data.frame would:</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>speed <span class="op">=</span> <span class="va">speed</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1    14    2</span></span>
 <span><span class="co">#&gt; 2    14   10</span></span>
@@ -334,7 +334,7 @@ same way a data.frame would:</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>ticket <span class="op">=</span> <span class="va">speed</span> <span class="op">&gt;=</span> <span class="fl">50</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist ticket</span></span>
 <span><span class="co">#&gt; 1     4    2  FALSE</span></span>
 <span><span class="co">#&gt; 2     4   10  FALSE</span></span>
@@ -354,7 +354,7 @@ same way a data.frame would:</p>
 <span><span class="co">#&gt; Warning: The following labelled variables are lost:</span></span>
 <span><span class="co">#&gt;  speed - Miles per hour</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   dist edad</span></span>
 <span><span class="co">#&gt; 1    2    4</span></span>
 <span><span class="co">#&gt; 2   10    4</span></span>
@@ -372,7 +372,7 @@ same way a data.frame would:</p>
 <code>dplyr::pull()</code> ✅<a class="anchor" aria-label="anchor" href="#dplyrpull"></a>
 </h3>
 <p><code><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">dplyr::pull()</a></code> returns a vector, which results, as
-expected, in the loss of the datatagr class and labels:</p>
+expected, in the loss of the safeframe class and labels:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span></span>
@@ -390,7 +390,7 @@ expected, in the loss of the datatagr class and labels:</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html" class="external-link">relocate</a></span><span class="op">(</span><span class="va">speed</span>, .before <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1     4    2</span></span>
 <span><span class="co">#&gt; 2     4   10</span></span>
@@ -409,16 +409,16 @@ expected, in the loss of the datatagr class and labels:</p>
 ✅<a class="anchor" aria-label="anchor" href="#dplyrrename-dplyrrename_with"></a>
 </h3>
 <p><code><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">dplyr::rename()</a></code> is fully compatible out-of-the-box with
-datatagr, meaning that labels will be updated at the same time that
+safeframe, meaning that labels will be updated at the same time that
 columns are renamed. This is possibly because it uses
-<code>names&lt;-()</code> under the hood, which datatagr provides a
-custom <code>names&lt;-.datatagr()</code> method for:</p>
+<code>names&lt;-()</code> under the hood, which safeframe provides a
+custom <code>names&lt;-.safeframe()</code> method for:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>edad <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   edad dist</span></span>
 <span><span class="co">#&gt; 1    4    2</span></span>
 <span><span class="co">#&gt; 2    4   10</span></span>
@@ -435,7 +435,7 @@ custom <code>names&lt;-.datatagr()</code> method for:</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename_with</a></span><span class="op">(</span><span class="va">toupper</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   SPEED DIST</span></span>
 <span><span class="co">#&gt; 1     4    2</span></span>
 <span><span class="co">#&gt; 2     4   10</span></span>
@@ -452,7 +452,7 @@ custom <code>names&lt;-.datatagr()</code> method for:</p>
 <h3 id="dplyrselect">
 <code>dplyr::select()</code> ✅<a class="anchor" aria-label="anchor" href="#dplyrselect"></a>
 </h3>
-<p><code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code> is fully compatible with datatagr,
+<p><code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code> is fully compatible with safeframe,
 including when columns are renamed in a <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Works fine</span></span>
@@ -460,7 +460,7 @@ including when columns are renamed in a <code><a href="https://dplyr.tidyverse.o
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">speed</span>, <span class="va">dist</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1     4    2</span></span>
 <span><span class="co">#&gt; 2     4   10</span></span>
@@ -478,7 +478,7 @@ including when columns are renamed in a <code><a href="https://dplyr.tidyverse.o
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">dist</span>, edad <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   dist edad</span></span>
 <span><span class="co">#&gt; 1    2    4</span></span>
 <span><span class="co">#&gt; 2   10    4</span></span>
@@ -496,7 +496,7 @@ including when columns are renamed in a <code><a href="https://dplyr.tidyverse.o
 <h2 id="verbs-operating-on-groups">Verbs operating on groups ✘<a class="anchor" aria-label="anchor" href="#verbs-operating-on-groups"></a>
 </h2>
 <p>Groups are not yet supported. Applying any verb operating on group to
-a datatagr will silently convert it back to a data.frame or tibble.</p>
+a safeframe will silently convert it back to a data.frame or tibble.</p>
 </div>
 <div class="section level2">
 <h2 id="verbs-operating-on-data-frames">Verbs operating on data.frames<a class="anchor" aria-label="anchor" href="#verbs-operating-on-data-frames"></a>
@@ -516,7 +516,8 @@ a datatagr will silently convert it back to a data.frame or tibble.</p>
 <h3 id="dplyrbind_cols">
 <code>dplyr::bind_cols()</code> ✘<a class="anchor" aria-label="anchor" href="#dplyrbind_cols"></a>
 </h3>
-<p><code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols()</a></code> is currently incompatible with datatagr:</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols()</a></code> is currently incompatible with
+safeframe:</p>
 <ul>
 <li>labels from the second element are lost</li>
 <li>Warnings are produced about lost labels, even for labels that are
@@ -533,7 +534,7 @@ not actually lost</li>
 <span><span class="co">#&gt; Warning: The following labelled variables are lost:</span></span>
 <span><span class="co">#&gt;  dist - Distance in miles</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1     4    2</span></span>
 <span><span class="co">#&gt; 2     4   10</span></span>
@@ -549,7 +550,7 @@ not actually lost</li>
 <div class="section level3">
 <h3 id="joins">Joins ✘<a class="anchor" aria-label="anchor" href="#joins"></a>
 </h3>
-<p>Joins are currently not compatible with datatagr as labels from the
+<p>Joins are currently not compatible with safeframe as labels from the
 second element are silently dropped.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">full_join</a></span><span class="op">(</span></span>
@@ -564,7 +565,7 @@ second element are silently dropped.</p>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> If a many-to-many relationship is expected, set `relationship =</span></span>
 <span><span class="co">#&gt;   "many-to-many"` to silence this warning.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1     4    2</span></span>
 <span><span class="co">#&gt; 2     4   10</span></span>
@@ -592,7 +593,7 @@ tidyselect-incompatible functions, such as:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">pick</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">ends_with</a></span><span class="op">(</span><span class="st">"loc"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; // datatagr object</span></span>
+<span><span class="co">#&gt; // safeframe object</span></span>
 <span><span class="co">#&gt;   speed dist</span></span>
 <span><span class="co">#&gt; 1     4    2</span></span>
 <span><span class="co">#&gt; 2     4   10</span></span>
@@ -604,10 +605,10 @@ tidyselect-incompatible functions, such as:</p>
 <span><span class="co">#&gt; labelled variables:</span></span>
 <span><span class="co">#&gt;  speed - Miles per hour</span></span>
 <span><span class="co">#&gt;  dist - Distance in miles</span></span></code></pre></div>
-<p>As such, we could expect it to work with datatagr custom
+<p>As such, we could expect it to work with safeframe custom
 tidyselect-like function: <code><a href="../reference/has_label.html">has_label()</a></code> but it’s not the case
 since <code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">pick()</a></code> currently strips out all attributes, including
-the <code>datatagr</code> class and all labels. This unclassing is
+the <code>safeframe</code> class and all labels. This unclassing is
 documented in <code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">?pick</a></code>:</p>
 <blockquote>
 <p><code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">pick()</a></code> returns a data frame containing the selected

@@ -106,6 +106,9 @@ languages, but also differs from them in the following aspects:
 - [linelist](https://github.com/epiverse-trace/linelist): A package for
   managing and validating linelist data - the original inspiration for
   safeframe.
+- [struct](https://github.com/cynkra/struct): A package that “provides
+  ways to modify objects more strictly, guaranteeing that we keep the
+  type of the modified element.”
 
 ### Code of Conduct
 
